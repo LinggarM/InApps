@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/margin10"
+    tools:context=".activity.LoginActivity">
+
+    <LinearLayout
+        android:id="@+id/linear_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin10"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/img_logo_atas"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/marginLogoAtas"
+            android:contentDescription="@string/app_name"
+            android:layout_marginTop="@dimen/margin10"
+            android:src="@mipmap/ic_launcher_foreground" />
+
+        <TextView
+            android:id="@+id/txt_inapps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/unisans"
+            android:gravity="center"
+            android:text="@string/alternative_name"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/textLarge"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/etxt_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:errorEnabled="true"
+            android:layout_marginTop="@dimen/margin20">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_email"
+                android:inputType="textEmailAddress" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/etxt_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:errorEnabled="true"
+            app:passwordToggleEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="@dimen/buttonSubmitWidth"
+            android:layout_height="wrap_content"
+            android:onClick="confirmInput"
+            android:background="@drawable/button_submit_background"
+            android:text="@string/login_text"
+            android:textColor="@color/colorText"
+            android:layout_marginTop="@dimen/margin10"/>
+
+        <TextView
+            android:id="@+id/txt_forgot_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/margin10"
+            android:text="@string/forgot_password"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/colorTextSecondary" />
+
+        <Button
+            android:id="@+id/btn_google"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/googleFacebookButton"
+            android:text="@string/google_continue"
+            android:textColor="@color/colorTransparentWhite"
+            android:textAlignment="center"
+            android:padding="@dimen/margin10"
+            android:drawableStart="@drawable/ic_google"
+            android:layout_marginTop="@dimen/googleButtonMargin"
+            android:background="@drawable/button_google_background" />
+
+        <Button
+            android:id="@+id/btn_facebook"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/googleFacebookButton"
+            android:text="@string/facebook_continue"
+            android:textColor="@color/colorText"
+            android:padding="@dimen/margin10"
+            android:drawableStart="@drawable/ic_facebook"
+            android:layout_marginTop="@dimen/margin10"
+            android:layout_marginBottom="@dimen/margin20"
+            android:background="@drawable/button_facebook_background" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/txt_dont_have_account"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorTextSecondary"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/margin20"
+        android:text="@string/don_t_have_account"
+        android:fontFamily="@font/roboto"
+        android:clickable="true"
+        android:focusable="true"
+        android:linksClickable="true" />
+
+</RelativeLayout>
