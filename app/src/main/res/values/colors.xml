@@ -9,9 +9,25 @@
     <color name="white">#FFFFFFFF</color>
     <color name="grey_end_bottom_nav">#8a8484</color>
     <color name="grey_start_bottom_nav">#524f4f</color>
+    <color name="colorPrimary">#8a8484</color>
+    <color name="colorPrimaryDark">#524f4f</color>
     <color name="white_bottom_nav">#cdc7c7</color>
     <color name="colorSecondaryVariant">#b99768</color>
 
+    <!-- intro slider background colors -->
+    <color name="introslider_background">#F7F7F7</color>
+
+    <!-- dots inactive colors -->
+    <color name="dot_dark_screen1">#FFFFF0</color>
+    <color name="dot_dark_screen2">#FFFFF0</color>
+    <color name="dot_dark_screen3">#FFFFF0</color>
+    <color name="dot_dark_screen4">#FFFFF0</color>
+
+    <!-- dots active colors -->
+    <color name="dot_light_screen1">#A9A9A9</color>
+    <color name="dot_light_screen2">#A9A9A9</color>
+    <color name="dot_light_screen3">#A9A9A9</color>
+    <color name="dot_light_screen4">#A9A9A9</color>
 
     <!--Material color list from https://material.io/guidelines/style/color.html-->
 

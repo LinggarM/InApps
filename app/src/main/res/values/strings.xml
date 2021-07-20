@@ -2,4 +2,28 @@
     <string name="app_name">In Apps</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sign_in">Sign In</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="lupa_password">Lupa Password?</string>
+    <string name="login">Login</string>
+    <string name="atau">atau</string>
+    <string name="login_with_google">Login with google</string>
+    <string name="forgot_password_long_text">Masukkan alamat email anda dan kami akan mengirim password akun anda</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="nama_lengkap">Nama Lengkap</string>
+    <string name="no_handphone">No Handphone</string>
+    <string name="terms_and_privacy_policy">By signing up, you agree to our Terms and Privacy Policy</string>
+    <string name="belum_punya_akun">Belum punya akun?\u00A0</string>
+    <string name="sudah_punya_akun">Sudah punya akun?\u00A0</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+    <string name="start">Got It</string>
+    <string name="introslider1_title">Hai Selamat Bergabung Di In Apps</string>
+    <string name="introslider2_title">Satu Aplikasi Untuk Menemani Semua Kebutuhan Eventmu</string>
+    <string name="introslider3_title">Dapatkan Diskon Menarik</string>
+    <string name="introslider1_desc">Geser untuk mempelajari lebih lanjut</string>
+    <string name="introslider2_desc">RENTAL alat event, CETAK kebutuhan event, DESAIN Poster, Pamflet, Banner, dll, INSTALL berbagai Software, OS, dan Game</string>
+    <string name="introslider3_desc">Temukan kode promo dan kamu bisa menikmati diskon menarik dari In Apps</string>
 </resources>

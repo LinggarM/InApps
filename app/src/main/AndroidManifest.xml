@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.InApps">
-        <activity android:name=".IntroSliderActivity"></activity>
+        <activity android:name=".productsactivity.DesainActivity"></activity>
+        <activity android:name=".productsactivity.CetakActivity" />
+        <activity android:name=".productsactivity.InstallActivity" />
+        <activity android:name=".productsactivity.RentalActivity" />
+        <activity android:name=".IntroSliderActivity" />
         <activity android:name=".CartActivity" />
         <activity android:name=".SplashScreenActivity">
             <intent-filter>
@@ -20,8 +24,12 @@
         </activity>
         <activity android:name=".DashboardActivity" />
         <activity android:name=".ForgotPasswordActivity" />
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".SignInActivity" />
+        <activity
+            android:name=".SignUpActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".SignInActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".MainActivity" />
     </application>
 
