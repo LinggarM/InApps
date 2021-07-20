@@ -1,0 +1,142 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.InApps" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/grey_end_bottom_nav</item>
+        <item name="colorPrimaryVariant">@color/grey_start_bottom_nav</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/white_bottom_nav</item>
+        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+
+    <!-- Base application font. -->
+    <style name="textAppearanceHeadline1" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="fontFamily">@font/raleway_light</item>
+        <item name="android:fontFamily">@font/raleway_light</item>
+        <item name="android:textSize">93sp</item>
+    </style>
+
+    <style name="textAppearanceHeadline2" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="fontFamily">@font/raleway_light</item>
+        <item name="android:fontFamily">@font/raleway_light</item>
+        <item name="android:textSize">58sp</item>
+    </style>
+
+    <style name="textAppearanceHeadline3" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="fontFamily">@font/raleway_regular</item>
+        <item name="android:fontFamily">@font/raleway_regular</item>
+        <item name="android:textSize">46sp</item>
+    </style>
+
+    <style name="textAppearanceHeadline4" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="fontFamily">@font/raleway_regular</item>
+        <item name="android:fontFamily">@font/raleway_regular</item>
+        <item name="android:textSize">33sp</item>
+    </style>
+
+    <style name="textAppearanceHeadline5" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="fontFamily">@font/raleway_regular</item>
+        <item name="android:fontFamily">@font/raleway_regular</item>
+        <item name="android:textSize">23sp</item>
+    </style>
+
+    <style name="textAppearanceHeadline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="fontFamily">@font/raleway_medium</item>
+        <item name="android:fontFamily">@font/raleway_medium</item>
+        <item name="android:textSize">19sp</item>
+    </style>
+
+    <style name="textAppearanceSubtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="fontFamily">@font/raleway_regular</item>
+        <item name="android:fontFamily">@font/raleway_regular</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="textAppearanceSubtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="fontFamily">@font/raleway_medium</item>
+        <item name="android:fontFamily">@font/raleway_medium</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="textAppearanceBody1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">@font/nunito_regular</item>
+        <item name="android:fontFamily">@font/nunito_regular</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="textAppearanceBody2" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">@font/nunito_regular</item>
+        <item name="android:fontFamily">@font/nunito_regular</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="textAppearanceButton" parent="TextAppearance.MaterialComponents.Button">
+        <item name="fontFamily">@font/nunito_semibold</item>
+        <item name="android:fontFamily">@font/nunito_semibold</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="textAppearanceCaption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="fontFamily">@font/nunito_regular</item>
+        <item name="android:fontFamily">@font/nunito_regular</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="textAppearanceOverline" parent="TextAppearance.MaterialComponents.Overline">
+        <item name="fontFamily">@font/nunito_regular</item>
+        <item name="android:fontFamily">@font/nunito_regular</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <!-- Button size variants -->
+    <style name="xsmallButton" parent="textAppearanceButton">
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="smallButton" parent="textAppearanceButton">
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="mediumButton" parent="textAppearanceButton">
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="largeButton" parent="textAppearanceButton">
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:paddingEnd">24dp</item>
+        <item name="android:paddingTop">9dp</item>
+        <item name="android:paddingBottom">9dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="xlargeButton" parent="textAppearanceButton">
+        <item name="android:paddingStart">32dp</item>
+        <item name="android:paddingEnd">32dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>
