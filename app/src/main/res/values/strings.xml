@@ -26,4 +26,8 @@
     <string name="introslider1_desc">Geser untuk mempelajari lebih lanjut</string>
     <string name="introslider2_desc">RENTAL alat event, CETAK kebutuhan event, DESAIN Poster, Pamflet, Banner, dll, INSTALL berbagai Software, OS, dan Game</string>
     <string name="introslider3_desc">Temukan kode promo dan kamu bisa menikmati diskon menarik dari In Apps</string>
+    <string name="login_gagal">Login gagal, silahkan coba kembali</string>
+    <string name="back_pressed_dashboard">Tekan kembali untuk keluar</string>
+    <string name="dialogTitle">Logout Account</string>
+    <string name="dialogMessage">Apakah anda yakin ingin keluar?</string>
 </resources>
