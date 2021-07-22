@@ -15,4 +15,107 @@
         <item>@color/dot_dark_screen4</item>
     </array>
 
+    <!--rental product data-->
+    <integer-array name="rental_product_image">
+        <item>@drawable/img_rental_proyektoratastigaribu</item>
+        <item>@drawable/img_rental_proyektorbawahtigaribu</item>
+        <item>@drawable/img_rental_screenproyektor</item>
+        <item>@drawable/img_rental_pointer</item>
+        <item>@drawable/img_rental_handytalky</item>
+    </integer-array>
+
+    <string-array name="rental_product_title">
+        <item>Proyektor ≥3000 Lumens</item>
+        <item>Proyektor &lt;3000 Lumens</item>
+        <item>Screen Proyektor</item>
+        <item>Pointer</item>
+        <item>HT (Handy Talky)</item>
+    </string-array>
+
+    <string-array name="rental_product_price">
+        <item>Rp. 140.000/ hari</item>
+        <item>Rp. 75.000/ hari</item>
+        <item>Rp. 40.000/ hari</item>
+        <item>Rp. 10.000/ hari</item>
+        <item>Rp. 15.000/ hari</item>
+    </string-array>
+
+    <string-array name="rental_product_activity">
+        <item>ProyektorAtasTigaRibuActivity</item>
+        <item>ProyektorBawahTigaRibuActivity</item>
+        <item>ScreenProyektorActivity</item>
+        <item>PointerActivity</item>
+        <item>HandyTalkyActivity</item>
+    </string-array>
+
+    <!--desain product data-->
+    <integer-array name="desain_product_image">
+        <item>@drawable/img_cetak_banner</item>
+        <item>@drawable/img_cetak_poster</item>
+        <item>@drawable/img_cetak_cocard</item>
+        <item>@drawable/img_cetak_stiker</item>
+        <item>@drawable/img_cetak_blocknote</item>
+        <item>@drawable/img_cetak_sertifikat</item>
+        <item>@drawable/img_cetak_plakatkayu</item>
+        <item>@drawable/img_cetak_desainkemasan</item>
+    </integer-array>
+
+    <string-array name="desain_product_title">
+        <item>Banner/ X-Banner/ MMT</item>
+        <item>Poster/ Pamflet/ Leaflet</item>
+        <item>Co-Card</item>
+        <item>Stiker</item>
+        <item>Blocknote</item>
+        <item>Sertifikat</item>
+        <item>Plakat</item>
+        <item>Desain Kemasan</item>
+    </string-array>
+
+    <string-array name="desain_product_price">
+        <item>Rp. 25.000</item>
+        <item>Rp. 20.000</item>
+        <item>Rp. 15.000</item>
+        <item>Rp. 15.000</item>
+        <item>Rp. 15.000</item>
+        <item>Rp. 10.000</item>
+        <item>Rp. 10.000</item>
+        <item>Rp. 30.000</item>
+    </string-array>
+
+    <string-array name="desain_product_activity">
+        <item>BannerActivity</item>
+        <item>PosterActivity</item>
+        <item>CoCardActivity</item>
+        <item>StikerActivity</item>
+        <item>BlocknoteActivity</item>
+        <item>SertifikatActivity</item>
+        <item>PlakatActivity</item>
+        <item>DesainKemasanActivity</item>
+    </string-array>
+
+    <!--cetak product data-->
+    <integer-array name="cetak_product_image">
+        <item>@drawable/img_cetak_blocknote</item>
+        <item>@drawable/img_cetak_plakatkayu</item>
+        <item>@drawable/img_cetak_cocard</item>
+    </integer-array>
+
+    <string-array name="cetak_product_title">
+        <item>Blocknote</item>
+        <item>Plakat Kayu</item>
+        <item>Co-Card</item>
+    </string-array>
+
+    <string-array name="cetak_product_price">
+        <item>Rp. 2.500/ buah</item>
+        <item>Rp. 35.000/ buah</item>
+        <item>Rp. 3.000/ buah</item>
+    </string-array>
+
+    <string-array name="cetak_product_activity">
+        <item>BlocknoteActivity</item>
+        <item>PlakatKayuActivity</item>
+        <item>CoCardActivity</item>
+    </string-array>
+
 </resources>

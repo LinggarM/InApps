@@ -11,19 +11,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.InApps">
+        <activity android:name=".productsactivity.desain.DesainKemasanActivity"></activity>
+        <activity android:name=".productsactivity.desain.PlakatActivity" />
+        <activity android:name=".productsactivity.desain.SertifikatActivity" />
+        <activity android:name=".productsactivity.desain.BlocknoteActivity" />
+        <activity android:name=".productsactivity.desain.StikerActivity" />
+        <activity android:name=".productsactivity.desain.CoCardActivity" />
+        <activity android:name=".productsactivity.desain.PosterActivity" />
+        <activity android:name=".productsactivity.desain.BannerActivity" />
+        <activity android:name=".productsactivity.cetak.CoCardActivity" />
+        <activity android:name=".productsactivity.cetak.PlakatKayuActivity" />
+        <activity android:name=".productsactivity.cetak.BlocknoteActivity" />
+        <activity android:name=".productsactivity.rental.ScreenProyektorActivity" />
+        <activity android:name=".productsactivity.rental.PointerActivity" />
+        <activity android:name=".productsactivity.rental.HandyTalkyActivity" />
+        <activity android:name=".productsactivity.rental.ProyektorBawahTigaRibuActivity" />
+        <activity android:name=".productsactivity.rental.ProyektorAtasTigaRibuActivity" />
         <activity android:name=".productsactivity.DesainActivity" />
         <activity android:name=".productsactivity.CetakActivity" />
         <activity android:name=".productsactivity.InstallActivity" />
         <activity android:name=".productsactivity.RentalActivity" />
-        <activity android:name=".IntroSliderActivity" />
         <activity android:name=".CartActivity" />
-        <activity android:name=".SplashScreenActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".DashboardActivity" />
         <activity android:name=".ForgotPasswordActivity" />
         <activity
@@ -32,6 +40,14 @@
         <activity
             android:name=".SignInActivity"
             android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".IntroSliderActivity" />
+        <activity android:name=".SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".MainActivity" />
     </application>
 

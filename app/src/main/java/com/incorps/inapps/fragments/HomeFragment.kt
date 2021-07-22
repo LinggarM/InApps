@@ -10,12 +10,22 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.material.card.MaterialCardView
 import com.incorps.inapps.CartActivity
 import com.incorps.inapps.R
+import com.incorps.inapps.productsactivity.CetakActivity
+import com.incorps.inapps.productsactivity.DesainActivity
+import com.incorps.inapps.productsactivity.InstallActivity
+import com.incorps.inapps.productsactivity.RentalActivity
 
 class HomeFragment : Fragment() {
     private lateinit var imgCart: ImageView
     private lateinit var tvWelcome: TextView
+
+    private lateinit var btnRental: MaterialCardView
+    private lateinit var btnDesain: MaterialCardView
+    private lateinit var btnCetak: MaterialCardView
+    private lateinit var btnInstall: MaterialCardView
 
     private var personName: String = ""
     private var personEmail: String = ""
@@ -33,6 +43,11 @@ class HomeFragment : Fragment() {
 
         tvWelcome = view.findViewById(R.id.tv_welcome_username)
         imgCart = view.findViewById(R.id.img_cart)
+
+        btnRental = view.findViewById(R.id.btn_rental)
+        btnDesain = view.findViewById(R.id.btn_desain)
+        btnCetak = view.findViewById(R.id.btn_cetak)
+        btnInstall = view.findViewById(R.id.btn_install)
 
         // Data from Google Sign In
         val acct = GoogleSignIn.getLastSignedInAccount(context)
@@ -58,6 +73,19 @@ class HomeFragment : Fragment() {
         imgCart.setOnClickListener {
             val intentCart = Intent(view.context, CartActivity::class.java)
             startActivity(intentCart)
+        }
+
+        btnRental.setOnClickListener {
+            startActivity(Intent(view.context, RentalActivity::class.java))
+        }
+        btnDesain.setOnClickListener {
+            startActivity(Intent(view.context, DesainActivity::class.java))
+        }
+        btnCetak.setOnClickListener {
+            startActivity(Intent(view.context, CetakActivity::class.java))
+        }
+        btnInstall.setOnClickListener {
+            startActivity(Intent(view.context, InstallActivity::class.java))
         }
     }
 }

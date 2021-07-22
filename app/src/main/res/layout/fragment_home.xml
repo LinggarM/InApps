@@ -33,7 +33,7 @@
                     android:layout_marginHorizontal="@dimen/margin_medium"
                     android:text="Hi, Linggar"
                     android:textAllCaps="true"
-                    android:textColor="@android:color/white"/>
+                    android:textColor="@android:color/white" />
 
                 <TextView
                     style="@style/textAppearanceSubtitle1"
@@ -41,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/margin_medium"
                     android:fontFamily="@font/nunito_regular"
-                    android:text="Selamat Datang di In Apps"
+                    android:text="@string/selamat_datang_di_in_apps"
                     android:textColor="@android:color/white" />
 
             </LinearLayout>
@@ -50,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="@dimen/margin_medium"
-                android:gravity="right">
+                android:gravity="end">
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -67,11 +67,11 @@
                         android:id="@+id/tv_cart_counter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunito_semibold"
-                        android:textColor="@color/white"
                         android:background="@drawable/ic_baseline_brightness_1_24"
+                        android:fontFamily="@font/nunito_semibold"
                         android:gravity="center"
-                        android:text="5"/>
+                        android:text="5"
+                        android:textColor="@color/white" />
 
                 </RelativeLayout>
 
@@ -85,8 +85,8 @@
             android:layout_margin="@dimen/margin_medium"
             android:background="@drawable/bg_search"
             android:elevation="@dimen/margin_xtiny"
-            app:iconifiedByDefault="false"
             android:focusable="false"
+            app:iconifiedByDefault="false"
             app:queryHint="Cari jasa atau produk..." />
 
     </LinearLayout>
@@ -103,7 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/margin_medium"
-            android:text="Mau pakai jasa apa kak?"
+            android:text="@string/mau_pakai_jasa_apa_kak"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -118,10 +118,11 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btn_rental"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_medium"
-                    android:background="@color/green_50"
+                    android:backgroundTint="@color/grey_50"
                     android:clickable="true"
                     android:elevation="3dp"
                     android:focusable="true"
@@ -145,16 +146,18 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="@dimen/margin_small"
-                            android:text="Rental-In" />
+                            android:text="@string/rental_in" />
 
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btn_desain"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_medium"
+                    android:backgroundTint="@color/grey_50"
                     android:clickable="true"
                     android:elevation="2dp"
                     android:focusable="true"
@@ -178,7 +181,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="@dimen/margin_small"
-                            android:text="Desain-In" />
+                            android:text="@string/desain_in" />
 
                     </LinearLayout>
 
@@ -192,6 +195,7 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btn_cetak"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_medium"
@@ -204,6 +208,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:backgroundTint="@color/grey_50"
                         android:orientation="vertical"
                         android:padding="@dimen/margin_medium">
 
@@ -218,13 +223,14 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="@dimen/margin_small"
-                            android:text="Cetak-In" />
+                            android:text="@string/cetak_in" />
 
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btn_install"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_medium"
@@ -237,6 +243,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:backgroundTint="@color/grey_50"
                         android:orientation="vertical"
                         android:padding="@dimen/margin_medium">
 
@@ -251,7 +258,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="@dimen/margin_small"
-                            android:text="Install-In" />
+                            android:text="@string/install_in" />
 
                     </LinearLayout>
 

@@ -27,7 +27,19 @@
     <string name="introslider2_desc">RENTAL alat event, CETAK kebutuhan event, DESAIN Poster, Pamflet, Banner, dll, INSTALL berbagai Software, OS, dan Game</string>
     <string name="introslider3_desc">Temukan kode promo dan kamu bisa menikmati diskon menarik dari In Apps</string>
     <string name="login_gagal">Login gagal, silahkan coba kembali</string>
+    <string name="selamat_datang_di_in_apps">Selamat Datang di In Apps</string>
+    <string name="mau_pakai_jasa_apa_kak">Mau pakai jasa apa kak?</string>
+    <string name="rental_in">Rental-In</string>
+    <string name="desain_in">Desain-In</string>
+    <string name="cetak_in">Cetak-In</string>
+    <string name="install_in">Install-In</string>
     <string name="back_pressed_dashboard">Tekan kembali untuk keluar</string>
     <string name="dialogTitle">Logout Account</string>
     <string name="dialogMessage">Apakah anda yakin ingin keluar?</string>
+    <string name="product_name">Product Name</string>
+    <string name="product_price">Rp. 140.000 / Hari</string>
+    <string name="waktu_pencetakan_paling_cepat_3_hari">Waktu pencetakan paling cepat 3 hari</string>
+    <string name="rental_activity">com.incorps.inapps.productsactivity.rental.</string>
+    <string name="desain_activity">com.incorps.inapps.productsactivity.desain.</string>
+    <string name="cetak_activity">com.incorps.inapps.productsactivity.cetak.</string>
 </resources>
