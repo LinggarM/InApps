@@ -14,6 +14,7 @@
     <string name="sign_up">Sign Up</string>
     <string name="nama_lengkap">Nama Lengkap</string>
     <string name="no_handphone">No Handphone</string>
+    <string name="address">Alamat</string>
     <string name="terms_and_privacy_policy">By signing up, you agree to our Terms and Privacy Policy</string>
     <string name="belum_punya_akun">Belum punya akun?\u00A0</string>
     <string name="sudah_punya_akun">Sudah punya akun?\u00A0</string>
@@ -26,7 +27,9 @@
     <string name="introslider1_desc">Geser untuk mempelajari lebih lanjut</string>
     <string name="introslider2_desc">RENTAL alat event, CETAK kebutuhan event, DESAIN Poster, Pamflet, Banner, dll, INSTALL berbagai Software, OS, dan Game</string>
     <string name="introslider3_desc">Temukan kode promo dan kamu bisa menikmati diskon menarik dari In Apps</string>
+    <string name="loggingin">Logging in...</string>
     <string name="login_gagal">Login gagal, silahkan coba kembali</string>
+    <string name="complete_sign_in">Complete Sign In</string>
     <string name="selamat_datang_di_in_apps">Selamat Datang di In Apps</string>
     <string name="mau_pakai_jasa_apa_kak">Mau pakai jasa apa kak?</string>
     <string name="rental_in">Rental-In</string>
@@ -42,4 +45,10 @@
     <string name="rental_activity">com.incorps.inapps.productsactivity.rental.</string>
     <string name="desain_activity">com.incorps.inapps.productsactivity.desain.</string>
     <string name="cetak_activity">com.incorps.inapps.productsactivity.cetak.</string>
+    <string name="error_name">Nama Lengkap tidak boleh kosong</string>
+    <string name="error_email">Email tidak boleh kosong</string>
+    <string name="error_phone">No Handphone tidak boleh kosong</string>
+    <string name="error_address">Alamat tidak boleh kosong</string>
+    <string name="error_password">Password tidak boleh kosong</string>
+    <string name="error_terms">Setujui syarat dan kebijakan privasi</string>
 </resources>

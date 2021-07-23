@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.incorps.inapps.R
 import com.incorps.inapps.adapter.ProductGridAdapter
-import com.incorps.inapps.helper.DataGenerator
+import com.incorps.inapps.utils.DataGenerator
 import com.incorps.inapps.model.Product
-import com.incorps.inapps.rest.SpacingItemDecoration
+import com.incorps.inapps.utils.SpacingItemDecoration
 
 class CetakActivity : AppCompatActivity() {
 

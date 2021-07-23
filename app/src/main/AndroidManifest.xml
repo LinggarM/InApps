@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.InApps">
-        <activity android:name=".productsactivity.desain.DesainKemasanActivity"></activity>
+        <activity android:name=".SignInAdvancedActivity"></activity>
+        <activity android:name=".productsactivity.desain.DesainKemasanActivity" />
         <activity android:name=".productsactivity.desain.PlakatActivity" />
         <activity android:name=".productsactivity.desain.SertifikatActivity" />
         <activity android:name=".productsactivity.desain.BlocknoteActivity" />

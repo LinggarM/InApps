@@ -3,14 +3,19 @@ package com.incorps.inapps.fragments
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.material.card.MaterialCardView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.incorps.inapps.CartActivity
 import com.incorps.inapps.R
 import com.incorps.inapps.productsactivity.CetakActivity
@@ -27,10 +32,9 @@ class HomeFragment : Fragment() {
     private lateinit var btnCetak: MaterialCardView
     private lateinit var btnInstall: MaterialCardView
 
+    private lateinit var auth: FirebaseAuth
+
     private var personName: String = ""
-    private var personEmail: String = ""
-    private var personId: String = ""
-    private var personPhoto: Uri? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -49,13 +53,12 @@ class HomeFragment : Fragment() {
         btnCetak = view.findViewById(R.id.btn_cetak)
         btnInstall = view.findViewById(R.id.btn_install)
 
-        // Data from Google Sign In
-        val acct = GoogleSignIn.getLastSignedInAccount(context)
-        if (acct != null) {
-            personName = acct.displayName.toString()
-            personEmail = acct.email.toString()
-            personId = acct.id.toString()
-            personPhoto = acct.photoUrl
+
+        // Data from Firebase
+        auth = Firebase.auth
+        val user = auth.currentUser
+        if (user != null) {
+            personName = user.displayName.toString()
         }
 
         // Welcome Name
@@ -75,6 +78,7 @@ class HomeFragment : Fragment() {
             startActivity(intentCart)
         }
 
+        // Product onClick Listener
         btnRental.setOnClickListener {
             startActivity(Intent(view.context, RentalActivity::class.java))
         }

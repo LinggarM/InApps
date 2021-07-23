@@ -12,8 +12,11 @@ import com.incorps.inapps.fragments.ChatFragment
 import com.incorps.inapps.fragments.HomeFragment
 import com.incorps.inapps.fragments.OrdersFragment
 import com.incorps.inapps.fragments.ProfileFragment
+import com.incorps.inapps.preferences.AccountSessionPreferences
 
 class DashboardActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
+
+    private lateinit var accountSessionPreferences: AccountSessionPreferences
 
     private lateinit var bottomNavigation: BottomNavigationView
     private var backPressedTime: Long = 0
@@ -22,9 +25,17 @@ class DashboardActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedL
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
+        // Set Bottom Navigation
         bottomNavigation = findViewById(R.id.bottom_navigation)
         loadFragment(HomeFragment())
         bottomNavigation.setOnItemSelectedListener(this)
+
+        // Check Login Info
+        accountSessionPreferences = AccountSessionPreferences(this)
+        if (!accountSessionPreferences.isLogin) {
+            startActivity(Intent(this, SignInActivity::class.java))
+            finish()
+        }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

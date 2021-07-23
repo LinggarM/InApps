@@ -1,4 +1,4 @@
-package com.incorps.inapps.helper
+package com.incorps.inapps.utils
 
 import android.content.Context
 import com.incorps.inapps.R

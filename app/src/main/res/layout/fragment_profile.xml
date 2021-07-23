@@ -22,6 +22,26 @@
         android:orientation="vertical"
         android:padding="@dimen/margin_medium">
 
+        <TextView
+            android:id="@+id/tv_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1"/>
+
+        <TextView
+            android:id="@+id/tv_2"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2"/>
+
+        <TextView
+            android:id="@+id/tv_3"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3"/>
+
         <Button
             android:id="@+id/btn_logout"
             style="@style/textAppearanceButton"

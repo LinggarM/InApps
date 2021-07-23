@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:layout_marginTop="@dimen/margin_large"
+                android:layout_marginTop="@dimen/margin_medium"
                 android:text="@string/sign_up"
                 android:textAllCaps="true"
                 android:textColor="@color/colorPrimary"
@@ -47,26 +47,30 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_medium">
+                android:layout_marginTop="@dimen/margin_medium"
+                app:startIconDrawable="@drawable/ic_baseline_profile_24">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edittext_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_regular"
                     android:hint="@string/nama_lengkap"
-                    android:inputType="text" />
+                    android:inputType="textPersonName" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_medium">
+                android:layout_marginTop="@dimen/margin_medium"
+                app:startIconDrawable="@drawable/ic_baseline_email_24">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edittext_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_regular"
                     android:hint="@string/email"
                     android:inputType="textEmailAddress" />
 
@@ -75,12 +79,15 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_medium">
+                android:layout_marginTop="@dimen/margin_medium"
+                app:prefixText="+62"
+                app:startIconDrawable="@drawable/ic_baseline_phone_24">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edittext_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_regular"
                     android:hint="@string/no_handphone"
                     android:inputType="phone" />
 
@@ -90,13 +97,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_medium"
+                app:startIconDrawable="@drawable/ic_baseline_location_on_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edittext_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_regular"
+                    android:hint="@string/address"
+                    android:inputType="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
                 app:passwordToggleEnabled="true"
-                app:passwordToggleTint="@color/colorPrimary">
+                app:passwordToggleTint="@color/colorPrimary"
+                app:startIconDrawable="@drawable/ic_baseline_lock_24">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edittext_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_regular"
                     android:hint="@string/password"
                     android:inputType="textPassword" />
 
@@ -110,16 +135,11 @@
 
                 <CheckBox
                     android:id="@+id/checkbox_terms_privacy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    style="@style/TextAppearance.AppCompat.Body1"
-                    android:layout_width="wrap_content"
+                    style="@style/textAppearanceBody2"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
                     android:text="@string/terms_and_privacy_policy"
-                    android:textColor="@color/colorPrimary" />
+                    android:textColor="@color/colorPrimaryDark" />
 
             </LinearLayout>
 

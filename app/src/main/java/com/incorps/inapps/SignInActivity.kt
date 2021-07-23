@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -16,9 +17,17 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.incorps.inapps.preferences.AccountSessionPreferences
+import com.incorps.inapps.utils.Tools
 
 class SignInActivity : AppCompatActivity(), View.OnClickListener {
+
+    private lateinit var accountSessionPreferences: AccountSessionPreferences
+    private lateinit var progressDialog: ProgressDialog
 
     private lateinit var editEmail: TextInputEditText
     private lateinit var editPassword: TextInputEditText
@@ -29,6 +38,7 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var db: FirebaseFirestore
 
     companion object {
         private const val TAG = "GoogleActivity"
@@ -51,6 +61,11 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
         tvForgotPassword.setOnClickListener(this)
         tvSignUp.setOnClickListener(this)
 
+        accountSessionPreferences = AccountSessionPreferences(this)
+
+        // Set Progress Dialog
+        progressDialog = ProgressDialog(this)
+
         // Configure Google Sign In
         val gso = GoogleSignInOptions
             .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -61,16 +76,28 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
         auth = Firebase.auth
+
+        // Set up Firestore
+        db = Firebase.firestore
     }
 
     override fun onClick(view: View?) {
         when(view) {
             btnLogin ->  {
-                startActivity(Intent(this, DashboardActivity::class.java))
-                finish()
+                when {
+                    editEmail.text.toString() == "" -> {
+                        editEmail.error = resources.getString(R.string.error_email)
+                    }
+                    editPassword.text.toString() == "" -> {
+                        editPassword.error = resources.getString(R.string.error_password)
+                    }
+                    else -> {
+                        signIn(editEmail.text.toString(), editPassword.text.toString())
+                    }
+                }
             }
             btnLoginGoogle -> {
-                signIn()
+                signInGoogle()
             }
             tvForgotPassword ->  {
                 val intentForgotPasswordActivity = Intent(this, ForgotPasswordActivity::class.java)
@@ -83,18 +110,55 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            startActivity(Intent(this, DashboardActivity::class.java))
-        }
+    private fun signIn(email: String, password: String) {
+        progressDialog.setMessage(resources.getString(R.string.loggingin))
+        progressDialog.show()
+
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+
+                if (task.isSuccessful) {
+                    progressDialog.dismiss()
+
+                    val user = auth.currentUser
+
+                    user?.let {
+                        db.collection("user_accounts").document(it.uid).get().addOnSuccessListener { document ->
+
+                            accountSessionPreferences.isLogin = true
+                            accountSessionPreferences.idUser = it.uid
+                            accountSessionPreferences.emailUser = email
+                            accountSessionPreferences.nameUser = it.displayName.toString()
+                            accountSessionPreferences.phoneUser = document.data?.get("phone").toString()
+                            accountSessionPreferences.addressUser = document.data?.get("address").toString()
+                            accountSessionPreferences.passwordUser = password
+                        }
+
+                        // Show Toast
+                        val message = "Login berhasil! Selamat datang di In-Apps"
+                        Tools.showCustomToastSuccess(this, layoutInflater, resources, message)
+
+                        startActivity(Intent(this, DashboardActivity::class.java))
+                        finish()
+                    }
+
+                } else {
+                    progressDialog.dismiss()
+
+                    // Show Toast
+                    val message = "Login gagal! Coba Lagi"
+                    Tools.showCustomToastFailed(this, layoutInflater, resources, message)
+                }
+            }
+        startActivity(Intent(this, DashboardActivity::class.java))
+        finish()
     }
 
-    private fun signIn() {
+    private fun signInGoogle() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
+        progressDialog.setMessage(resources.getString(R.string.loggingin))
+        progressDialog.show()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -102,6 +166,7 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
+            progressDialog.dismiss()
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
                 // Google Sign In was successful, authenticate with Firebase
@@ -109,6 +174,7 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
                 Log.d("Berhasil", "firebaseAuthWithGoogle:" + account.id)
                 firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
+                Toast.makeText(this, resources.getString(R.string.login_gagal), Toast.LENGTH_LONG)
                 // Google Sign In failed, update UI appropriately
                 Log.w("Gagal", "Google sign in failed", e)
             }
@@ -120,14 +186,50 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d("authBerhasil", "signInWithCredential:success")
+
                     val user = auth.currentUser
-                    startActivity(Intent(this, DashboardActivity::class.java))
-                    finish()
+
+                    user?.let {
+
+                        // Cek apakah pertama kali (belum ada di database)
+                        db.collection("user_accounts").document(it.uid).get().addOnSuccessListener { document ->
+
+                            // Sudah di database
+                            if (document != null) {
+
+                                accountSessionPreferences.isLogin = true
+                                accountSessionPreferences.idUser = it.uid
+                                accountSessionPreferences.emailUser = it.email.toString()
+                                accountSessionPreferences.nameUser = it.displayName.toString()
+                                accountSessionPreferences.phoneUser = document.data?.get("phone").toString()
+                                accountSessionPreferences.addressUser = document.data?.get("address").toString()
+
+                                // Show Toast
+                                val message = "Login berhasil! Selamat datang di In-Apps"
+                                Tools.showCustomToastSuccess(this, layoutInflater, resources, message)
+
+                                startActivity(Intent(this, DashboardActivity::class.java))
+                                finish()
+
+                            } else {
+
+                                val intentSignInAdvanced = Intent(this, SignInAdvancedActivity::class.java)
+                                intentSignInAdvanced.putExtra("IdUser", it.uid)
+                                intentSignInAdvanced.putExtra("EmailUser", it.email.toString())
+                                intentSignInAdvanced.putExtra("NameUser", it.displayName.toString())
+
+                                startActivity(intentSignInAdvanced)
+                                finish()
+
+                            }
+                        }
+
+                    }
                 } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w("authGagal", "signInWithCredential:failure", task.exception)
+
+                    // Show Toast
+                    val message = "Login gagal! Coba Lagi"
+                    Tools.showCustomToastFailed(this, layoutInflater, resources, message)
                 }
             }
     }

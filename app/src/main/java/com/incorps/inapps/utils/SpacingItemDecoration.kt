@@ -1,4 +1,4 @@
-package com.incorps.inapps.rest
+package com.incorps.inapps.utils
 
 import android.graphics.Rect
 import android.view.View
