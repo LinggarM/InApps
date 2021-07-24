@@ -75,6 +75,7 @@ class SignInAdvancedActivity : AppCompatActivity() {
             "phone" to phone,
             "address" to address,
         )
+
         db.collection("user_accounts")
             .document(id)
             .set(userDatabase)
@@ -91,17 +92,27 @@ class SignInAdvancedActivity : AppCompatActivity() {
                 // Show Toast
                 val message = "Login berhasil! Selamat datang di In-Apps"
                 Tools.showCustomToastSuccess(this, layoutInflater, resources, message)
+                finish()
 
                 startActivity(Intent(this, DashboardActivity::class.java))
-                finish()
             }
             .addOnFailureListener {
+                auth.signOut()
                 progressDialog.dismiss()
 
                 // Show Toast
                 val message = "Login gagal! Coba Lagi"
                 Tools.showCustomToastFailed(this, layoutInflater, resources, message)
+                finish()
 
+                startActivity(Intent(this, SignInActivity::class.java))
             }
+    }
+
+    override fun onBackPressed() {
+        auth.signOut()
+        finish()
+
+        startActivity(Intent(this, SignInActivity::class.java))
     }
 }

@@ -158,12 +158,14 @@
         android:orientation="horizontal">
 
         <TextView
+            style="@style/textAppearanceBody1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/belum_punya_akun" />
 
         <TextView
             android:id="@+id/tv_sign_up"
+            style="@style/textAppearanceBody1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sign_up"

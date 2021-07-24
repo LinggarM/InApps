@@ -17,7 +17,6 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -82,8 +81,8 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(view: View?) {
-        when(view) {
-            btnLogin ->  {
+        when (view) {
+            btnLogin -> {
                 when {
                     editEmail.text.toString() == "" -> {
                         editEmail.error = resources.getString(R.string.error_email)
@@ -99,11 +98,11 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
             btnLoginGoogle -> {
                 signInGoogle()
             }
-            tvForgotPassword ->  {
+            tvForgotPassword -> {
                 val intentForgotPasswordActivity = Intent(this, ForgotPasswordActivity::class.java)
                 startActivity(intentForgotPasswordActivity)
             }
-            tvSignUp ->  {
+            tvSignUp -> {
                 val intentSignUpActivity = Intent(this, SignUpActivity::class.java)
                 startActivity(intentSignUpActivity)
             }
@@ -123,23 +122,32 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
                     val user = auth.currentUser
 
                     user?.let {
-                        db.collection("user_accounts").document(it.uid).get().addOnSuccessListener { document ->
+                        db.collection("user_accounts").document(it.uid).get()
+                            .addOnSuccessListener { document ->
 
-                            accountSessionPreferences.isLogin = true
-                            accountSessionPreferences.idUser = it.uid
-                            accountSessionPreferences.emailUser = email
-                            accountSessionPreferences.nameUser = it.displayName.toString()
-                            accountSessionPreferences.phoneUser = document.data?.get("phone").toString()
-                            accountSessionPreferences.addressUser = document.data?.get("address").toString()
-                            accountSessionPreferences.passwordUser = password
-                        }
+                                // Set Session Preferences
+                                accountSessionPreferences.isLogin = true
+                                accountSessionPreferences.idUser = it.uid
+                                accountSessionPreferences.emailUser = it.email.toString()
+                                accountSessionPreferences.nameUser = it.displayName.toString()
+                                accountSessionPreferences.phoneUser =
+                                    document.data?.get("phone").toString()
+                                accountSessionPreferences.addressUser =
+                                    document.data?.get("address").toString()
 
-                        // Show Toast
-                        val message = "Login berhasil! Selamat datang di In-Apps"
-                        Tools.showCustomToastSuccess(this, layoutInflater, resources, message)
+                                // Show Toast
+                                val message = "Login berhasil! Selamat datang di In-Apps"
+                                Tools.showCustomToastSuccess(
+                                    this,
+                                    layoutInflater,
+                                    resources,
+                                    message
+                                )
+                                finish()
 
-                        startActivity(Intent(this, DashboardActivity::class.java))
-                        finish()
+                                // Open Dashboard
+                                startActivity(Intent(this, DashboardActivity::class.java))
+                            }
                     }
 
                 } else {
@@ -150,8 +158,6 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
                     Tools.showCustomToastFailed(this, layoutInflater, resources, message)
                 }
             }
-        startActivity(Intent(this, DashboardActivity::class.java))
-        finish()
     }
 
     private fun signInGoogle() {
@@ -166,7 +172,6 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
-            progressDialog.dismiss()
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
                 // Google Sign In was successful, authenticate with Firebase
@@ -174,6 +179,8 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
                 Log.d("Berhasil", "firebaseAuthWithGoogle:" + account.id)
                 firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
+                progressDialog.dismiss()
+
                 Toast.makeText(this, resources.getString(R.string.login_gagal), Toast.LENGTH_LONG)
                 // Google Sign In failed, update UI appropriately
                 Log.w("Gagal", "Google sign in failed", e)
@@ -192,37 +199,61 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
                     user?.let {
 
                         // Cek apakah pertama kali (belum ada di database)
-                        db.collection("user_accounts").document(it.uid).get().addOnSuccessListener { document ->
+                        db.collection("user_accounts").document(it.uid).get()
+                            .addOnSuccessListener { document ->
+                                progressDialog.dismiss()
 
-                            // Sudah di database
-                            if (document != null) {
+                                // Sudah di database
+                                if ((document.data?.get("phone") == null) || (document.data?.get("address") == null)) {
 
-                                accountSessionPreferences.isLogin = true
-                                accountSessionPreferences.idUser = it.uid
-                                accountSessionPreferences.emailUser = it.email.toString()
-                                accountSessionPreferences.nameUser = it.displayName.toString()
-                                accountSessionPreferences.phoneUser = document.data?.get("phone").toString()
-                                accountSessionPreferences.addressUser = document.data?.get("address").toString()
+                                    val intentSignInAdvanced =
+                                        Intent(this, SignInAdvancedActivity::class.java)
+                                    intentSignInAdvanced.putExtra("IdUser", it.uid)
+                                    intentSignInAdvanced.putExtra("EmailUser", it.email.toString())
+                                    intentSignInAdvanced.putExtra(
+                                        "NameUser",
+                                        it.displayName.toString()
+                                    )
+                                    finish()
 
-                                // Show Toast
-                                val message = "Login berhasil! Selamat datang di In-Apps"
-                                Tools.showCustomToastSuccess(this, layoutInflater, resources, message)
+                                    startActivity(intentSignInAdvanced)
 
-                                startActivity(Intent(this, DashboardActivity::class.java))
-                                finish()
+                                } else {
 
-                            } else {
+                                    // Set Session Preferences
+                                    accountSessionPreferences.isLogin = true
+                                    accountSessionPreferences.idUser = it.uid
+                                    accountSessionPreferences.emailUser = it.email.toString()
+                                    accountSessionPreferences.nameUser = it.displayName.toString()
+                                    accountSessionPreferences.phoneUser =
+                                        document.data?.get("phone").toString()
+                                    accountSessionPreferences.addressUser =
+                                        document.data?.get("address").toString()
 
-                                val intentSignInAdvanced = Intent(this, SignInAdvancedActivity::class.java)
-                                intentSignInAdvanced.putExtra("IdUser", it.uid)
-                                intentSignInAdvanced.putExtra("EmailUser", it.email.toString())
-                                intentSignInAdvanced.putExtra("NameUser", it.displayName.toString())
+                                    // Show Toast
+                                    val message = "Login berhasil! Selamat datang di In-Apps"
+                                    Tools.showCustomToastSuccess(
+                                        this,
+                                        layoutInflater,
+                                        resources,
+                                        message
+                                    )
+                                    finish()
 
-                                startActivity(intentSignInAdvanced)
-                                finish()
+                                    // Open Dashboard
+                                    startActivity(Intent(this, DashboardActivity::class.java))
 
+                                }
+                            }.addOnFailureListener { exception ->
+                                progressDialog.dismiss()
+
+                                Tools.showCustomToastFailed(
+                                    this,
+                                    layoutInflater,
+                                    resources,
+                                    exception.toString()
+                                )
                             }
-                        }
 
                     }
                 } else {

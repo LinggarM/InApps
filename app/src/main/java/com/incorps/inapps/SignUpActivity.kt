@@ -13,6 +13,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
@@ -81,6 +82,9 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
                     editPassword.text.toString() == "" -> {
                         editPassword.error = resources.getString(R.string.error_password)
                     }
+                    editPassword.text.toString().length < 8 -> {
+                        editPassword.error = resources.getString(R.string.error_password_length)
+                    }
                     !checkTermsPrivacy.isChecked -> {
                         checkTermsPrivacy.error = resources.getString(R.string.error_terms)
                         Tools.showCustomToastInfo(this, layoutInflater, resources, resources.getString(R.string.error_terms))
@@ -111,68 +115,57 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+                    progressDialog.dismiss()
 
-                    auth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(this) { task ->
-
+                    // Change Display Name
+                    val user = auth.currentUser
+                    if (user != null) {
+                        val changeDisplayName = UserProfileChangeRequest.Builder().setDisplayName(name).build()
+                        user.updateProfile(changeDisplayName).addOnCompleteListener { task ->
                             if (task.isSuccessful) {
-                                progressDialog.dismiss()
-
-                                // Change Display Name
-                                val user = auth.currentUser
-                                user?.let {
-                                    val changeDisplayName = userProfileChangeRequest {
-                                        displayName = name
-                                    }
-                                    it.updateProfile(changeDisplayName)
-                                    addToDatabase(it, phone, address, password)
-                                }
-
-                            } else {
-                                progressDialog.dismiss()
-
-                                Tools.showCustomToastFailed(this, layoutInflater, resources, "Registrasi akun gagal! Ulangi dengan email berbeda")
+                                Log.d(TAG, "${user.email.toString()} and ${user.displayName.toString()}")
                             }
                         }
+                        addToDatabase(user, name, phone, address)
+                    }
+
                 } else {
                     progressDialog.dismiss()
 
                     // If sign in fails, display a message to the user.
-                    Tools.showCustomToastFailed(this, layoutInflater, resources, "Registrasi akun gagal! Ulangi dengan email berbeda")
+                    Tools.showCustomToastFailed(this, layoutInflater, resources, "Registrasi gagal! Gunakan email lain")
                 }
             }
     }
 
-    private fun addToDatabase(user: FirebaseUser, phone: String, address: String, password: String) {
+    private fun addToDatabase(user: FirebaseUser, name: String, phone: String, address: String) {
 
         val userDatabase = hashMapOf(
-            "name" to user.displayName.toString(),
             "email" to user.email.toString(),
+            "name" to name,
             "phone" to phone,
             "address" to address,
-            "password" to password
         )
 
         db.collection("user_accounts")
             .document(user.uid)
             .set(userDatabase)
             .addOnSuccessListener {
+                auth.signOut()
 
                 // Show Toast
-                val message = "Registrasi akun berhasil! Silahkan login dengan akun yang sudah terdaftar"
+                val message = "Registrasi akun berhasil! Silahkan login"
                 Tools.showCustomToastSuccess(this, layoutInflater, resources, message)
-
-                auth.signOut()
-                startActivity(Intent(this, SignInActivity::class.java))
                 finish()
+
+                startActivity(Intent(this, SignInActivity::class.java))
             }
             .addOnFailureListener {
+                auth.signOut()
 
                 // Show Toast
-                val message = "Registrasi akun gagal!"
+                val message = "Registrasi gagal! Gunakan email lain"
                 Tools.showCustomToastFailed(this, layoutInflater, resources, message)
-
-                auth.signOut()
             }
     }
 }

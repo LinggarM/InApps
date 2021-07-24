@@ -16,12 +16,13 @@
         android:text="@string/complete_sign_in"
         android:textStyle="bold" />
 
-    <EditText
+    <TextView
         style="@style/textAppearanceBody1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
         android:gravity="center"
-        android:text="Selesaikan proses Sign In dengan melengkapi data berikut" />
+        android:text="Selesaikan proses Sign In dengan melengkapi data - data berikut" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"

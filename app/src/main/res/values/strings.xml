@@ -50,5 +50,6 @@
     <string name="error_phone">No Handphone tidak boleh kosong</string>
     <string name="error_address">Alamat tidak boleh kosong</string>
     <string name="error_password">Password tidak boleh kosong</string>
+    <string name="error_password_length">Password minimal 8 karakter</string>
     <string name="error_terms">Setujui syarat dan kebijakan privasi</string>
 </resources>
