@@ -17,7 +17,6 @@ class AccountSessionPreferences (context: Context) {
         private const val NAME_USER = "NameUser"
         private const val PHONE_USER = "PhoneUser"
         private const val ADDRESS_USER = "AddressUser"
-        private const val PASSWORD_USER = "PasswordUser"
     }
 
     var isLogin: Boolean
@@ -54,12 +53,6 @@ class AccountSessionPreferences (context: Context) {
         get() = sharedPref.getString(ADDRESS_USER, "").toString()
         set(address) {
             editor.putString(ADDRESS_USER, address)
-            editor.commit()
-        }
-    var passwordUser: String
-        get() = sharedPref.getString(PASSWORD_USER, "").toString()
-        set(password) {
-            editor.putString(PASSWORD_USER, password)
             editor.commit()
         }
 

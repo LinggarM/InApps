@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/complete_sign_in"
+        android:layout_marginTop="@dimen/margin_huge"
         android:textStyle="bold" />
 
     <TextView
@@ -22,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_medium"
         android:gravity="center"
+        android:textColor="@color/colorPrimary"
         android:text="Selesaikan proses Sign In dengan melengkapi data - data berikut" />
 
     <com.google.android.material.textfield.TextInputLayout

@@ -19,7 +19,6 @@ class IntroSliderActivity : AppCompatActivity() {
     private lateinit var introSliderPreferences: IntroSliderPreferences
     private lateinit var viewPager: ViewPager
     private lateinit var linearLayoutDots: LinearLayout
-    private lateinit var btnBack: Button
     private lateinit var btnNext: Button
 
     private var fragmentSlider1 = IntroSliderFragment()
@@ -43,7 +42,6 @@ class IntroSliderActivity : AppCompatActivity() {
 
         viewPager = findViewById(R.id.viewpager_introslider)
         linearLayoutDots = findViewById(R.id.linear_layout_dots)
-        btnBack = findViewById(R.id.btn_back)
         btnNext = findViewById(R.id.btn_next)
 
         dot1 = findViewById(R.id.dots1)
@@ -72,9 +70,6 @@ class IntroSliderActivity : AppCompatActivity() {
         introViewPagerAdapter.addFragment(fragmentSlider2)
         introViewPagerAdapter.addFragment(fragmentSlider3)
 
-        btnBack.setOnClickListener {
-            viewPager.currentItem--
-        }
         btnNext.setOnClickListener {
             viewPager.currentItem++
         }
@@ -87,8 +82,7 @@ class IntroSliderActivity : AppCompatActivity() {
                     0 -> {
 
                         // button setting
-                        btnBack.visibility = View.GONE
-                        btnNext.text = resources.getString(R.string.next)
+                        btnNext.text = resources.getString(R.string.text_continue)
                         btnNext.setOnClickListener {
                             viewPager.currentItem++
                         }
@@ -101,8 +95,7 @@ class IntroSliderActivity : AppCompatActivity() {
                     1 -> {
 
                         // button setting
-                        btnBack.visibility = View.VISIBLE
-                        btnNext.text = resources.getString(R.string.next)
+                        btnNext.text = resources.getString(R.string.text_continue)
                         btnNext.setOnClickListener {
                             viewPager.currentItem++
                         }
@@ -115,7 +108,6 @@ class IntroSliderActivity : AppCompatActivity() {
                     2 -> {
 
                         // button setting
-                        btnBack.visibility = View.VISIBLE
                         btnNext.text = resources.getString(R.string.start)
                         btnNext.setOnClickListener {
                             launchDashboard()

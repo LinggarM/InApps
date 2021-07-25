@@ -18,12 +18,16 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.incorps.inapps.CartActivity
 import com.incorps.inapps.R
+import com.incorps.inapps.preferences.AccountSessionPreferences
 import com.incorps.inapps.productsactivity.CetakActivity
 import com.incorps.inapps.productsactivity.DesainActivity
 import com.incorps.inapps.productsactivity.InstallActivity
 import com.incorps.inapps.productsactivity.RentalActivity
 
 class HomeFragment : Fragment() {
+
+    private lateinit var accountSessionPreferences: AccountSessionPreferences
+
     private lateinit var imgCart: ImageView
     private lateinit var tvWelcome: TextView
 
@@ -31,8 +35,6 @@ class HomeFragment : Fragment() {
     private lateinit var btnDesain: MaterialCardView
     private lateinit var btnCetak: MaterialCardView
     private lateinit var btnInstall: MaterialCardView
-
-    private lateinit var auth: FirebaseAuth
 
     private var personName: String = ""
 
@@ -53,17 +55,12 @@ class HomeFragment : Fragment() {
         btnCetak = view.findViewById(R.id.btn_cetak)
         btnInstall = view.findViewById(R.id.btn_install)
 
-
-        // Data from Firebase
-        auth = Firebase.auth
-        val user = auth.currentUser
-        if (user != null) {
-            personName = user.displayName.toString()
-        }
+        accountSessionPreferences = AccountSessionPreferences(requireContext())
 
         // Welcome Name
+        personName = accountSessionPreferences.nameUser
         var firstWord = personName
-        if (firstWord.contains(" ")) {
+        if (personName.contains(" ")) {
             firstWord = firstWord.substring(0, firstWord.indexOf(" "))
         }
         if (firstWord.length > 8) {

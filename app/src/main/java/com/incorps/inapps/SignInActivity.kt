@@ -4,10 +4,8 @@ import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -60,6 +58,7 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
         tvForgotPassword.setOnClickListener(this)
         tvSignUp.setOnClickListener(this)
 
+        // Set Session Preferences
         accountSessionPreferences = AccountSessionPreferences(this)
 
         // Set Progress Dialog
@@ -74,6 +73,7 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
         // Build a GoogleSignInClient with the options specified by gso.
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
+        // Set up Auth
         auth = Firebase.auth
 
         // Set up Firestore
@@ -176,14 +176,13 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 val account = task.getResult(ApiException::class.java)!!
-                Log.d("Berhasil", "firebaseAuthWithGoogle:" + account.id)
                 firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
                 progressDialog.dismiss()
 
-                Toast.makeText(this, resources.getString(R.string.login_gagal), Toast.LENGTH_LONG)
-                // Google Sign In failed, update UI appropriately
-                Log.w("Gagal", "Google sign in failed", e)
+                // Show Toast
+                val message = "Login gagal! Coba Lagi"
+                Tools.showCustomToastFailed(this, layoutInflater, resources, message)
             }
         }
     }
@@ -193,9 +192,7 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-
                     val user = auth.currentUser
-
                     user?.let {
 
                         // Cek apakah pertama kali (belum ada di database)
@@ -203,22 +200,19 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
                             .addOnSuccessListener { document ->
                                 progressDialog.dismiss()
 
-                                // Sudah di database
-                                if ((document.data?.get("phone") == null) || (document.data?.get("address") == null)) {
+                                if ((document.data?.get("phone") == null) || (document.data?.get("address") == null)) { // Belum ada di database
 
-                                    val intentSignInAdvanced =
-                                        Intent(this, SignInAdvancedActivity::class.java)
+                                    // Set Intent
+                                    val intentSignInAdvanced = Intent(this, SignInAdvancedActivity::class.java)
                                     intentSignInAdvanced.putExtra("IdUser", it.uid)
                                     intentSignInAdvanced.putExtra("EmailUser", it.email.toString())
-                                    intentSignInAdvanced.putExtra(
-                                        "NameUser",
-                                        it.displayName.toString()
-                                    )
+                                    intentSignInAdvanced.putExtra("NameUser",it.displayName.toString())
                                     finish()
 
+                                    // Open Intent
                                     startActivity(intentSignInAdvanced)
 
-                                } else {
+                                } else { // Sudah ada di database
 
                                     // Set Session Preferences
                                     accountSessionPreferences.isLogin = true

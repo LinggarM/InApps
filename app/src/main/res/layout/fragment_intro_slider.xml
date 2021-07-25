@@ -9,22 +9,22 @@
     android:padding="@dimen/margin_medium"
     tools:context=".fragments.IntroSliderFragment">
 
-    <TextView
-        android:id="@+id/tv_title"
-        style="@style/textAppearanceHeadline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/introslider1_title"
-        android:textColor="@color/colorPrimaryDark"
-        android:textStyle="bold" />
-
     <ImageView
         android:id="@+id/img_slide"
         android:layout_width="@dimen/img_width_height"
         android:layout_height="@dimen/img_width_height"
+        android:src="@drawable/img_introslider2" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/textAppearanceHeadline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_large"
-        android:src="@drawable/img_introslider1" />
+        android:gravity="center"
+        android:text="@string/introslider2_title"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv_desc"
@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="@string/introslider1_desc"
+        android:text="@string/introslider2_desc"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:textSize="16sp" />

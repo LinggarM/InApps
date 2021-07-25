@@ -2,44 +2,44 @@ package com.incorps.inapps.fragments
 
 import android.app.AlertDialog
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.material.card.MaterialCardView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.incorps.inapps.KritikSaranActivity
 import com.incorps.inapps.R
 import com.incorps.inapps.SignInActivity
 import com.incorps.inapps.preferences.AccountSessionPreferences
+import com.incorps.inapps.utils.Tools
 
 class ProfileFragment : Fragment() {
 
     private lateinit var accountSessionPreferences: AccountSessionPreferences
 
-    private lateinit var tv1: TextView
-    private lateinit var tv2: TextView
-    private lateinit var tv3: TextView
+    private lateinit var tvName: TextView
+    private lateinit var tvEmail: TextView
+    private lateinit var imgProfile: ImageView
+    private lateinit var btnKritik: MaterialCardView
     private lateinit var btnLogout: Button
 
-    private lateinit var builder: AlertDialog.Builder
     private lateinit var alertDialog: AlertDialog
+    private lateinit var builder: AlertDialog.Builder
 
     private lateinit var auth: FirebaseAuth
 
     private var personId: String = ""
     private var personEmail: String = ""
     private var personName: String = ""
-    private var personPhoto: Uri? = null
-    private var personePhone: String = ""
+    private var personPhone: String = ""
     private var personAddress: String = ""
-    private var personPassword: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,14 +52,40 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        tv1 = view.findViewById(R.id.tv_1)
-        tv2 = view.findViewById(R.id.tv_2)
-        tv3 = view.findViewById(R.id.tv_3)
+
+        tvName = view.findViewById(R.id.tv_name)
+        tvEmail = view.findViewById(R.id.tv_email)
+        imgProfile = view.findViewById(R.id.img_profile)
+        btnKritik = view.findViewById(R.id.btn_kritik)
+        btnLogout = view.findViewById(R.id.btn_logout)
 
         accountSessionPreferences = AccountSessionPreferences(requireContext())
 
+        auth = Firebase.auth
+
+        // Data from Shared Preferences
+        if (accountSessionPreferences.isLogin) {
+            personId = accountSessionPreferences.idUser
+            personEmail = accountSessionPreferences.emailUser
+            personName = accountSessionPreferences.nameUser
+            personPhone = accountSessionPreferences.phoneUser
+            personAddress = accountSessionPreferences.addressUser
+
+            val prefText = "$personId\n$personEmail\n$personName\n$personPhone\n$personAddress"
+
+            tvName.text = personName
+            tvEmail.text = personEmail
+        }
+
+        imgProfile.setOnClickListener {
+            startActivity(Intent(context, KritikSaranActivity::class.java))
+        }
+
+        btnKritik.setOnClickListener {
+            startActivity(Intent(context, KritikSaranActivity::class.java))
+        }
+
         // Logout Button
-        btnLogout = view.findViewById(R.id.btn_logout)
         btnLogout.setOnClickListener {
 
             //set alert dialog builder
@@ -77,11 +103,11 @@ class ProfileFragment : Fragment() {
                 setPositiveButton("Yes") { dialogInterface, i ->
                     // Set Account Preferences
                     accountSessionPreferences.logoutAccount()
-
                     auth.signOut()
 
-                    startActivity(Intent(context, SignInActivity::class.java))
+                    Tools.showCustomToastSuccess(context, layoutInflater, resources, "Logout Berhasil!")
                     requireActivity().finish()
+                    startActivity(Intent(context, SignInActivity::class.java))
                 }
                 setNegativeButton("No") { dialogInterface, i ->
 
@@ -92,43 +118,6 @@ class ProfileFragment : Fragment() {
             alertDialog = builder.create()
             alertDialog.show()
 
-        }
-
-        // Data from Google Sign In
-        val acct = GoogleSignIn.getLastSignedInAccount(context)
-        if (acct != null) {
-            personId = acct.id.toString()
-            personEmail = acct.email.toString()
-            personName = acct.displayName.toString()
-            personPhoto = acct.photoUrl
-            val acctText = "$personId, $personEmail, $personName, $personPhoto"
-            tv1.text = acctText
-        }
-
-        // Data from Firebase
-        auth = Firebase.auth
-        val user = auth.currentUser
-        if (user != null) {
-            personId = user.uid
-            personEmail = user.email.toString()
-            personName = user.displayName.toString()
-            personePhone = user.phoneNumber.toString()
-            personPhoto = user.photoUrl
-            val userText = "$personId, $personEmail, $personName, $personePhone, $personPhoto"
-            tv2.text = userText
-        }
-
-        // Data from Shared Preferences
-        if (accountSessionPreferences.isLogin) {
-            personId = accountSessionPreferences.idUser
-            personEmail = accountSessionPreferences.emailUser
-            personName = accountSessionPreferences.nameUser
-            personePhone = accountSessionPreferences.phoneUser
-            personAddress = accountSessionPreferences.addressUser
-            personPassword = accountSessionPreferences.passwordUser
-
-            val prefText = "$personId, $personEmail, $personName, $personePhone, $personAddress, $personPassword"
-            tv3.text = prefText
         }
 
     }

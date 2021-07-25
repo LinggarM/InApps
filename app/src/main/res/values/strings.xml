@@ -20,7 +20,8 @@
     <string name="sudah_punya_akun">Sudah punya akun?\u00A0</string>
     <string name="back">Back</string>
     <string name="next">Next</string>
-    <string name="start">Got It</string>
+    <string name="text_continue">Continue</string>
+    <string name="start">Get Started</string>
     <string name="introslider1_title">Hai Selamat Bergabung Di In Apps</string>
     <string name="introslider2_title">Satu Aplikasi Untuk Menemani Semua Kebutuhan Eventmu</string>
     <string name="introslider3_title">Dapatkan Diskon Menarik</string>
@@ -52,4 +53,15 @@
     <string name="error_password">Password tidak boleh kosong</string>
     <string name="error_password_length">Password minimal 8 karakter</string>
     <string name="error_terms">Setujui syarat dan kebijakan privasi</string>
+    <string name="keranjang_belanja">Keranjang Belanja</string>
+    <string name="keranjang_kosong">Keranjang Kosong</string>
+    <string name="yuk_belanja_sekarang_d">Sepertinya keranjang belanja anda sedang kosong. Yuk order layanan In-Apps sekarang :D</string>
+    <string name="kembali_ke_menu">Kembali ke Menu</string>
+    <string name="kritik_dan_saran">Kritik dan Saran</string>
+    <string name="sampaikan_kritik_dan_saran">Sampaikan kritik dan saran...</string>
+    <string name="rate_app">Rate App</string>
+    <string name="about_us">About Us</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="logout">Logout</string>
+    <string name="syarat_dan_ketentuan">Syarat dan Ketentuan</string>
 </resources>

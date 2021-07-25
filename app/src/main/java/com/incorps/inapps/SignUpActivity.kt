@@ -117,9 +117,10 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
                 if (task.isSuccessful) {
                     progressDialog.dismiss()
 
-                    // Change Display Name
                     val user = auth.currentUser
                     if (user != null) {
+
+                        // Change Display Name
                         val changeDisplayName = UserProfileChangeRequest.Builder().setDisplayName(name).build()
                         user.updateProfile(changeDisplayName).addOnCompleteListener { task ->
                             if (task.isSuccessful) {
@@ -128,11 +129,10 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
                         }
                         addToDatabase(user, name, phone, address)
                     }
-
                 } else {
                     progressDialog.dismiss()
 
-                    // If sign in fails, display a message to the user.
+                    // Show Toast
                     Tools.showCustomToastFailed(this, layoutInflater, resources, "Registrasi gagal! Gunakan email lain")
                 }
             }
@@ -158,6 +158,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
                 Tools.showCustomToastSuccess(this, layoutInflater, resources, message)
                 finish()
 
+                // Open SignIn Activity
                 startActivity(Intent(this, SignInActivity::class.java))
             }
             .addOnFailureListener {
