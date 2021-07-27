@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".OrderDetailRental">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/margin_medium">
+
+        <ImageView
+            android:id="@+id/img_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_round_arrow_back_24" />
+
+        <TextView
+            style="@style/textAppearanceHeadline5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Order Detail"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_medium">
+
+            <TextView
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama Produk" />
+
+            <TextView
+                android:id="@+id/tv_product_title"
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Proyektor ≥3000 Lumens"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:text="Lama Peminjaman" />
+
+            <TextView
+                android:id="@+id/tv_lama_peminjaman"
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1 Hari (24 Jam)"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:text="Tanggal Peminjaman" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_tgl_peminjaman"
+                    style="@style/textAppearanceBody1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Senin, 21 Maret 2021"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/textAppearanceBody1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" - "
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_waktu_peminjaman"
+                    style="@style/textAppearanceBody1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12.00"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:text="Tanggal Pengembalian" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_tgl_pengembalian"
+                    style="@style/textAppearanceBody1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Senin, 21 Maret 2021"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/textAppearanceBody1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" - "
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_waktu_pengembalian"
+                    style="@style/textAppearanceBody1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12.00"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:text="Quantity" />
+
+            <TextView
+                android:id="@+id/tv_quantity"
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1 Buah"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:background="@color/grey_400" />
+
+            <TextView
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:text="Organisasi" />
+
+            <TextView
+                android:id="@+id/tv_organisasi"
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Madani FSM Undip"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:text="Pengambilan Barang" />
+
+            <TextView
+                android:id="@+id/tv_antar"
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Di Antar"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_title_alamat"
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:text="Alamat Pengantaran" />
+
+            <TextView
+                android:id="@+id/tv_alamat"
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jl. Timoho Timur 1 no. 6, Bulusan, Semarang"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_open_maps"
+                android:visibility="gone"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:backgroundTint="@color/green_500"
+                android:drawableLeft="@drawable/ic_baseline_location_on_24"
+                android:drawableTint="@color/white"
+                android:padding="@dimen/margin_medium"
+                android:text="Buka di Maps" />
+
+            <TextView
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:text="Metode Pembayaran" />
+
+            <TextView
+                android:id="@+id/tv_payment"
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAllCaps="true"
+                android:text="COD"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_rekening"
+                android:visibility="gone"
+                style="@style/textAppearanceSubtitle1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:background="@drawable/bg_tersedia"
+                android:drawableLeft="@drawable/ic_baseline_info_24"
+                android:drawablePadding="@dimen/margin_medium"
+                android:drawableTint="@color/white"
+                android:padding="@dimen/margin_medium"
+                android:text="No Rekening untuk Pembayaran adalah 04052103990003"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:text="Status Pesanan" />
+
+            <TextView
+                android:id="@+id/tv_status"
+                android:background="@drawable/bg_tersedia"
+                android:padding="@dimen/margin_small"
+                android:textColor="@color/white"
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAllCaps="true"
+                android:text="Dipesan"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:background="@color/grey_400" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium">
+
+                <TextView
+                    style="@style/textAppearanceBody1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="Total Harga" />
+
+                <TextView
+                    android:id="@+id/tv_price"
+                    style="@style/textAppearanceHeadline5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="Rp. 140.000"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btn_cancel_order"
+                style="@style/textAppearanceButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_large"
+                android:backgroundTint="@color/red_500"
+                android:padding="@dimen/margin_xmedium_1"
+                android:text="Cancel Order"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

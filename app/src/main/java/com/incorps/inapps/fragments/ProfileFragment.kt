@@ -52,7 +52,6 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         tvName = view.findViewById(R.id.tv_name)
         tvEmail = view.findViewById(R.id.tv_email)
         imgProfile = view.findViewById(R.id.img_profile)

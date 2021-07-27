@@ -59,15 +59,21 @@
     <string name="kembali_ke_menu">Kembali ke Menu</string>
     <string name="kritik_dan_saran">Kritik dan Saran</string>
     <string name="sampaikan_kritik_dan_saran">Sampaikan kritik dan saran...</string>
-    <string name="rate_app">Rate App</string>
-    <string name="about_us">About Us</string>
+    <string name="rate_app">Beri Kami Nilai</string>
+    <string name="about_us">Tentang Kami</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="logout">Logout</string>
     <string name="syarat_dan_ketentuan">Syarat dan Ketentuan</string>
     <string name="pesanan_kosong">Pesanan Kosong</string>
     <string name="daftar_pemesanan_anda_sedang_kosong">Daftar pemesanan anda sedang kosong.</string>
     <string name="buka_keranjang_belanja">Buka Keranjang Belanja</string>
-    <string name="alamat_incorps">Alamat pengambilan barang adalah Jl. Timoho Timur 1 no.6, Bulusan, Tembalang</string>
+    <string name="alamat_incorps">Gedung Kewirausahaan Lantai 1 FEB Undip Tembalang, Semarang</string>
+    <string name="url_alamat_incorps">https://goo.gl/maps/462q7GxWjY3V1EnHA</string>
+    <string name="rekening_incorps">04052103990003</string>
+    <string name="rekening_incorps_atas_nama">Linggar Maretva Cendani</string>
+    <string name="hapus_pesanan">Hapus Pesanan</string>
+    <string name="message_hapus_pesanan">Apakah anda yakin ingin menghapus pesanan?</string>
+    <string name="link_whatsapp">https://api.whatsapp.com/send?phone=628817678194</string>
 
     <string name="deskripsi_proyektor_atas_tiga_ribu">
         Proyektor ≥3000 Lumens yang tersedia ada 2 jenis, yaitu Epson EB-S300 dan ViewSonic PJ513. Pemesanan proyektor sudah termasuk include Kabel Power, Kabel VGA, Kabel Converter, dan Remote (Jika diperlukan).

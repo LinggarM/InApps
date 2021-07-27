@@ -8,6 +8,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.incorps.inapps.fragments.ChatFragment
 import com.incorps.inapps.fragments.HomeFragment
 import com.incorps.inapps.fragments.OrdersFragment
@@ -17,6 +20,7 @@ import com.incorps.inapps.preferences.AccountSessionPreferences
 class DashboardActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
 
     private lateinit var accountSessionPreferences: AccountSessionPreferences
+    private lateinit var auth: FirebaseAuth
 
     private lateinit var bottomNavigation: BottomNavigationView
     private var backPressedTime: Long = 0
@@ -30,12 +34,18 @@ class DashboardActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedL
         loadFragment(HomeFragment())
         bottomNavigation.setOnItemSelectedListener(this)
 
-//        // Check Login Info
-//        accountSessionPreferences = AccountSessionPreferences(this)
-//        if (!accountSessionPreferences.isLogin) {
-//            startActivity(Intent(this, SignInActivity::class.java))
-//            finish()
-//        }
+        // Check Login Info
+        accountSessionPreferences = AccountSessionPreferences(this)
+        if (!accountSessionPreferences.isLogin) {
+            startActivity(Intent(this, SignInActivity::class.java))
+            finish()
+        }
+        auth = Firebase.auth
+        if (auth.currentUser == null) {
+            startActivity(Intent(this, SignInActivity::class.java))
+            finish()
+        }
+
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

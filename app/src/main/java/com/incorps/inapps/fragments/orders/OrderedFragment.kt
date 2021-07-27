@@ -1,30 +1,38 @@
 package com.incorps.inapps.fragments.orders
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.ProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import com.incorps.inapps.OrderDetailDesain
+import com.incorps.inapps.OrderDetailRental
 import com.incorps.inapps.R
+import com.incorps.inapps.adapter.OrdersDesainAdapter
 import com.incorps.inapps.adapter.OrdersRentalAdapter
+import com.incorps.inapps.model.OrdersDesain
 import com.incorps.inapps.model.OrdersRental
 import com.incorps.inapps.preferences.AccountSessionPreferences
-import com.incorps.inapps.utils.DataGenerator
 import com.incorps.inapps.utils.Tools
 import java.util.ArrayList
 
 class OrderedFragment : Fragment() {
 
-    private lateinit var rvOrdered: RecyclerView
-    private lateinit var rentalList: List<OrdersRental>
-    private lateinit var tvTest: TextView
+    private lateinit var rvOrderedRental: RecyclerView
+    private lateinit var rvOrderedDesain: RecyclerView
+    private lateinit var progressBar: ProgressBar
+
+    private lateinit var db: FirebaseFirestore
+    private lateinit var accountSessionPreferences: AccountSessionPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,18 +45,12 @@ class OrderedFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        rvOrdered = view.findViewById(R.id.rv_ordered)
-        tvTest = view.findViewById(R.id.tv_test)
+        rvOrderedRental = view.findViewById(R.id.rv_ordered_rental)
+        rvOrderedDesain = view.findViewById(R.id.rv_ordered_desain)
+        progressBar = view.findViewById(R.id.progress_wait)
 
-//        rentalList = DataGenerator.getRentalOrdered(requireContext())
-//        var textPrint = ""
-//        for (rental in rentalList) {
-//            textPrint = textPrint + rental.product + rental.tgl_peminjaman.toString() + rental.price.toString() + rental.quantity.toString()
-//        }
-//        tvTest.text = textPrint
-
-        val db: FirebaseFirestore = Firebase.firestore
-        val accountSessionPreferences = AccountSessionPreferences(requireContext())
+        db = Firebase.firestore
+        accountSessionPreferences = AccountSessionPreferences(requireContext())
 
         val rentalList: MutableList<OrdersRental> = ArrayList<OrdersRental>()
 
@@ -61,7 +63,7 @@ class OrderedFragment : Fragment() {
                     val orderRental = OrdersRental(
                         document.id,
                         document.data["url_identitas"] as String,
-                        document.data["product"] as String,
+                        document.data["product"] as Long,
                         document.data["tgl_peminjaman"] as Long,
                         document.data["quantity"] as Long,
                         document.data["address"] as String,
@@ -75,56 +77,80 @@ class OrderedFragment : Fragment() {
                         document.data["status"] as Long
                     )
                     rentalList.add(orderRental)
-//                    val rentalProduct = document.toObject<OrdersRental>()
-//                    rentalList.add(rentalProduct)
-
-//                    var textPrint = ""
-//                    textPrint += document.id
-//                    for (data in document.data) {
-//                        when (data.value) {
-//                            is String -> {
-//                                textPrint += "${data.key} : String : ${data.value}\n, "
-//                            }
-//                            is Int -> {
-//                                textPrint += "${data.key} : Int : ${data.value}\n, "
-//                            }
-//                            is Long -> {
-//                                textPrint += "${data.key} : Long : ${data.value}\n, "
-//                            }
-//                            is Boolean -> {
-//                                textPrint += "${data.key} : Boolean : ${data.value}\n, "
-//                            }
-//                        }
-//                    }
-//                    tvTest.text = textPrint
                 }
 
-//                tvTest.text = "$berhasil : ${rentalList.size.toString()}"
-//
-//                for (rental in rentalList) {
-//                    var textPrint = ""
-//                    textPrint = rental.product + rental.tgl_peminjaman.toString() + rental.price.toString() + rental.quantity.toString()
-//                    tvTest.text = textPrint
-//                }
-                try {
-                    rvOrdered.layoutManager = LinearLayoutManager(context)
-                    val ordersRentalAdapter = OrdersRentalAdapter(rentalList)
-                    rvOrdered.adapter = ordersRentalAdapter
-                } catch (e: Exception) {
-                    tvTest.text = e.toString()
-                }
+                // Show Recycler View
+                rvOrderedRental.layoutManager = LinearLayoutManager(context)
+                val ordersRentalAdapter = OrdersRentalAdapter(rentalList)
+                rvOrderedRental.adapter = ordersRentalAdapter
+
+                ordersRentalAdapter.setOnItemClickCallback(object : OrdersRentalAdapter.OnItemClickCallback {
+                    override fun onItemClicked(data: OrdersRental) {
+                        val intentOrderDetailRental = Intent(context, OrderDetailRental::class.java)
+                        intentOrderDetailRental.putExtra("order_rental", data)
+                        startActivity(intentOrderDetailRental)
+                    }
+                })
             }
             .addOnFailureListener { exception ->
+                FirebaseCrashlytics.getInstance().recordException(exception)
+                Tools.showCustomToastFailed(requireContext(), layoutInflater, resources, exception.message.toString())
             }
 
-//        // Set Recycler View
-//        rentalList = DataGenerator.getRentalOrdered(requireContext())
-//        showRecyclerView()
+        val desainList: MutableList<OrdersDesain> = ArrayList<OrdersDesain>()
+
+        db.collection("orders_desain")
+            .whereEqualTo("user", accountSessionPreferences.idUser)
+            .whereEqualTo("status", 0)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    val orderDesain = OrdersDesain(
+                        document.id,
+                        document.data["deskripsi_desain"] as String,
+                        document.data["email_pengiriman"] as String,
+                        document.data["organisasi"] as String,
+                        document.data["payment"] as String,
+                        document.data["price"] as Long,
+                        document.data["product"] as Long,
+                        document.data["status"] as Long,
+                        document.data["url_file_pendukung"] as String,
+                        document.data["user"] as String,
+                        document.data["waktu_pengerjaan"] as Long,
+                    )
+                    desainList.add(orderDesain)
+                }
+
+                // Show Recycler View
+                rvOrderedDesain.layoutManager = LinearLayoutManager(context)
+                val ordersDesainAdapter = OrdersDesainAdapter(desainList)
+                rvOrderedDesain.adapter = ordersDesainAdapter
+
+                ordersDesainAdapter.setOnItemClickCallback(object : OrdersDesainAdapter.OnItemClickCallback {
+                    override fun onItemClicked(data: OrdersDesain) {
+                        val intentOrderDetailDesain = Intent(context, OrderDetailDesain::class.java)
+                        startActivity(intentOrderDetailDesain)
+                    }
+                })
+            }
+            .addOnFailureListener { exception ->
+                FirebaseCrashlytics.getInstance().recordException(exception)
+                Tools.showCustomToastFailed(requireContext(), layoutInflater, resources, exception.message.toString())
+            }
+
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if ((requestCode == 10001) && (resultCode == Activity.RESULT_OK)) {
+//            val ft = parentFragmentManager.beginTransaction()
+//            ft.detach(OrderedFragment()).attach(OrderedFragment()).commit()
+//        }
     }
 
-    private fun showRecyclerView() {
-        rvOrdered.layoutManager = LinearLayoutManager(context)
-        val ordersRentalAdapter = OrdersRentalAdapter(rentalList)
-        rvOrdered.adapter = ordersRentalAdapter
+    private fun showLoading(state: Boolean) {
+        if (state) {
+            progressBar.setVisibility(View.VISIBLE)
+        } else {
+            progressBar.setVisibility(View.GONE)
+        }
     }
 }

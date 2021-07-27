@@ -24,7 +24,6 @@ tools:context=".productsactivity.DesainActivity">
         style="@style/textAppearanceHeadline5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_medium"
         android:gravity="center"
         android:text="@string/desain_in"
         android:textStyle="bold" />

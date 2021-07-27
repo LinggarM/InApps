@@ -1,9 +1,13 @@
 package com.incorps.inapps.model
 
-data class OrdersRental(
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class OrdersRental (
     var doc_id: String,
     var url_identitas: String,
-    var product: String,
+    var product: Long,
     var tgl_peminjaman: Long,
     var quantity: Long,
     var address: String,
@@ -15,4 +19,4 @@ data class OrdersRental(
     var payment: String,
     var user: String,
     var status: Long,
-)
+) : Parcelable

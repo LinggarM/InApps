@@ -78,27 +78,4 @@ object DataGenerator {
 
         return cetakList
     }
-
-    fun getRentalOrdered(context: Context): List<OrdersRental> {
-
-        val db: FirebaseFirestore = Firebase.firestore
-        val accountSessionPreferences = AccountSessionPreferences(context)
-
-        val rentalList: MutableList<OrdersRental> = ArrayList<OrdersRental>()
-
-        db.collection("orders_rental")
-            .whereEqualTo("user", accountSessionPreferences.idUser)
-            .whereEqualTo("status", 0)
-            .get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    val rentalProduct = document.toObject<OrdersRental>()
-                    rentalList.add(rentalProduct)
-                }
-            }
-            .addOnFailureListener { exception ->
-            }
-
-        return rentalList
-    }
 }
