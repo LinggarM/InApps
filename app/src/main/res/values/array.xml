@@ -118,4 +118,16 @@
         <item>CoCardActivity</item>
     </string-array>
 
+    <string-array name="paket_rental_proyektoratastigaribu">
+        <item>Harian (Rp. 140.000/ hari)</item>
+        <item>12 Jam (Rp. 100.000)</item>
+        <item>6 Jam (Rp. 70.000)</item>
+        <item>Paket KKN 42 Hari (Rp. 900.000)</item>
+    </string-array>
+
+    <string-array name="pengambilan_barang">
+        <item>Ambil Sendiri</item>
+        <item>Di Antar</item>
+    </string-array>
+
 </resources>

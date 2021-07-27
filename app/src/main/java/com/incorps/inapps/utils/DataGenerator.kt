@@ -1,8 +1,14 @@
 package com.incorps.inapps.utils
 
 import android.content.Context
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
 import com.incorps.inapps.R
+import com.incorps.inapps.model.OrdersRental
 import com.incorps.inapps.model.Product
+import com.incorps.inapps.preferences.AccountSessionPreferences
 import java.util.ArrayList
 
 object DataGenerator {
@@ -71,5 +77,28 @@ object DataGenerator {
         }
 
         return cetakList
+    }
+
+    fun getRentalOrdered(context: Context): List<OrdersRental> {
+
+        val db: FirebaseFirestore = Firebase.firestore
+        val accountSessionPreferences = AccountSessionPreferences(context)
+
+        val rentalList: MutableList<OrdersRental> = ArrayList<OrdersRental>()
+
+        db.collection("orders_rental")
+            .whereEqualTo("user", accountSessionPreferences.idUser)
+            .whereEqualTo("status", 0)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    val rentalProduct = document.toObject<OrdersRental>()
+                    rentalList.add(rentalProduct)
+                }
+            }
+            .addOnFailureListener { exception ->
+            }
+
+        return rentalList
     }
 }

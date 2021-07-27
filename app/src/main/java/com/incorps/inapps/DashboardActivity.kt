@@ -30,12 +30,12 @@ class DashboardActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedL
         loadFragment(HomeFragment())
         bottomNavigation.setOnItemSelectedListener(this)
 
-        // Check Login Info
-        accountSessionPreferences = AccountSessionPreferences(this)
-        if (!accountSessionPreferences.isLogin) {
-            startActivity(Intent(this, SignInActivity::class.java))
-            finish()
-        }
+//        // Check Login Info
+//        accountSessionPreferences = AccountSessionPreferences(this)
+//        if (!accountSessionPreferences.isLogin) {
+//            startActivity(Intent(this, SignInActivity::class.java))
+//            finish()
+//        }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

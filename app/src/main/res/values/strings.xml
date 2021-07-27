@@ -67,9 +67,10 @@
     <string name="pesanan_kosong">Pesanan Kosong</string>
     <string name="daftar_pemesanan_anda_sedang_kosong">Daftar pemesanan anda sedang kosong.</string>
     <string name="buka_keranjang_belanja">Buka Keranjang Belanja</string>
+    <string name="alamat_incorps">Alamat pengambilan barang adalah Jl. Timoho Timur 1 no.6, Bulusan, Tembalang</string>
 
     <string name="deskripsi_proyektor_atas_tiga_ribu">
-        Proyektor yang tersedia pada Rental-In ada 2 jenis, yaitu Epson EB-S300 dan ViewSonic PJ513. Pemesanan proyektor sudah termasuk include Kabel Power, Kabel VGA, Kabel Converter, dan Remote (Jika diperlukan).
+        Proyektor ≥3000 Lumens yang tersedia ada 2 jenis, yaitu Epson EB-S300 dan ViewSonic PJ513. Pemesanan proyektor sudah termasuk include Kabel Power, Kabel VGA, Kabel Converter, dan Remote (Jika diperlukan).
     </string>
 
     <string name="spesifikasi_proyektor_atas_tiga_ribu">
@@ -80,14 +81,14 @@
         - Resolusi : SVGA\n
         - Pengaturan Teknologi : Quick Corner\n
         - Berat : 2.4 Kg\n
-        - WiFi : ELPAP10
+        - WiFi : ELPAP10\n
     </string>
 
     <string name="harga_proyektor_atas_tiga_ribu">
-        - Paket KKN : Rp. 900.000/ 42 hari (Cashback Heater &amp; Flashdisk 32GB)\n
-        - Paket Reguler : Rp. 140.000/ hari(24 jam)\n
-        - Paket 12 jam : Rp. 100.000\n
-        - Paket 6 jam : Rp. 70.000
+        - <b>Paket KKN</b> : Rp. 900.000/ 42 hari\n
+        - <b>Paket Reguler</b> : Rp. 140.000/ hari\n
+        - <b>Paket 12 jam</b> : Rp. 100.000\n
+        - <b>Paket 6 jam</b> : Rp. 70.000
     </string>
 
     <string name="include_proyektor_atas_tiga_ribu">

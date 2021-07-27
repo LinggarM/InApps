@@ -1,19 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
     android:elevation="3dp"
-    android:focusable="true"
-    android:padding="@dimen/margin_small"
-    app:strokeColor="@color/colorPrimary"
-    app:strokeWidth="1dp">
+    android:backgroundTint="@color/grey_50"
+    android:focusable="true">
 
-    <TextView
-        style="@style/textAppearanceHeadline6"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Proyektor ≥3000 Lumens" />
+        android:padding="@dimen/margin_medium">
+
+        <ImageView
+            android:id="@+id/img_product"
+            android:layout_width="@dimen/img_cart_width_height"
+            android:layout_height="@dimen/img_cart_width_height"
+            android:src="@drawable/img_rental_proyektoratastigaribu"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/layout_title_date"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toEndOf="@+id/img_product"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Proyektor ≥3000 Lumens" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                style="@style/textAppearanceSubtitle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="21 Maret - 22 Maret (24 Jam)" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_price_qty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_product"
+            app:layout_constraintTop_toBottomOf="@+id/layout_title_date">
+
+            <TextView
+                android:id="@+id/tv_price"
+                style="@style/textAppearanceHeadline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp. 75.000"
+                android:textColor="@color/green_500"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_qty"
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_price"
+                android:layout_marginStart="@dimen/margin_tiny"
+                android:text="(1 Buah)" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

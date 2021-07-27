@@ -29,13 +29,15 @@
         <activity android:name=".productsactivity.rental.PointerActivity" />
         <activity android:name=".productsactivity.rental.HandyTalkyActivity" />
         <activity android:name=".productsactivity.rental.ProyektorBawahTigaRibuActivity" />
-        <activity android:name=".productsactivity.rental.ProyektorAtasTigaRibuActivity" />
+        <activity android:name=".productsactivity.rental.ProyektorAtasTigaRibuActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".productsactivity.DesainActivity" />
         <activity android:name=".productsactivity.CetakActivity" />
         <activity android:name=".productsactivity.InstallActivity" />
         <activity android:name=".productsactivity.RentalActivity" />
         <activity android:name=".CartActivity" />
-        <activity android:name=".DashboardActivity" />
+        <activity android:name=".DashboardActivity" >
+        </activity>
         <activity android:name=".ForgotPasswordActivity" />
         <activity
             android:name=".SignUpActivity"
