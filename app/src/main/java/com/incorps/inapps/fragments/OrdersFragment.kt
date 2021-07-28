@@ -14,10 +14,10 @@ import com.incorps.inapps.R
 import com.incorps.inapps.fragments.orders.CompletedOrderFragment
 import com.incorps.inapps.fragments.orders.OrderedFragment
 import com.incorps.inapps.fragments.orders.ProcessedOrderFragment
+import com.incorps.inapps.utils.Tools
 
 
 class OrdersFragment : Fragment() {
-    private lateinit var swipeRefresh: SwipeRefreshLayout
 
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager
@@ -33,16 +33,8 @@ class OrdersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        swipeRefresh = view.findViewById(R.id.swipe_refresh)
         tabLayout = view.findViewById(R.id.tl_orders)
         viewPager = view.findViewById(R.id.vp_orders)
-
-        swipeRefresh.setOnRefreshListener {
-            val ft = requireFragmentManager().beginTransaction()
-            ft.detach(this).attach(this).commit()
-
-            swipeRefresh.isRefreshing = false
-        }
 
         // Setting View Pager Adapter
         val vpAdapter = ViewPagerAdapter(childFragmentManager)

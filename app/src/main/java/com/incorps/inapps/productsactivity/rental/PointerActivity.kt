@@ -7,6 +7,6 @@ import com.incorps.inapps.R
 class PointerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pointer)
+        setContentView(R.layout.activity_product_rental)
     }
 }

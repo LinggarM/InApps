@@ -7,6 +7,6 @@ import com.incorps.inapps.R
 class HandyTalkyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_handy_talky)
+        setContentView(R.layout.activity_product_rental)
     }
 }

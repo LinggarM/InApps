@@ -3,6 +3,7 @@
     package="com.incorps.inapps">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -11,26 +12,56 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.InApps">
-        <activity android:name=".OrderDetailDesain"></activity>
+        <activity android:name=".KritikSaranActivity"></activity>
+        <activity android:name=".OrderDetailInstall" />
+        <activity android:name=".OrderDetailCetak" />
+        <activity android:name=".OrderDetailDesain" />
         <activity android:name=".OrderDetailRental" />
-        <activity android:name=".KritikSaranActivity" />
-        <activity android:name=".CheckoutActivity" />
-        <activity android:name=".SignInAdvancedActivity" />
-        <activity android:name=".productsactivity.desain.DesainKemasanActivity" />
-        <activity android:name=".productsactivity.desain.PlakatActivity" />
-        <activity android:name=".productsactivity.desain.SertifikatActivity" />
-        <activity android:name=".productsactivity.desain.BlocknoteActivity" />
-        <activity android:name=".productsactivity.desain.StikerActivity" />
-        <activity android:name=".productsactivity.desain.CoCardActivity" />
-        <activity android:name=".productsactivity.desain.PosterActivity" />
-        <activity android:name=".productsactivity.desain.BannerActivity" />
-        <activity android:name=".productsactivity.cetak.CoCardActivity" />
-        <activity android:name=".productsactivity.cetak.PlakatKayuActivity" />
-        <activity android:name=".productsactivity.cetak.BlocknoteActivity" />
-        <activity android:name=".productsactivity.rental.ScreenProyektorActivity" />
-        <activity android:name=".productsactivity.rental.PointerActivity" />
-        <activity android:name=".productsactivity.rental.HandyTalkyActivity" />
-        <activity android:name=".productsactivity.rental.ProyektorBawahTigaRibuActivity" />
+        <activity
+            android:name=".productsactivity.desain.DesainKemasanActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".productsactivity.desain.PlakatActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".productsactivity.desain.SertifikatActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".productsactivity.desain.BlocknoteActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".productsactivity.desain.StikerActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".productsactivity.desain.CoCardActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".productsactivity.desain.PosterActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".productsactivity.desain.BannerActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".productsactivity.cetak.CoCardActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".productsactivity.cetak.PlakatKayuActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".productsactivity.cetak.BlocknoteActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".productsactivity.rental.ScreenProyektorActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".productsactivity.rental.PointerActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".productsactivity.rental.HandyTalkyActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".productsactivity.rental.ProyektorBawahTigaRibuActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".productsactivity.rental.ProyektorAtasTigaRibuActivity"
             android:windowSoftInputMode="adjustPan" />
@@ -38,8 +69,10 @@
         <activity android:name=".productsactivity.CetakActivity" />
         <activity android:name=".productsactivity.InstallActivity" />
         <activity android:name=".productsactivity.RentalActivity" />
+        <activity android:name=".CheckoutActivity" />
         <activity android:name=".CartActivity" />
         <activity android:name=".DashboardActivity" />
+        <activity android:name=".SignInAdvancedActivity" />
         <activity android:name=".ForgotPasswordActivity" />
         <activity
             android:name=".SignUpActivity"
@@ -55,7 +88,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

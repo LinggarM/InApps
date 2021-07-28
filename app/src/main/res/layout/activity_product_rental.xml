@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".productsactivity.rental.ProyektorAtasTigaRibuActivity">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/img_back_button"
@@ -32,7 +30,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/grey_100"
             android:orientation="vertical">
 
@@ -45,16 +43,18 @@
                 android:paddingBottom="@dimen/margin_medium">
 
                 <ImageView
+                    android:id="@+id/img_product"
                     android:layout_width="@dimen/img_width_height"
                     android:layout_height="@dimen/img_width_height"
                     android:layout_gravity="center"
                     android:src="@drawable/img_rental_proyektoratastigaribu" />
 
                 <TextView
+                    android:id="@+id/tv_product_title"
                     style="@style/textAppearanceHeadline5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Proyektor ≥3000 Lumens"
+                    android:text="@string/proyektor_3000_lumens"
                     android:textStyle="bold" />
 
                 <TextView
@@ -63,7 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_tiny"
-                    android:text="Rental-In" />
+                    android:text="@string/rental_in" />
 
                 <TextView
                     android:id="@+id/tv_tersedia"
@@ -71,10 +71,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_medium"
-                    android:background="@drawable/bg_tersedia"
+                    android:background="@drawable/bg_green"
                     android:paddingHorizontal="@dimen/margin_medium"
                     android:paddingVertical="@dimen/margin_small"
-                    android:text="Tersedia : 2"
+                    android:text="@string/tersedia_2"
                     android:textColor="@color/white" />
 
             </LinearLayout>
@@ -113,7 +113,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/nunito_semibold"
-                                android:text="Deskripsi"
+                                android:text="@string/deskripsi"
                                 android:textAllCaps="false"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:textStyle="bold" />
@@ -132,7 +132,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/nunito_semibold"
-                                android:text="Spesifikasi"
+                                android:text="@string/spesifikasi"
                                 android:textAllCaps="false"
                                 android:textColor="@color/white_bottom_nav" />
 
@@ -150,7 +150,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/nunito_semibold"
-                                android:text="Harga"
+                                android:text="@string/harga"
                                 android:textAllCaps="false"
                                 android:textColor="@color/white_bottom_nav" />
 
@@ -199,14 +199,16 @@
                     android:padding="@dimen/margin_medium">
 
                     <TextView
+                        android:id="@+id/tv_title_lama_peminjaman"
                         style="@style/textAppearanceBody1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Lama Peminjaman"
+                        android:text="@string/lama_peminjaman"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <RelativeLayout
+                        android:id="@+id/layout_lama_peminjaman"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_small">
@@ -222,7 +224,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
-                            android:paddingEnd="@dimen/margin_medium"
+                            android:layout_marginEnd="@dimen/margin_medium"
                             android:src="@drawable/ic_baseline_keyboard_arrow_down_24" />
 
                     </RelativeLayout>
@@ -233,9 +235,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_small"
-                        android:hint="Masukkan jumlah hari peminjaman">
+                        android:hint="@string/masukkan_jumlah_hari_peminjaman">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edittext_hari_peminjaman"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nunito_regular"
@@ -257,7 +260,7 @@
                         style="@style/textAppearanceBody1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Tanggal Peminjaman"
+                        android:text="@string/tanggal_peminjaman"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -270,9 +273,8 @@
                         android:backgroundTint="@color/grey_300"
                         android:drawableLeft="@drawable/ic_baseline_date_range_24"
                         android:drawableRight="@drawable/ic_baseline_keyboard_arrow_right_24"
-                        android:drawableTint="@color/colorPrimaryDark"
                         android:padding="@dimen/margin_small"
-                        android:text="Pilih Tanggal"
+                        android:text="@string/pilih_tanggal"
                         android:textColor="@color/colorPrimaryDark"
                         android:textStyle="bold" />
 
@@ -284,10 +286,11 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/tv_tgl_peminjaman"
                             style="@style/textAppearanceBody1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="21 Maret 2021"
+                            android:text="@string/_21_maret_2021"
                             android:textColor="@color/green_500"
                             android:textStyle="bold" />
 
@@ -296,14 +299,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/margin_small"
-                            android:text="pukul" />
+                            android:text="@string/pukul" />
 
                         <TextView
+                            android:id="@+id/tv_jam_peminjaman"
                             style="@style/textAppearanceBody1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/margin_small"
-                            android:text="12.00"
+                            android:text="@string/_12_00"
                             android:textColor="@color/green_500"
                             android:textStyle="bold" />
 
@@ -326,7 +330,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="@dimen/margin_medium"
-                            android:text="sampai" />
+                            android:text="@string/sampai" />
 
                         <View
                             android:layout_width="@dimen/margin_huge"
@@ -343,10 +347,11 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/tv_tgl_pengembalian"
                             style="@style/textAppearanceBody1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="21 Maret 2021"
+                            android:text="@string/_21_maret_2021"
                             android:textColor="@color/green_500"
                             android:textStyle="bold" />
 
@@ -355,14 +360,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/margin_small"
-                            android:text="pukul" />
+                            android:text="@string/pukul" />
 
                         <TextView
+                            android:id="@+id/tv_jam_pengembalian"
                             style="@style/textAppearanceBody1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/margin_small"
-                            android:text="12.00"
+                            android:text="@string/_12_00"
                             android:textColor="@color/green_500"
                             android:textStyle="bold" />
 
@@ -378,7 +384,7 @@
                     <TimePicker
                         android:id="@+id/time_picker_peminjaman"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp" />
+                        android:layout_height="0dp"/>
 
                 </LinearLayout>
 
@@ -394,7 +400,7 @@
                         style="@style/textAppearanceBody1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Quantity"
+                        android:text="@string/quantity"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -409,7 +415,7 @@
                             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="-" />
+                            android:text="@string/decrease" />
 
                         <TextView
                             android:id="@+id/tv_qty"
@@ -417,7 +423,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="@dimen/margin_large"
-                            android:text="1"
+                            android:text="@string/_1"
                             android:textSize="15sp" />
 
                         <com.google.android.material.button.MaterialButton
@@ -425,7 +431,7 @@
                             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="+" />
+                            android:text="@string/increase" />
 
                     </LinearLayout>
 
@@ -443,7 +449,7 @@
                         style="@style/textAppearanceBody1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Foto Tanda Identitas"
+                        android:text="@string/foto_tanda_identitas"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -451,7 +457,7 @@
                         style="@style/textAppearanceBody2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="(KTP/SIM/KTM)"
+                        android:text="@string/ktp_sim_ktm"
                         android:textColor="@color/colorPrimary" />
 
                     <LinearLayout
@@ -462,35 +468,44 @@
                         android:orientation="horizontal">
 
                         <ImageButton
+                            android:id="@+id/btn_foto_identitas"
                             style="@style/Widget.MaterialComponents.TimePicker.ImageButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_baseline_add_photo_alternate_24" />
 
                         <TextView
+                            android:id="@+id/tv_nama_file"
+                            android:visibility="gone"
                             style="@style/textAppearanceBody1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/margin_small"
-                            android:text="ktp_linggar.jpg"
+                            android:text="@string/ktp_linggar_jpg"
                             android:textColor="@color/colorPrimary" />
 
                     </LinearLayout>
 
                     <ProgressBar
+                        android:id="@+id/progress_upload"
+                        android:visibility="gone"
                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:progressBackgroundTint="@color/colorPrimary"
+                        android:progressTint="@color/green_500"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
                     <TextView
+                        android:id="@+id/tv_file_uploaded"
                         style="@style/textAppearanceCaption"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="right"
+                        android:layout_gravity="end"
+                        android:visibility="invisible"
                         android:drawableLeft="@drawable/ic_baseline_done_24"
                         android:drawableTint="@color/green_500"
                         android:gravity="center"
-                        android:text="File Uploaded"
+                        android:text="@string/file_uploaded"
                         android:textColor="@color/green_500" />
 
                 </LinearLayout>
@@ -507,7 +522,7 @@
                         style="@style/textAppearanceBody1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Organisasi"
+                        android:text="@string/organisasi"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -515,7 +530,7 @@
                         style="@style/textAppearanceBody2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Jika tidak ada, kosongkan saja"
+                        android:text="@string/jika_tidak_ada_kosongkan_saja"
                         android:textColor="@color/colorPrimary" />
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -523,9 +538,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_small"
-                        android:hint="Asal Organisasi Peminjam">
+                        android:hint="@string/asal_organisasi_peminjam">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edittext_organisasi"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nunito_regular"
@@ -548,7 +564,7 @@
                         style="@style/textAppearanceBody1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Pengambilan Barang"
+                        android:text="@string/pengambilan_barang"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -590,14 +606,15 @@
                         android:textStyle="bold" />
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/edittext_alamat"
+                        android:id="@+id/text_layout_alamat"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_small"
-                        android:hint="Masukkan Alamat Pengantaran">
+                        android:hint="@string/masukkan_alamat_pengantaran">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edittext_alamat"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nunito_regular"
@@ -639,14 +656,14 @@
                 style="@style/textAppearanceSubtitle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total Harga" />
+                android:text="@string/total_harga" />
 
             <TextView
                 android:id="@+id/tv_price"
                 style="@style/textAppearanceHeadline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rp. 75.000"
+                android:text="@string/rp_75_000"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -661,7 +678,7 @@
             android:drawableLeft="@drawable/ic_baseline_shopping_cart_24"
             android:paddingHorizontal="@dimen/margin_large"
             android:paddingVertical="@dimen/margin_medium"
-            android:text="Add to Cart"
+            android:text="@string/add_to_cart"
             android:textColor="@color/white"
             app:cornerRadius="@dimen/margin_large" />
 

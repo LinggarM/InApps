@@ -7,6 +7,6 @@ import com.incorps.inapps.R
 class StikerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_stiker)
+        setContentView(R.layout.activity_product_desain)
     }
 }

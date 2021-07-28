@@ -2,13 +2,18 @@ package com.incorps.inapps.utils
 
 import android.content.Context
 import android.content.res.Resources
+import android.net.ConnectivityManager
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.incorps.inapps.R
+import com.incorps.inapps.preferences.AccountSessionPreferences
 import java.text.*
 import java.util.Calendar
 import java.util.TimeZone
@@ -199,17 +204,17 @@ object Tools {
 
     fun getDate(milliSeconds: Long, dateFormat: String): String {
         // Create a DateFormatter object for displaying date in specified format.
-        var formatter = SimpleDateFormat(dateFormat, Locale("ID"))
+        val formatter = SimpleDateFormat(dateFormat, Locale("ID"))
 
         // Create a calendar object that will convert the date and time value in milliseconds to date.
-        var calendar = Calendar.getInstance()
+        val calendar = Calendar.getInstance()
         calendar.timeInMillis = milliSeconds
         return formatter.format(calendar.time)
     }
 
     fun getDateToJakarta(milliSeconds: Long, dateFormat: String): String {
         // Create a DateFormatter object for displaying date in specified format.
-        var formatter = SimpleDateFormat(dateFormat, Locale("ID"))
+        val formatter = SimpleDateFormat(dateFormat, Locale("ID"))
 
         // Set millis to Jakarta Timezone
         val calJakarta = Calendar.getInstance(TimeZone.getTimeZone("GMT"))
@@ -217,7 +222,7 @@ object Tools {
         val timezoneJakarta = calJakarta.time.time + TimeZone.getTimeZone("Asia/Jakarta").rawOffset
 
         // Create a calendar object that will convert the date and time value in milliseconds to date.
-        var calendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/Jakarta"))
+        val calendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/Jakarta"))
         calendar.timeInMillis = timezoneJakarta
         return formatter.format(calendar.time)
     }
@@ -234,5 +239,18 @@ object Tools {
         result = formatter.format(currency)
 
         return result
+    }
+
+    fun isOnline(context: Context): Boolean {
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val netInfo = cm.activeNetworkInfo
+        //should check null because in airplane mode it will be null
+        return netInfo != null && netInfo.isConnected
+    }
+
+    fun isLogin(context: Context): Boolean {
+        val accountSessionPreferences = AccountSessionPreferences(context)
+        val auth: FirebaseAuth = Firebase.auth
+        return accountSessionPreferences.isLogin && (auth.currentUser != null)
     }
 }

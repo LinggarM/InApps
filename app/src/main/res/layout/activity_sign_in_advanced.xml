@@ -24,7 +24,7 @@
         android:layout_marginTop="@dimen/margin_medium"
         android:gravity="center"
         android:textColor="@color/colorPrimary"
-        android:text="Selesaikan proses Sign In dengan melengkapi data - data berikut" />
+        android:text="@string/selesaikan_proses_sign_in_dengan_melengkapi_data_data_berikut" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -68,7 +68,7 @@
         android:layout_marginTop="@dimen/margin_medium"
         android:paddingHorizontal="@dimen/margin_huge"
         android:paddingVertical="@dimen/margin_medium"
-        android:text="Proceed"
+        android:text="@string/proceed"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:cornerRadius="@dimen/margin_large" />

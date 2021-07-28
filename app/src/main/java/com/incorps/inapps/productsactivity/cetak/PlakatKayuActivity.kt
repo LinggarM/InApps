@@ -7,6 +7,6 @@ import com.incorps.inapps.R
 class PlakatKayuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_plakat_kayu)
+        setContentView(R.layout.activity_product_cetak)
     }
 }

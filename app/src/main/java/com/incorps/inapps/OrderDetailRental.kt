@@ -26,6 +26,7 @@ class OrderDetailRental : AppCompatActivity() {
     private lateinit var tvTglPengembalian: TextView
     private lateinit var tvWaktuPengembalian: TextView
     private lateinit var tvQuantity: TextView
+    private lateinit var tvTitleOrganisasi: TextView
     private lateinit var tvOrganisasi: TextView
     private lateinit var tvAntar: TextView
     private lateinit var tvTitleAlamat: TextView
@@ -56,6 +57,7 @@ class OrderDetailRental : AppCompatActivity() {
         tvTglPengembalian = findViewById(R.id.tv_tgl_pengembalian)
         tvWaktuPengembalian = findViewById(R.id.tv_waktu_pengembalian)
         tvQuantity = findViewById(R.id.tv_quantity)
+        tvTitleOrganisasi = findViewById(R.id.tv_title_organisasi)
         tvOrganisasi = findViewById(R.id.tv_organisasi)
         tvAntar = findViewById(R.id.tv_antar)
         tvTitleAlamat = findViewById(R.id.tv_title_alamat)
@@ -106,7 +108,7 @@ class OrderDetailRental : AppCompatActivity() {
                         )).addOnSuccessListener {
                             Tools.showCustomToastSuccess(context, layoutInflater, resources, "Hapus Pesanan Berhasil!")
                             finish()
-//                            setResult(Activity.RESULT_OK)
+                            setResult(Activity.RESULT_OK)
                         }.addOnFailureListener {
                             Tools.showCustomToastFailed(context, layoutInflater, resources, "Hapus Pesanan Gagal!")
                         }
@@ -158,6 +160,10 @@ class OrderDetailRental : AppCompatActivity() {
 
         // Organisasi
         tvOrganisasi.text = orderRental.organisasi
+        if (orderRental.organisasi == "") {
+            tvTitleOrganisasi.visibility = View.GONE
+            tvOrganisasi.visibility = View.GONE
+        }
 
         // Pengambilan Barang
         if (orderRental.antar) {
@@ -182,15 +188,15 @@ class OrderDetailRental : AppCompatActivity() {
         when (orderRental.status) {
             0.toLong() -> {
                 tvStatus.text = "Dipesan"
-                tvStatus.background = resources.getDrawable(R.drawable.bg_tersedia)
+                tvStatus.background = resources.getDrawable(R.drawable.bg_green)
             }
             1.toLong() -> {
                 tvStatus.text = "Diproses"
-                tvStatus.background = resources.getDrawable(R.drawable.bg_tersedia)
+                tvStatus.background = resources.getDrawable(R.drawable.bg_green)
             }
             2.toLong() -> {
                 tvStatus.text = "Selesai"
-                tvStatus.background = resources.getDrawable(R.drawable.bg_tersedia)
+                tvStatus.background = resources.getDrawable(R.drawable.bg_green)
             }
             3.toLong() -> {
                 tvStatus.text = "Dibatalkan"

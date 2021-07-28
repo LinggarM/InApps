@@ -60,7 +60,7 @@
             android:layout_marginTop="@dimen/margin_medium"
             android:backgroundTint="@color/colorPrimary"
             android:padding="@dimen/margin_medium"
-            android:text="Submit"
+            android:text="@string/submit"
             android:textColor="@color/white"
             app:cornerRadius="@dimen/margin_large" />
 

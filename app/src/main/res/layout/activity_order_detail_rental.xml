@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Order Detail"
+            android:text="@string/order_detail"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -44,14 +43,14 @@
                 style="@style/textAppearanceBody1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nama Produk" />
+                android:text="@string/nama_produk" />
 
             <TextView
                 android:id="@+id/tv_product_title"
                 style="@style/textAppearanceBody1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Proyektor ≥3000 Lumens"
+                android:text="@string/proyektor_3000_lumens"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -60,14 +59,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_medium"
-                android:text="Lama Peminjaman" />
+                android:text="@string/lama_peminjaman" />
 
             <TextView
                 android:id="@+id/tv_lama_peminjaman"
                 style="@style/textAppearanceBody1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1 Hari (24 Jam)"
+                android:text="@string/_1_hari_24_jam"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -76,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_medium"
-                android:text="Tanggal Peminjaman" />
+                android:text="@string/tanggal_peminjaman" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -88,7 +87,7 @@
                     style="@style/textAppearanceBody1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Senin, 21 Maret 2021"
+                    android:text="@string/senin_21_maret_2021"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -105,7 +104,7 @@
                     style="@style/textAppearanceBody1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="12.00"
+                    android:text="@string/_12_00"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -116,7 +115,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_medium"
-                android:text="Tanggal Pengembalian" />
+                android:text="@string/tanggal_pengembalian" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -128,7 +127,7 @@
                     style="@style/textAppearanceBody1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Senin, 21 Maret 2021"
+                    android:text="@string/senin_21_maret_2021"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -145,7 +144,7 @@
                     style="@style/textAppearanceBody1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="12.00"
+                    android:text="@string/_12_00"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -156,14 +155,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_medium"
-                android:text="Quantity" />
+                android:text="@string/quantity" />
 
             <TextView
                 android:id="@+id/tv_quantity"
                 style="@style/textAppearanceBody1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1 Buah"
+                android:text="@string/_1_buah"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -174,18 +173,19 @@
                 android:background="@color/grey_400" />
 
             <TextView
+                android:id="@+id/tv_title_organisasi"
                 style="@style/textAppearanceBody1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_medium"
-                android:text="Organisasi" />
+                android:text="@string/organisasi" />
 
             <TextView
                 android:id="@+id/tv_organisasi"
                 style="@style/textAppearanceBody1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Madani FSM Undip"
+                android:text="@string/madani_fsm_undip"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -194,14 +194,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_medium"
-                android:text="Pengambilan Barang" />
+                android:text="@string/pengambilan_barang" />
 
             <TextView
                 android:id="@+id/tv_antar"
                 style="@style/textAppearanceBody1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Di Antar"
+                android:text="@string/di_antar"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -211,21 +211,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_medium"
-                android:text="Alamat Pengantaran" />
+                android:text="@string/alamat_pengantaran" />
 
             <TextView
                 android:id="@+id/tv_alamat"
                 style="@style/textAppearanceBody1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Jl. Timoho Timur 1 no. 6, Bulusan, Semarang"
+                android:text="@string/jl_timoho_timur_1_no_6_bulusan_semarang"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_open_maps"
-                android:visibility="gone"
-                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_tiny"
@@ -233,58 +232,59 @@
                 android:drawableLeft="@drawable/ic_baseline_location_on_24"
                 android:drawableTint="@color/white"
                 android:padding="@dimen/margin_medium"
-                android:text="Buka di Maps" />
+                android:text="@string/buka_di_maps"
+                android:visibility="gone" />
 
             <TextView
                 style="@style/textAppearanceBody1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_medium"
-                android:text="Metode Pembayaran" />
+                android:text="@string/metode_pembayaran" />
 
             <TextView
                 android:id="@+id/tv_payment"
                 style="@style/textAppearanceBody1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/cod"
                 android:textAllCaps="true"
-                android:text="COD"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_rekening"
-                android:visibility="gone"
                 style="@style/textAppearanceSubtitle1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
-                android:background="@drawable/bg_tersedia"
+                android:background="@drawable/bg_gray"
                 android:drawableLeft="@drawable/ic_baseline_info_24"
                 android:drawablePadding="@dimen/margin_medium"
                 android:drawableTint="@color/white"
                 android:padding="@dimen/margin_medium"
-                android:text="No Rekening untuk Pembayaran adalah 04052103990003"
+                android:text="@string/no_rekening_untuk_pembayaran_adalah_04052103990003"
                 android:textColor="@color/white"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <TextView
                 style="@style/textAppearanceBody1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_medium"
-                android:text="Status Pesanan" />
+                android:text="@string/status_pesanan" />
 
             <TextView
                 android:id="@+id/tv_status"
-                android:background="@drawable/bg_tersedia"
-                android:padding="@dimen/margin_small"
-                android:textColor="@color/white"
                 style="@style/textAppearanceBody1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bg_green"
+                android:padding="@dimen/margin_small"
+                android:text="@string/dipesan"
                 android:textAllCaps="true"
-                android:text="Dipesan"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -305,7 +305,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:text="Total Harga" />
+                    android:text="@string/total_harga" />
 
                 <TextView
                     android:id="@+id/tv_price"
@@ -314,7 +314,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:text="Rp. 140.000"
+                    android:text="@string/rp_140_000"
                     android:textStyle="bold" />
             </RelativeLayout>
 
@@ -326,7 +326,7 @@
                 android:layout_marginTop="@dimen/margin_large"
                 android:backgroundTint="@color/red_500"
                 android:padding="@dimen/margin_xmedium_1"
-                android:text="Cancel Order"
+                android:text="@string/cancel_order"
                 android:textColor="@color/white" />
 
         </LinearLayout>

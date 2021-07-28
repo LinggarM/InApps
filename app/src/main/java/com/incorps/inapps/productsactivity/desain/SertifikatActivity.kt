@@ -7,6 +7,6 @@ import com.incorps.inapps.R
 class SertifikatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sertifikat)
+        setContentView(R.layout.activity_product_desain)
     }
 }

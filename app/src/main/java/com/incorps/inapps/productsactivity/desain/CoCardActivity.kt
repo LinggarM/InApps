@@ -7,6 +7,6 @@ import com.incorps.inapps.R
 class CoCardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_co_card2)
+        setContentView(R.layout.activity_product_desain)
     }
 }

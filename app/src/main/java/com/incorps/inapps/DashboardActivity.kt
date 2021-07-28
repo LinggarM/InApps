@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
@@ -16,6 +17,7 @@ import com.incorps.inapps.fragments.HomeFragment
 import com.incorps.inapps.fragments.OrdersFragment
 import com.incorps.inapps.fragments.ProfileFragment
 import com.incorps.inapps.preferences.AccountSessionPreferences
+import com.incorps.inapps.utils.Tools
 
 class DashboardActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
 
@@ -35,15 +37,14 @@ class DashboardActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedL
         bottomNavigation.setOnItemSelectedListener(this)
 
         // Check Login Info
-        accountSessionPreferences = AccountSessionPreferences(this)
-        if (!accountSessionPreferences.isLogin) {
+        if (!Tools.isLogin(this)) {
             startActivity(Intent(this, SignInActivity::class.java))
             finish()
         }
-        auth = Firebase.auth
-        if (auth.currentUser == null) {
-            startActivity(Intent(this, SignInActivity::class.java))
-            finish()
+
+        // Check Internet Connectivity
+        if (!Tools.isOnline(this)) {
+            Tools.showCustomToastFailed(this, layoutInflater, resources, "Internet Mati")
         }
 
     }

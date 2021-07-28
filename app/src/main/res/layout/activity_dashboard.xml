@@ -19,8 +19,8 @@
         android:layout_alignParentBottom="true"
         app:labelVisibilityMode="labeled"
         android:background="@drawable/bg_gray"
-        app:itemIconTint="@drawable/color_selector_bottom_navigation"
-        app:itemTextColor="@drawable/color_selector_bottom_navigation"
+        app:itemIconTint="@drawable/selector_bottom_navigation"
+        app:itemTextColor="@drawable/selector_bottom_navigation"
         app:menu="@menu/menu_bottom_navigation" />
 
 </RelativeLayout>

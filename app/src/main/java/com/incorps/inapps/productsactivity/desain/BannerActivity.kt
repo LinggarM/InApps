@@ -7,6 +7,6 @@ import com.incorps.inapps.R
 class BannerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_banner)
+        setContentView(R.layout.activity_product_desain)
     }
 }

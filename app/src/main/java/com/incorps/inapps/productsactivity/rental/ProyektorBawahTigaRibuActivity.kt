@@ -7,6 +7,6 @@ import com.incorps.inapps.R
 class ProyektorBawahTigaRibuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_proyektor_bawah_tiga_ribu)
+        setContentView(R.layout.activity_product_rental)
     }
 }

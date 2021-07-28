@@ -1,12 +1,11 @@
-package com.incorps.inapps.productsactivity.desain
+package com.incorps.inapps
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.incorps.inapps.R
 
-class PosterActivity : AppCompatActivity() {
+class OrderDetailCetak : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_product_desain)
+        setContentView(R.layout.activity_order_detail_cetak)
     }
 }

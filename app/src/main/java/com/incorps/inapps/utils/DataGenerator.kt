@@ -1,14 +1,8 @@
 package com.incorps.inapps.utils
 
 import android.content.Context
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
-import com.google.firebase.ktx.Firebase
 import com.incorps.inapps.R
-import com.incorps.inapps.model.OrdersRental
 import com.incorps.inapps.model.Product
-import com.incorps.inapps.preferences.AccountSessionPreferences
 import java.util.ArrayList
 
 object DataGenerator {

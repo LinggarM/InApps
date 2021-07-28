@@ -7,6 +7,6 @@ import com.incorps.inapps.R
 class ScreenProyektorActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_screen_proyektor)
+        setContentView(R.layout.activity_product_rental)
     }
 }

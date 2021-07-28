@@ -69,11 +69,61 @@
     <string name="buka_keranjang_belanja">Buka Keranjang Belanja</string>
     <string name="alamat_incorps">Gedung Kewirausahaan Lantai 1 FEB Undip Tembalang, Semarang</string>
     <string name="url_alamat_incorps">https://goo.gl/maps/462q7GxWjY3V1EnHA</string>
-    <string name="rekening_incorps">04052103990003</string>
+    <string name="rekening_incorps">2020800260 (BNI Syariah)</string>
     <string name="rekening_incorps_atas_nama">Linggar Maretva Cendani</string>
     <string name="hapus_pesanan">Hapus Pesanan</string>
     <string name="message_hapus_pesanan">Apakah anda yakin ingin menghapus pesanan?</string>
     <string name="link_whatsapp">https://api.whatsapp.com/send?phone=628817678194</string>
+    <string name="submit">Submit</string>
+    <string name="selesaikan_proses_sign_in_dengan_melengkapi_data_data_berikut">Selesaikan proses Sign In dengan melengkapi data - data berikut</string>
+    <string name="proceed">Proceed</string>
+    <string name="proyektor_3000_lumens">Proyektor ≥3000 Lumens</string>
+    <string name="tersedia_2">Tersedia : 2</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="spesifikasi">Spesifikasi</string>
+    <string name="harga">Harga</string>
+    <string name="lama_peminjaman">Lama Peminjaman</string>
+    <string name="masukkan_jumlah_hari_peminjaman">Masukkan jumlah hari peminjaman</string>
+    <string name="pilih_tanggal">Pilih Tanggal</string>
+    <string name="_21_maret_2021">21 Maret 2021</string>
+    <string name="pukul">pukul</string>
+    <string name="_12_00">12.00</string>
+    <string name="sampai">sampai</string>
+    <string name="quantity">Quantity</string>
+    <string name="tanggal_peminjaman">Tanggal Peminjaman</string>
+    <string name="decrease">-</string>
+    <string name="_1">1</string>
+    <string name="increase">+</string>
+    <string name="foto_tanda_identitas">Foto Tanda Identitas</string>
+    <string name="ktp_sim_ktm">(KTP/SIM/KTM)</string>
+    <string name="ktp_linggar_jpg">ktp_linggar.jpg</string>
+    <string name="file_uploaded">File Uploaded</string>
+    <string name="organisasi">Organisasi</string>
+    <string name="jika_tidak_ada_kosongkan_saja">Jika tidak ada, kosongkan saja</string>
+    <string name="asal_organisasi_peminjam">Asal Organisasi Peminjam</string>
+    <string name="pengambilan_barang">Pengambilan Barang</string>
+    <string name="masukkan_alamat_pengantaran">Masukkan Alamat Pengantaran</string>
+    <string name="total_harga">Total Harga</string>
+    <string name="rp_75_000">Rp. 75.000</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="order_detail">Order Detail</string>
+    <string name="nama_produk">Nama Produk</string>
+    <string name="_1_hari_24_jam">1 Hari (24 Jam)</string>
+    <string name="senin_21_maret_2021">Senin, 21 Maret 2021</string>
+    <string name="tanggal_pengembalian">Tanggal Pengembalian</string>
+    <string name="_1_buah">1 Buah</string>
+    <string name="madani_fsm_undip">Madani FSM Undip</string>
+    <string name="di_antar">Di Antar</string>
+    <string name="alamat_pengantaran">Alamat Pengantaran</string>
+    <string name="jl_timoho_timur_1_no_6_bulusan_semarang">Jl. Timoho Timur 1 no. 6, Bulusan, Semarang</string>
+    <string name="buka_di_maps">Buka di Maps</string>
+    <string name="metode_pembayaran">Metode Pembayaran</string>
+    <string name="cod">COD</string>
+    <string name="no_rekening_untuk_pembayaran_adalah_04052103990003">No Rekening untuk Pembayaran adalah 04052103990003</string>
+    <string name="status_pesanan">Status Pesanan</string>
+    <string name="dipesan">Dipesan</string>
+    <string name="rp_140_000">Rp. 140.000</string>
+    <string name="cancel_order">Cancel Order</string>
 
     <string name="deskripsi_proyektor_atas_tiga_ribu">
         Proyektor ≥3000 Lumens yang tersedia ada 2 jenis, yaitu Epson EB-S300 dan ViewSonic PJ513. Pemesanan proyektor sudah termasuk include Kabel Power, Kabel VGA, Kabel Converter, dan Remote (Jika diperlukan).
@@ -91,48 +141,43 @@
     </string>
 
     <string name="harga_proyektor_atas_tiga_ribu">
-        - <b>Paket KKN</b> : Rp. 900.000/ 42 hari\n
+        - <b>Paket KKN</b> : Rp. 900.000 (42 hari)\n
         - <b>Paket Reguler</b> : Rp. 140.000/ hari\n
         - <b>Paket 12 jam</b> : Rp. 100.000\n
         - <b>Paket 6 jam</b> : Rp. 70.000
     </string>
 
-    <string name="include_proyektor_atas_tiga_ribu">
-        - Kabel Power\n
-        - Kabel VGA\n
-        - Kabel Converter
-        - Remote (Jika diperlukan)
+    <string name="deskripsi_proyektor_bawah_tiga_ribu">
+        Proyektor &lt;3000 Lumens yang tersedia ada 3 jenis, yaitu Epson EB-X9, Epson EB-X100, dan Epson EB-S9. Pemesanan proyektor sudah termasuk include Kabel Power, Kabel VGA, Kabel Converter, dan Remote (Jika diperlukan).
     </string>
 
-    <string name="deskripsi_proyektor_bawah_tiga_ribu">
-        <b>Jenis proyektor yang tersedia</b>\n
-        1. Epson EB-X9\n
-        2. Epson EB-X100\n
-        3. Epson EB-S9\n\n
-        <b>Harga Rental</b>\n
-        - Paket KKN : Rp. 800.000/ 42 hari (Cashback Heater &amp; Flashdisk 32GB)\n
-        - Paket Reguler : Rp. 75.000/ hari(24 jam)\n
-        - Paket 12 jam : Rp. 50.000\n
-        - Paket 6 jam : Rp. 30.000\n\n
-        <b>Include :</b>\n
-        - Kabel Power\n
-        - Kabel VGA\n
-        - Kabel Converter
-        - Remote (Jika diperlukan)
+    <string name="spesifikasi_proyektor_bawah_tiga_ribu">
+        - Interface : Comp IN, RCA; S-Video; HDMI (MHL Not Supported); 1 USB Type-A/B.\n
+        - Colour Light Output : 3000 Lumens.\n
+        - Contrast Ratio : 15000 : 1\n
+        - Keystone : Correction : Auto V-Keystone; H-Keystone Slider.\n
+        - Resolusi : SVGA\n
+        - Pengaturan Teknologi : Quick Corner\n
+        - Berat : 2.4 Kg\n
+        - WiFi : ELPAP10\n
+    </string>
+
+    <string name="harga_proyektor_bawah_tiga_ribu">
+        - <b>Paket KKN</b> : Rp. 800.000 (42 hari)\n
+        - <b>Paket Reguler</b> : Rp. 75.000/ hari\n
+        - <b>Paket 12 jam</b> : Rp. 50.000\n
+        - <b>Paket 6 jam</b> : Rp. 50.000
     </string>
 
     <string name="deskripsi_screen_proyektor">
-        <b>Screen Proyektor yang disediakan In Corps :</b> 1 buah\n
-        <b>Harga Rental :</b> Rp. 40.000/ hari
+        Screen Proyektor yang disediakan In Corporation ada 1 buah, dengan harga rental Rp. 40.000/ hari
     </string>
 
     <string name="deskripsi_handy_talky">
-        <b>Handy Talky yang disediakan In Corps :</b> 8 buah\n
-        <b>Harga Rental :</b> Rp. 15.000/ hari
+        Handy Talky yang disediakan In Corporation ada 8 buah, dengan harga rental tiap buahnya Rp. 15.000/ hari
     </string>
 
     <string name="deskripsi_pointer">
-        <b>Handy Talky yang disediakan In Corps :</b> 1 buah\n
-        <b>Harga Rental :</b> Rp. 10.000/ hari
+        Pointer yang disediakan In Corporation ada 1 buah, dengan harga rental Rp. 10.000/ hari
     </string>
 </resources>

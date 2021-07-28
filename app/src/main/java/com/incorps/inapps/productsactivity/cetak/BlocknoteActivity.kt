@@ -7,6 +7,6 @@ import com.incorps.inapps.R
 class BlocknoteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_blocknote)
+        setContentView(R.layout.activity_product_cetak)
     }
 }
