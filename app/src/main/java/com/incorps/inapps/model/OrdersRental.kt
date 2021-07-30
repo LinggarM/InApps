@@ -11,6 +11,7 @@ data class OrdersRental (
     var tgl_peminjaman: Long,
     var quantity: Long,
     var address: String,
+    var order_date : Long,
     var organisasi: String,
     var lama_peminjaman: Long,
     var antar: Boolean,

@@ -6,6 +6,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class OrdersCetak (
     var doc_id: String,
+    var order_date : Long,
     var organisasi: String,
     var payment: String,
     var price: Long,

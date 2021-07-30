@@ -495,18 +495,33 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
-                    <TextView
-                        android:id="@+id/tv_file_uploaded"
-                        style="@style/textAppearanceCaption"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:visibility="invisible"
-                        android:drawableLeft="@drawable/ic_baseline_done_24"
-                        android:drawableTint="@color/green_500"
-                        android:gravity="center"
-                        android:text="@string/file_uploaded"
-                        android:textColor="@color/green_500" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tv_uploading"
+                            style="@style/textAppearanceCaption"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:visibility="invisible"
+                            android:text="@string/uploading"
+                            android:textColor="@color/colorPrimary" />
+
+                        <TextView
+                            android:id="@+id/tv_file_uploaded"
+                            style="@style/textAppearanceCaption"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:visibility="invisible"
+                            android:drawableLeft="@drawable/ic_baseline_done_24"
+                            android:drawableTint="@color/green_500"
+                            android:text="@string/file_uploaded"
+                            android:textColor="@color/green_500" />
+
+                    </RelativeLayout>
 
                 </LinearLayout>
 
@@ -658,13 +673,27 @@
                 android:layout_height="wrap_content"
                 android:text="@string/total_harga" />
 
-            <TextView
-                android:id="@+id/tv_price"
-                style="@style/textAppearanceHeadline6"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/rp_75_000"
-                android:textStyle="bold" />
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/textAppearanceHeadline6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_price"
+                    style="@style/textAppearanceHeadline6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_75_000"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

@@ -307,15 +307,29 @@
                     android:layout_centerVertical="true"
                     android:text="@string/total_harga" />
 
-                <TextView
-                    android:id="@+id/tv_price"
-                    style="@style/textAppearanceHeadline5"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:text="@string/rp_140_000"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/textAppearanceHeadline5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_price"
+                        style="@style/textAppearanceHeadline5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="140.000"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
             </RelativeLayout>
 
             <Button

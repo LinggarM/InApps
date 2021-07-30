@@ -8,6 +8,7 @@
     android:clickable="true"
     android:elevation="3dp"
     android:focusable="true"
+    android:layout_marginVertical="@dimen/margin_small"
     app:strokeColor="@color/colorPrimary"
     app:strokeWidth="1dp">
 
@@ -45,10 +46,10 @@
 
             <TextView
                 android:id="@+id/tv_date"
-                android:layout_marginTop="@dimen/margin_tiny"
                 style="@style/textAppearanceBody2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_tiny"
                 android:text="21 Maret - 24 Maret (3 Hari)" />
 
         </LinearLayout>

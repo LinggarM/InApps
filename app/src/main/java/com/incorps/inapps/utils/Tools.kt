@@ -54,7 +54,7 @@ object Tools {
         (customToast.findViewById<View>(R.id.message) as TextView).setTextColor(resources.getColor(R.color.white))
         (customToast.findViewById<View>(R.id.message) as TextView).text = message
         (customToast.findViewById<View>(R.id.icon) as ImageView).setColorFilter(resources.getColor(R.color.white))
-        (customToast.findViewById<View>(R.id.icon) as ImageView).setImageResource(R.drawable.ic_baseline_close_24)
+        (customToast.findViewById<View>(R.id.icon) as ImageView).setImageResource(R.drawable.ic_baseline_info_24)
         (customToast.findViewById<View>(R.id.parent_view) as CardView).setCardBackgroundColor(
             resources.getColor(R.color.red_600)
         )

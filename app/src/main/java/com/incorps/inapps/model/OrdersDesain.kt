@@ -8,6 +8,7 @@ data class OrdersDesain (
     var doc_id: String,
     var deskripsi_desain: String,
     var email_pengiriman: String,
+    var order_date : Long,
     var organisasi: String,
     var payment: String,
     var price: Long,

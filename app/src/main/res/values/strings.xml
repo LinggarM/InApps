@@ -180,4 +180,7 @@
     <string name="deskripsi_pointer">
         Pointer yang disediakan In Corporation ada 1 buah, dengan harga rental Rp. 10.000/ hari
     </string>
+    <string name="uploading">Uploading...</string>
+    <string name="rp">Rp.&#160;</string>
+    <string name="_75_000">75.000</string>
 </resources>

@@ -1,23 +1,33 @@
 package com.incorps.inapps.productsactivity.rental
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.OpenableColumns
+import android.view.Gravity
 import android.view.View
 import android.widget.*
 import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.incorps.inapps.R
 import com.incorps.inapps.preferences.AccountSessionPreferences
+import com.incorps.inapps.room.Rental
+import com.incorps.inapps.room.RentalDao
+import com.incorps.inapps.room.RentalDatabase
 import com.incorps.inapps.utils.Tools
+import java.util.*
 
 class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
 
@@ -32,6 +42,8 @@ class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
     private var antar: Boolean = false
     private var address: String = ""
     private val product: String = "101"
+    private var user: String = ""
+    private var tersedia: Long = 0
 
     companion object {
         private const val PICK_IMAGE = 1
@@ -39,8 +51,15 @@ class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
 
     private lateinit var accountSessionPreferences: AccountSessionPreferences
     private val fotoIdentitasRef = Firebase.storage.reference
+    private lateinit var db: FirebaseFirestore
+    private lateinit var rentalDao: RentalDao
+
+    private lateinit var alertDialog: AlertDialog
+    private lateinit var builder: AlertDialog.Builder
 
     private lateinit var imgBack: ImageView
+    private lateinit var imgFavorite: ImageView
+    private var isFav = false
 
     private lateinit var imgProduct: ImageView
     private lateinit var tvProductTitle: TextView
@@ -61,8 +80,6 @@ class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
     private lateinit var editHariPeminjaman: TextInputEditText
 
     private lateinit var btnTimeDatePeminjaman: Button
-    private lateinit var datePickerPeminjaman: DatePicker
-    private lateinit var timePickerPeminjaman: TimePicker
     private lateinit var tvTglPeminjaman: TextView
     private lateinit var tvJamPeminjaman: TextView
     private lateinit var tvTglPengembalian: TextView
@@ -75,6 +92,7 @@ class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
     private lateinit var btnFotoIdentitas: ImageButton
     private lateinit var tvNamaFile: TextView
     private lateinit var progressUpload: ProgressBar
+    private lateinit var tvUploading: TextView
     private lateinit var tvFileUploaded: TextView
 
     private lateinit var editOrganisasi: TextInputEditText
@@ -92,6 +110,7 @@ class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
         setContentView(R.layout.activity_product_rental)
 
         imgBack = findViewById(R.id.img_back_button)
+        imgFavorite = findViewById(R.id.img_favorite)
 
         imgProduct = findViewById(R.id.img_product)
         tvProductTitle = findViewById(R.id.tv_product_title)
@@ -112,8 +131,6 @@ class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
         editHariPeminjaman = findViewById(R.id.edittext_hari_peminjaman)
 
         btnTimeDatePeminjaman = findViewById(R.id.btn_time_date_peminjaman)
-        datePickerPeminjaman = findViewById(R.id.date_picker_peminjaman)
-        timePickerPeminjaman = findViewById(R.id.time_picker_peminjaman)
         tvTglPeminjaman = findViewById(R.id.tv_tgl_peminjaman)
         tvJamPeminjaman = findViewById(R.id.tv_jam_peminjaman)
         tvTglPengembalian = findViewById(R.id.tv_tgl_pengembalian)
@@ -126,6 +143,7 @@ class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
         btnFotoIdentitas = findViewById(R.id.btn_foto_identitas)
         tvNamaFile = findViewById(R.id.tv_nama_file)
         progressUpload = findViewById(R.id.progress_upload)
+        tvUploading = findViewById(R.id.tv_uploading)
         tvFileUploaded = findViewById(R.id.tv_file_uploaded)
 
         editOrganisasi = findViewById(R.id.edittext_organisasi)
@@ -139,16 +157,47 @@ class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
         btnAddtoCart = findViewById(R.id.btn_add_to_cart)
 
         accountSessionPreferences = AccountSessionPreferences(this)
+        user = accountSessionPreferences.idUser
 
-        // Image Back Button
+        rentalDao = RentalDatabase.getInstance(this).rentalDao()
+
+        db = Firebase.firestore
+        db.collection("products").document(product).get().addOnSuccessListener {
+            it.let {
+                tersedia = it.get("stock") as Long
+                tvTersedia.text = "Tersedia : $tersedia"
+                if (tersedia == 0.toLong()) {
+                    tvQty.text = "0"
+                    qty = 0
+                } else {
+                    tvQty.text = "1"
+                    qty = 1
+                }
+            }
+        }
+
+        // Top Layout
         imgBack.setOnClickListener {
             finish()
+        }
+        imgFavorite.setOnClickListener {
+            if (isFav) {
+                Glide.with(this)
+                    .load(resources.getDrawable(R.drawable.ic_baseline_favorite_border_24))
+                    .into(imgFavorite)
+                isFav = false
+            } else {
+                Glide.with(this)
+                    .load(resources.getDrawable(R.drawable.ic_baseline_favorite_24))
+                    .into(imgFavorite)
+                isFav = true
+            }
         }
 
         // Product
         Glide.with(this).load(Tools.getProductDrawableById(101)).into(imgProduct)
         tvProductTitle.text = Tools.getProductNameById(101)
-        tvTersedia.text = "Tersedia : ${getTersedia()}"
+        tvTersedia.text = "Tersedia : $tersedia"
 
         // Deskripsi Spesifikasi Harga
         tabsDeskripsi()
@@ -157,12 +206,60 @@ class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
         setSpinnerLamaPeminjaman()
 
         // Tanggal Peminjaman
-        btnTimeDatePeminjaman.setOnClickListener {
+        val today = Calendar.getInstance()
 
+        val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
+            today.set(Calendar.HOUR_OF_DAY, hour)
+            today.set(Calendar.MINUTE, minute)
+
+            tglPeminjaman = today.timeInMillis
+            val totalJam: Long = jam.toLong() * 3600000
+            tglPengembalian = tglPeminjaman + totalJam
+
+            tvTglPeminjaman.text = Tools.getDate(tglPeminjaman, "dd MMMM yyyy ")
+            tvJamPeminjaman.text = Tools.getDate(tglPeminjaman, "HH:mm")
+            tvTglPengembalian.text = Tools.getDate(tglPengembalian, "dd MMMM yyyy ")
+            tvJamPengembalian.text = Tools.getDate(tglPengembalian, "HH:mm")
         }
 
+        val dateSetListener =
+            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                today.set(Calendar.YEAR, year)
+                today.set(Calendar.MONTH, monthOfYear)
+                today.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+                TimePickerDialog(
+                    this,
+                    timeSetListener,
+                    today.get(Calendar.HOUR_OF_DAY),
+                    today.get(Calendar.MINUTE),
+                    true
+                ).show()
+            }
+
+        btnTimeDatePeminjaman.setOnClickListener {
+            if ((paketRental == 0 && (editHariPeminjaman.text.toString() == "")) || (paketRental == 0 && (Integer.getInteger(editHariPeminjaman.text.toString()) <= 0))) {
+                Tools.showCustomToastFailed(this, layoutInflater, resources, "Tentukan lama peminjaman terlebih dahulu")
+            } else if (paketRental == 0) {
+                jam = editHariPeminjaman.text.toString().toInt() * 24
+            } else {
+
+                DatePickerDialog(
+                    this,
+                    dateSetListener,
+                    today.get(Calendar.YEAR),
+                    today.get(Calendar.MONTH),
+                    today.get(Calendar.DAY_OF_MONTH)
+                ).also {
+                    it.datePicker.minDate = System.currentTimeMillis()
+                    it.show()
+                }
+            }
+        }
+
+
         // Quantity
-        if (getTersedia() == 0) {
+        if (tersedia == 0.toLong()) {
             tvQty.text = "0"
             qty = 0
         }
@@ -182,14 +279,16 @@ class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
 
         // Layout Bottom
         tvPrice.text = price.toString()
+
         btnAddtoCart.setOnClickListener {
+            address = editAlamat.text.toString()
             var priceValidationSuccess = false
             if (paketRental == 0) {
                 if (editHariPeminjaman.text.toString() == "") {
                     editHariPeminjaman.error = "Hari peminjaman harus diisi"
                 } else {
                     jam = editHariPeminjaman.text.toString().toInt() * 24
-                    if (jam <= 0 ) {
+                    if (jam <= 0) {
                         editHariPeminjaman.error = "Hari peminjaman tidak boleh 0"
                     } else {
                         priceValidationSuccess = true
@@ -202,21 +301,60 @@ class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
             }
             if (priceValidationSuccess) {
                 if (qty == 0) {
-                    Tools.showCustomToastFailed(this, layoutInflater, resources, "Quantity tidak boleh 0")
+                    Tools.showCustomToastFailed(
+                        this,
+                        layoutInflater,
+                        resources,
+                        "Quantity tidak boleh 0"
+                    )
                 } else if (fileNameUpload == "") {
-                    Tools.showCustomToastFailed(this, layoutInflater, resources, "Upload foto tanda identitas")
+                    Tools.showCustomToastFailed(
+                        this,
+                        layoutInflater,
+                        resources,
+                        "Upload foto tanda identitas"
+                    )
+                } else if (tglPeminjaman == 0.toLong()) {
+                    Tools.showCustomToastFailed(
+                        this,
+                        layoutInflater,
+                        resources,
+                        "Tanggal peminjaman harus diisi"
+                    )
                 } else if (antar && (address == "")) {
                     editAlamat.error = "Alamat pengantaran harus diisi!"
                 } else {
                     organisasi = editOrganisasi.text.toString()
-                    tvProductTitle.text = "Paket : $paketRental, lama_peminjaman : $jam, quantity : $qty, url_identitas : $fileNameUpload, organisasi : $organisasi, antar : $antar, address : $address, price : $price, product : $product"
+
+                    //set alert dialog builder
+                    builder = AlertDialog.Builder(this)
+
+                    //set title for alert dialog
+                    builder.setTitle("Add to Cart")
+
+                    //set message for alert dialog
+                    builder.setMessage("Tambahkan pesanan ke keranjang belanja?")
+                    builder.setIcon(R.drawable.ic_baseline_shopping_cart_24_grey)
+
+                    //set positive and negative button
+                    builder.apply {
+                        setPositiveButton("Yes") { dialogInterface, i ->
+                            val rental = Rental(0, user, product.toInt(), fileNameUpload, tglPeminjaman, tglPengembalian, jam, qty, organisasi, antar, address, price)
+                            rentalDao.insertRental(rental)
+                            showToast()
+                            finish()
+                        }
+                        setNegativeButton("No") { dialogInterface, i ->
+
+                        }
+                    }
+
+                    // Create the AlertDialog
+                    alertDialog = builder.create()
+                    alertDialog.show()
                 }
             }
         }
-    }
-
-    private fun getTersedia(): Int {
-        return 2
     }
 
     private fun tabsDeskripsi() {
@@ -269,18 +407,21 @@ class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
                         textLayoutHari.visibility = View.GONE
                         paketRental = 1
                         jam = 12
+                        tglPengembalian = tglPeminjaman + (jam * 3600000).toLong()
                         updatePrice()
                     }
                     2 -> {
                         textLayoutHari.visibility = View.GONE
                         paketRental = 2
                         jam = 6
+                        tglPengembalian = tglPeminjaman + (jam * 3600000).toLong()
                         updatePrice()
                     }
                     3 -> {
                         textLayoutHari.visibility = View.GONE
                         paketRental = 3
                         jam = 1008
+                        tglPengembalian = tglPeminjaman + (jam * 3600000).toLong()
                         updatePrice()
                     }
                 }
@@ -295,7 +436,7 @@ class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
     private fun buttonQuantity() {
         btnPlusQty.setOnClickListener {
             val currentQty = tvQty.text.toString().toInt()
-            if (currentQty != getTersedia()) {
+            if (currentQty.toLong() != tersedia) {
                 val newQty = (currentQty + 1)
                 qty = newQty
                 tvQty.text = newQty.toString()
@@ -329,17 +470,20 @@ class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
                 progressUpload.visibility = View.VISIBLE
 
                 // Upload File
-                val idUser = accountSessionPreferences.idUser
+                val idUser = user
                 val currentTime = System.currentTimeMillis().toString()
                 fileNameUpload = "${idUser}_${currentTime}"
                 fotoIdentitasRef.child("foto_identitas/$fileNameUpload").putFile(dataUri)
                     .addOnProgressListener {
+                        tvUploading.visibility = View.VISIBLE
                         val progress = (it.bytesTransferred / it.totalByteCount) * 100
                         progressUpload.progress = progress.toInt()
                     }.addOnSuccessListener { it ->
                         tvFileUploaded.visibility = View.VISIBLE
+                        tvUploading.visibility = View.INVISIBLE
                     }.addOnFailureListener {
-                        Tools.showCustomToastFailed(this, layoutInflater, resources,
+                        Tools.showCustomToastFailed(
+                            this, layoutInflater, resources,
                             "Upload Foto Gagal"
                         )
                         fileNameUpload = ""
@@ -405,5 +549,19 @@ class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
             }
         }
         tvPrice.text = price.toString()
+    }
+
+    private fun showToast() {
+        val toastAddtoCart = Toast(this@ProyektorAtasTigaRibuActivity)
+        val toastView = layoutInflater.inflate(R.layout.toast_addtocart, null)
+
+        val tvTitle: TextView = toastView.findViewById(R.id.tv_product_title)
+        tvTitle.text = Tools.getProductNameById(product.toInt())
+
+        toastAddtoCart.view = toastView
+
+        toastAddtoCart.duration = Toast.LENGTH_LONG
+        toastAddtoCart.setGravity(Gravity.CENTER, 0, 0)
+        toastAddtoCart.show()
     }
 }

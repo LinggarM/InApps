@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -17,15 +18,14 @@ import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.incorps.inapps.OrderDetailCetak
-import com.incorps.inapps.OrderDetailDesain
-import com.incorps.inapps.OrderDetailRental
-import com.incorps.inapps.R
+import com.incorps.inapps.*
 import com.incorps.inapps.adapter.OrdersCetakAdapter
 import com.incorps.inapps.adapter.OrdersDesainAdapter
+import com.incorps.inapps.adapter.OrdersInstallAdapter
 import com.incorps.inapps.adapter.OrdersRentalAdapter
 import com.incorps.inapps.model.OrdersCetak
 import com.incorps.inapps.model.OrdersDesain
+import com.incorps.inapps.model.OrdersInstall
 import com.incorps.inapps.model.OrdersRental
 import com.incorps.inapps.preferences.AccountSessionPreferences
 import com.incorps.inapps.utils.Tools
@@ -36,6 +36,7 @@ class OrderedFragment : Fragment() {
 
     private lateinit var progressWait: ProgressBar
     private lateinit var layoutEmpty: LinearLayout
+    private lateinit var btnCart: Button
 
     private lateinit var tvRental: TextView
     private lateinit var tvDesain: TextView
@@ -49,6 +50,8 @@ class OrderedFragment : Fragment() {
 
     private lateinit var db: FirebaseFirestore
     private lateinit var accountSessionPreferences: AccountSessionPreferences
+
+    private var isEmpty: Boolean = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,6 +67,7 @@ class OrderedFragment : Fragment() {
         swipeRefresh = view.findViewById(R.id.swipe_refresh)
         progressWait = view.findViewById(R.id.progress_wait)
         layoutEmpty = view.findViewById(R.id.layout_empty)
+        btnCart = view.findViewById(R.id.btn_back_to_menu)
 
         tvRental = view.findViewById(R.id.tv_rental)
         tvDesain = view.findViewById(R.id.tv_desain)
@@ -78,13 +82,13 @@ class OrderedFragment : Fragment() {
         db = Firebase.firestore
         accountSessionPreferences = AccountSessionPreferences(requireContext())
 
-        progressWait.visibility = View.VISIBLE
-
         swipeRefresh.setOnRefreshListener {
             swipeRefresh.isRefreshing = false
         }
 
-
+        btnCart.setOnClickListener {
+            startActivity(Intent(context, CartActivity::class.java))
+        }
 
         // RecyclerView Rental
         val rentalList: MutableList<OrdersRental> = ArrayList<OrdersRental>()
@@ -102,6 +106,7 @@ class OrderedFragment : Fragment() {
                         document.data["tgl_peminjaman"] as Long,
                         document.data["quantity"] as Long,
                         document.data["address"] as String,
+                        document.data["order_date"] as Long,
                         document.data["organisasi"] as String,
                         document.data["lama_peminjaman"] as Long,
                         document.data["antar"] as Boolean,
@@ -114,24 +119,31 @@ class OrderedFragment : Fragment() {
                     rentalList.add(orderRental)
                 }
 
-                // Hide Layout Empty
                 progressWait.visibility = View.GONE
-                tvRental.visibility = View.VISIBLE
-                rvOrderedRental.visibility = View.VISIBLE
 
-                // Show Recycler View
-                rvOrderedRental.layoutManager = LinearLayoutManager(context)
-                val ordersRentalAdapter = OrdersRentalAdapter(rentalList)
-                rvOrderedRental.adapter = ordersRentalAdapter
+                if (rentalList.size > 0) {
+                    isEmpty = false
+                    layoutEmpty.visibility = View.GONE
 
-                ordersRentalAdapter.setOnItemClickCallback(object :
-                    OrdersRentalAdapter.OnItemClickCallback {
-                    override fun onItemClicked(data: OrdersRental) {
-                        val intentOrderDetailRental = Intent(context, OrderDetailRental::class.java)
-                        intentOrderDetailRental.putExtra("order_rental", data)
-                        startActivityForResult(intentOrderDetailRental, 10001)
-                    }
-                })
+                    // Hide Layout Empty
+                    swipeRefresh.visibility = View.VISIBLE
+                    tvRental.visibility = View.VISIBLE
+                    rvOrderedRental.visibility = View.VISIBLE
+
+                    // Show Recycler View
+                    rvOrderedRental.layoutManager = LinearLayoutManager(context)
+                    val ordersRentalAdapter = OrdersRentalAdapter(rentalList)
+                    rvOrderedRental.adapter = ordersRentalAdapter
+
+                    ordersRentalAdapter.setOnItemClickCallback(object :
+                        OrdersRentalAdapter.OnItemClickCallback {
+                        override fun onItemClicked(data: OrdersRental) {
+                            val intentOrderDetailRental = Intent(context, OrderDetailRental::class.java)
+                            intentOrderDetailRental.putExtra("order_rental", data)
+                            startActivityForResult(intentOrderDetailRental, 10001)
+                        }
+                    })
+                }
             }
             .addOnFailureListener { exception ->
                 FirebaseCrashlytics.getInstance().recordException(exception)
@@ -156,6 +168,7 @@ class OrderedFragment : Fragment() {
                         document.id,
                         document.data["deskripsi_desain"] as String,
                         document.data["email_pengiriman"] as String,
+                        document.data["order_date"] as Long,
                         document.data["organisasi"] as String,
                         document.data["payment"] as String,
                         document.data["price"] as Long,
@@ -168,23 +181,30 @@ class OrderedFragment : Fragment() {
                     desainList.add(orderDesain)
                 }
 
-                // Show Recycler View
-                rvOrderedDesain.layoutManager = LinearLayoutManager(context)
-                val ordersDesainAdapter = OrdersDesainAdapter(desainList)
-                rvOrderedDesain.adapter = ordersDesainAdapter
-
-                // Hide Layout Empty
                 progressWait.visibility = View.GONE
-                tvDesain.visibility = View.VISIBLE
-                rvOrderedDesain.visibility = View.VISIBLE
 
-                ordersDesainAdapter.setOnItemClickCallback(object :
-                    OrdersDesainAdapter.OnItemClickCallback {
-                    override fun onItemClicked(data: OrdersDesain) {
-                        val intentOrderDetailDesain = Intent(context, OrderDetailDesain::class.java)
-                        startActivity(intentOrderDetailDesain)
-                    }
-                })
+                if (desainList.size > 0) {
+                    isEmpty = false
+                    layoutEmpty.visibility = View.GONE
+
+                    // Hide Layout Empty
+                    swipeRefresh.visibility = View.VISIBLE
+                    tvDesain.visibility = View.VISIBLE
+                    rvOrderedDesain.visibility = View.VISIBLE
+
+                    // Show Recycler View
+                    rvOrderedDesain.layoutManager = LinearLayoutManager(context)
+                    val ordersDesainAdapter = OrdersDesainAdapter(desainList)
+                    rvOrderedDesain.adapter = ordersDesainAdapter
+
+                    ordersDesainAdapter.setOnItemClickCallback(object :
+                        OrdersDesainAdapter.OnItemClickCallback {
+                        override fun onItemClicked(data: OrdersDesain) {
+                            val intentOrderDetailDesain = Intent(context, OrderDetailDesain::class.java)
+                            startActivity(intentOrderDetailDesain)
+                        }
+                    })
+                }
             }
             .addOnFailureListener { exception ->
                 FirebaseCrashlytics.getInstance().recordException(exception)
@@ -207,6 +227,7 @@ class OrderedFragment : Fragment() {
                 for (document in documents) {
                     val ordersCetak = OrdersCetak(
                         document.id,
+                        document.data["order_date"] as Long,
                         document.data["organisasi"] as String,
                         document.data["payment"] as String,
                         document.data["price"] as Long,
@@ -219,23 +240,104 @@ class OrderedFragment : Fragment() {
                     cetakList.add(ordersCetak)
                 }
 
-                // Show Recycler View
-                rvOrderedCetak.layoutManager = LinearLayoutManager(context)
-                val ordersCetakAdapter = OrdersCetakAdapter(cetakList)
-                rvOrderedCetak.adapter = ordersCetakAdapter
-
-                // Hide Layout Empty
                 progressWait.visibility = View.GONE
-                tvCetak.visibility = View.VISIBLE
-                rvOrderedCetak.visibility = View.VISIBLE
 
-                ordersCetakAdapter.setOnItemClickCallback(object :
-                    OrdersCetakAdapter.OnItemClickCallback {
-                    override fun onItemClicked(data: OrdersCetak) {
-                        val intentOrderDetailCetak = Intent(context, OrderDetailCetak::class.java)
-                        startActivity(intentOrderDetailCetak)
-                    }
-                })
+                if (cetakList.size > 0) {
+                    isEmpty = false
+                    layoutEmpty.visibility = View.GONE
+
+                    // Hide Layout Empty
+                    swipeRefresh.visibility = View.VISIBLE
+                    tvCetak.visibility = View.VISIBLE
+                    rvOrderedCetak.visibility = View.VISIBLE
+
+                    // Show Recycler View
+                    rvOrderedCetak.layoutManager = LinearLayoutManager(context)
+                    val ordersCetakAdapter = OrdersCetakAdapter(cetakList)
+                    rvOrderedCetak.adapter = ordersCetakAdapter
+
+                    ordersCetakAdapter.setOnItemClickCallback(object :
+                        OrdersCetakAdapter.OnItemClickCallback {
+                        override fun onItemClicked(data: OrdersCetak) {
+                            val intentOrderDetailCetak = Intent(context, OrderDetailCetak::class.java)
+                            startActivity(intentOrderDetailCetak)
+                        }
+                    })
+                }
+
+                if (isEmpty) {
+                    layoutEmpty.visibility = View.VISIBLE
+                }
+            }
+            .addOnFailureListener { exception ->
+                FirebaseCrashlytics.getInstance().recordException(exception)
+                Tools.showCustomToastFailed(
+                    requireContext(),
+                    layoutInflater,
+                    resources,
+                    exception.message.toString()
+                )
+            }
+
+        // RecyclerView Install
+        val installList: MutableList<OrdersInstall> = ArrayList<OrdersInstall>()
+
+        db.collection("orders_install")
+            .whereEqualTo("user", accountSessionPreferences.idUser)
+            .whereEqualTo("status", 0)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    val ordersInstall = OrdersInstall(
+                        document.id,
+                        document.data["address"] as String,
+                        document.data["antar"] as Boolean,
+                        document.data["catatan"] as String,
+                        document.data["game"] as Boolean,
+                        document.data["isi_game"] as String,
+                        document.data["isi_os"] as String,
+                        document.data["isi_software_pc"] as String,
+                        document.data["order_date"] as Long,
+                        document.data["os"] as Boolean,
+                        document.data["os_add_on"] as Boolean,
+                        document.data["payment"] as String,
+                        document.data["price"] as Long,
+                        document.data["product"] as Long,
+                        document.data["software_pc"] as Boolean,
+                        document.data["status"] as Long,
+                        document.data["user"] as String,
+                    )
+                    installList.add(ordersInstall)
+                }
+
+                progressWait.visibility = View.GONE
+
+                if (installList.size > 0) {
+                    isEmpty = false
+                    layoutEmpty.visibility = View.GONE
+
+                    // Hide Layout Empty
+                    swipeRefresh.visibility = View.VISIBLE
+                    tvInstall.visibility = View.VISIBLE
+                    rvOrderedInstall.visibility = View.VISIBLE
+
+                    // Show Recycler View
+                    rvOrderedInstall.layoutManager = LinearLayoutManager(context)
+                    val ordersInstallAdapeter = OrdersInstallAdapter(installList)
+                    rvOrderedInstall.adapter = ordersInstallAdapeter
+
+                    ordersInstallAdapeter.setOnItemClickCallback(object :
+                        OrdersInstallAdapter.OnItemClickCallback {
+                        override fun onItemClicked(data: OrdersInstall) {
+                            val intentOrderDetailInstall = Intent(context, OrderDetailInstall::class.java)
+                            startActivity(intentOrderDetailInstall)
+                        }
+                    })
+                }
+
+                if (isEmpty) {
+                    layoutEmpty.visibility = View.VISIBLE
+                }
             }
             .addOnFailureListener { exception ->
                 FirebaseCrashlytics.getInstance().recordException(exception)

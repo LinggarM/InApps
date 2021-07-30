@@ -71,7 +71,8 @@
         <activity android:name=".productsactivity.RentalActivity" />
         <activity android:name=".CheckoutActivity" />
         <activity android:name=".CartActivity" />
-        <activity android:name=".DashboardActivity" />
+        <activity android:name=".DashboardActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".SignInAdvancedActivity" />
         <activity android:name=".ForgotPasswordActivity" />
         <activity
