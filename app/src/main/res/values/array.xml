@@ -116,4 +116,9 @@
         <item>Di Antar</item>
     </string-array>
 
+    <string-array name="payment_type">
+        <item>COD</item>
+        <item>Transfer</item>
+    </string-array>
+
 </resources>

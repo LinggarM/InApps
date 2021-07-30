@@ -253,4 +253,8 @@ object Tools {
         val auth: FirebaseAuth = Firebase.auth
         return accountSessionPreferences.isLogin && (auth.currentUser != null)
     }
+
+    fun countCommaSeparator(isi: String): Int {
+        return isi.split(',').filter { i -> i.isNotEmpty() }.size
+    }
 }

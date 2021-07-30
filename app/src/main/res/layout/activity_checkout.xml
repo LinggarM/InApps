@@ -1,14 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/margin_medium"
     tools:context=".CheckoutActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Checkout Activity" />
+        android:orientation="vertical">
 
-</LinearLayout>
+        <TextView
+            style="@style/textAppearanceHeadline5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_large"
+            android:gravity="center"
+            android:text="Checkout Orders"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_title_lama_peminjaman"
+            style="@style/textAppearanceBody1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_xlarge"
+            android:text="@string/metode_pembayaran"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:id="@+id/layout_payment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small">
+
+            <Spinner
+                android:id="@+id/spinner_payment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_spinner" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/margin_medium"
+                android:src="@drawable/ic_baseline_keyboard_arrow_down_24" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_title_rekening"
+            style="@style/textAppearanceBody1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:text="@string/nomor_rekening"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_layout_rekening"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:hint="Masukkan nomor rekening"
+            android:visibility="gone"
+            app:startIconDrawable="@drawable/ic_baseline_payment_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edittext_rekening"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_regular"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tv_title_atasnama"
+            style="@style/textAppearanceBody1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:text="@string/atas_nama"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_layout_atasnama"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:hint="Masukkan atas nama rekening"
+            android:visibility="gone"
+            app:startIconDrawable="@drawable/ic_baseline_profile_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edittext_atasnama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_regular"
+                android:inputType="textPersonName"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_checkout"
+        style="@style/textAppearanceButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/margin_large"
+        android:backgroundTint="@color/deep_orange_500"
+        android:padding="@dimen/margin_xmedium_1"
+        android:text="Checkout"
+        android:textColor="@color/white" />
+
+</RelativeLayout>

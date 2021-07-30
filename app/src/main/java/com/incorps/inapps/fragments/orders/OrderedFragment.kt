@@ -1,6 +1,5 @@
 package com.incorps.inapps.fragments.orders
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -140,7 +139,7 @@ class OrderedFragment : Fragment() {
                         override fun onItemClicked(data: OrdersRental) {
                             val intentOrderDetailRental = Intent(context, OrderDetailRental::class.java)
                             intentOrderDetailRental.putExtra("order_rental", data)
-                            startActivityForResult(intentOrderDetailRental, 10001)
+                            startActivity(intentOrderDetailRental)
                         }
                     })
                 }
@@ -201,6 +200,7 @@ class OrderedFragment : Fragment() {
                         OrdersDesainAdapter.OnItemClickCallback {
                         override fun onItemClicked(data: OrdersDesain) {
                             val intentOrderDetailDesain = Intent(context, OrderDetailDesain::class.java)
+                            intentOrderDetailDesain.putExtra("order_desain", data)
                             startActivity(intentOrderDetailDesain)
                         }
                     })
@@ -260,6 +260,7 @@ class OrderedFragment : Fragment() {
                         OrdersCetakAdapter.OnItemClickCallback {
                         override fun onItemClicked(data: OrdersCetak) {
                             val intentOrderDetailCetak = Intent(context, OrderDetailCetak::class.java)
+                            intentOrderDetailCetak.putExtra("order_cetak", data)
                             startActivity(intentOrderDetailCetak)
                         }
                     })
@@ -330,6 +331,7 @@ class OrderedFragment : Fragment() {
                         OrdersInstallAdapter.OnItemClickCallback {
                         override fun onItemClicked(data: OrdersInstall) {
                             val intentOrderDetailInstall = Intent(context, OrderDetailInstall::class.java)
+                            intentOrderDetailInstall.putExtra("order_install", data)
                             startActivity(intentOrderDetailInstall)
                         }
                     })
@@ -348,13 +350,5 @@ class OrderedFragment : Fragment() {
                     exception.message.toString()
                 )
             }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if ((requestCode == 10001) && (resultCode == Activity.RESULT_OK)) {
-            val ft = parentFragmentManager.beginTransaction()
-            ft.detach(OrderedFragment()).attach(OrderedFragment()).commit()
-        }
     }
 }

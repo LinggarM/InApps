@@ -282,6 +282,7 @@ class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
 
         btnAddtoCart.setOnClickListener {
             address = editAlamat.text.toString()
+            organisasi = editOrganisasi.text.toString()
             var priceValidationSuccess = false
             if (paketRental == 0) {
                 if (editHariPeminjaman.text.toString() == "") {
@@ -324,8 +325,6 @@ class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
                 } else if (antar && (address == "")) {
                     editAlamat.error = "Alamat pengantaran harus diisi!"
                 } else {
-                    organisasi = editOrganisasi.text.toString()
-
                     //set alert dialog builder
                     builder = AlertDialog.Builder(this)
 
@@ -548,7 +547,7 @@ class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
                 price = 900000 * qty
             }
         }
-        tvPrice.text = price.toString()
+        tvPrice.text = Tools.getCurrencySeparator(price.toLong())
     }
 
     private fun showToast() {

@@ -117,11 +117,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/margin_medium"
-        android:paddingVertical="@dimen/margin_medium"
-        android:text="@string/text_continue"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:visibility="gone"
-        app:cornerRadius="@dimen/margin_large" />
+        android:backgroundTint="@color/deep_orange_500"
+        android:padding="@dimen/margin_xmedium_1"
+        android:text="Checkout"
+        android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+        android:drawableTint="@color/white"
+        android:textColor="@color/white" />
 
 </RelativeLayout>

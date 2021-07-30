@@ -55,11 +55,10 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_product_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito_semibold"
-                    android:text="@string/proyektor_3000_lumens"
+                    android:text="Pesanan Berhasil Ditambahkan!"
                     android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                     android:textColor="@color/white"
                     android:textStyle="bold" />
@@ -68,8 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito_regular"
-                    android:gravity="center"
-                    android:text="Added to Cart"
+                    android:text="@string/desc_checkout"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                     android:textColor="@color/white" />
 

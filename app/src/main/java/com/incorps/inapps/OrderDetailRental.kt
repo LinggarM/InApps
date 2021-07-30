@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.google.android.material.button.MaterialButton
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -103,14 +104,28 @@ class OrderDetailRental : AppCompatActivity() {
             builder.apply {
                 setPositiveButton("Yes") { dialogInterface, i ->
                     db.collection("orders_rental").document(orderRental.doc_id)
-                        .update(mapOf(
-                            "status" to 3
-                        )).addOnSuccessListener {
-                            Tools.showCustomToastSuccess(context, layoutInflater, resources, "Hapus Pesanan Berhasil!")
-                            finish()
-                            setResult(Activity.RESULT_OK)
+                        .update(
+                            mapOf(
+                                "status" to 3
+                            )
+                        ).addOnSuccessListener {
+                            db.collection("products").document(orderRental.product.toString())
+                                .update("stock", FieldValue.increment(1)).addOnSuccessListener {
+                                Tools.showCustomToastSuccess(
+                                    context,
+                                    layoutInflater,
+                                    resources,
+                                    "Hapus Pesanan Berhasil!"
+                                )
+                                finish()
+                            }
                         }.addOnFailureListener {
-                            Tools.showCustomToastFailed(context, layoutInflater, resources, "Hapus Pesanan Gagal!")
+                            Tools.showCustomToastFailed(
+                                context,
+                                layoutInflater,
+                                resources,
+                                "Hapus Pesanan Gagal!"
+                            )
                         }
                 }
                 setNegativeButton("No") { dialogInterface, i ->
@@ -180,7 +195,10 @@ class OrderDetailRental : AppCompatActivity() {
         // Metode Pembayaran
         tvPayment.text = orderRental.payment
         if (orderRental.payment == "transfer") {
-            tvRekening.text = "No Rekening untuk Pembayaran adalah ${resources.getString(R.string.rekening_incorps)} atas nama ${resources.getString(R.string.rekening_incorps_atas_nama)}"
+            tvRekening.text =
+                "No Rekening untuk Pembayaran adalah ${resources.getString(R.string.rekening_incorps)} atas nama ${
+                    resources.getString(R.string.rekening_incorps_atas_nama)
+                }"
             tvRekening.visibility = View.VISIBLE
         }
 

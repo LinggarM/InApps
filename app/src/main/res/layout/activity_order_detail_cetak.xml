@@ -1,9 +1,238 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".OrderDetailCetak">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/margin_medium">
+
+        <ImageView
+            android:id="@+id/img_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_round_arrow_back_24" />
+
+        <TextView
+            style="@style/textAppearanceHeadline5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/order_detail"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_medium">
+
+            <TextView
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jenis Cetak" />
+
+            <TextView
+                android:id="@+id/tv_jenis_cetak"
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/blocknote"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:text="@string/quantity" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_qty"
+                    style="@style/textAppearanceBody1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/textAppearanceBody1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Buah"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_title_file_desain"
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:text="@string/file_desain" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_file_desain"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:backgroundTint="@color/green_500"
+                android:drawableLeft="@drawable/ic_baseline_download_24"
+                android:drawableTint="@color/white"
+                android:padding="@dimen/margin_medium"
+                android:text="@string/download_file_desain" />
+
+            <TextView
+                android:id="@+id/tv_title_organisasi"
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:text="@string/organisasi" />
+
+            <TextView
+                android:id="@+id/tv_organisasi"
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/madani_fsm_undip"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:text="@string/metode_pembayaran" />
+
+            <TextView
+                android:id="@+id/tv_payment"
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cod"
+                android:textAllCaps="true"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_rekening"
+                style="@style/textAppearanceSubtitle1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:background="@drawable/bg_gray"
+                android:drawableLeft="@drawable/ic_baseline_info_24"
+                android:drawablePadding="@dimen/margin_medium"
+                android:drawableTint="@color/white"
+                android:padding="@dimen/margin_medium"
+                android:text="@string/no_rekening_untuk_pembayaran_adalah_04052103990003"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <TextView
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:text="@string/status_pesanan" />
+
+            <TextView
+                android:id="@+id/tv_status"
+                style="@style/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_green"
+                android:padding="@dimen/margin_small"
+                android:text="@string/dipesan"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:background="@color/grey_400" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium">
+
+                <TextView
+                    style="@style/textAppearanceBody1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/total_harga" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/textAppearanceHeadline5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_price"
+                        style="@style/textAppearanceHeadline5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_75_000"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btn_cancel_order"
+                style="@style/textAppearanceButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_large"
+                android:backgroundTint="@color/red_500"
+                android:padding="@dimen/margin_xmedium_1"
+                android:text="@string/cancel_order"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
