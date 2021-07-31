@@ -111,6 +111,13 @@
         <item>Paket KKN 42 Hari (Rp. 900.000)</item>
     </string-array>
 
+    <string-array name="waktu_pengerjaan">
+        <item>5 Hari (Biaya Normal)</item>
+        <item>3 Hari (+15.000)</item>
+        <item>2 Hari (+30.000)</item>
+        <item>1 Hari (+40.000)</item>
+    </string-array>
+
     <string-array name="pengambilan_barang">
         <item>Ambil Sendiri</item>
         <item>Di Antar</item>

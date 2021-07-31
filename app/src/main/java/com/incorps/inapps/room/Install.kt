@@ -1,6 +1,5 @@
 package com.incorps.inapps.room
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -13,6 +12,7 @@ data class Install(
     var os: Boolean,
     var os_add_on: Boolean,
     var software_pc: Boolean,
+    var game: Boolean,
     var isi_os: String?,
     var isi_game: String?,
     var isi_software_pc: String?,

@@ -137,11 +137,16 @@ class OrderedFragment : Fragment() {
                     ordersRentalAdapter.setOnItemClickCallback(object :
                         OrdersRentalAdapter.OnItemClickCallback {
                         override fun onItemClicked(data: OrdersRental) {
-                            val intentOrderDetailRental = Intent(context, OrderDetailRental::class.java)
+                            val intentOrderDetailRental =
+                                Intent(context, OrderDetailRental::class.java)
                             intentOrderDetailRental.putExtra("order_rental", data)
                             startActivity(intentOrderDetailRental)
                         }
                     })
+                }
+
+                if (isEmpty) {
+                    layoutEmpty.visibility = View.VISIBLE
                 }
             }
             .addOnFailureListener { exception ->
@@ -199,11 +204,16 @@ class OrderedFragment : Fragment() {
                     ordersDesainAdapter.setOnItemClickCallback(object :
                         OrdersDesainAdapter.OnItemClickCallback {
                         override fun onItemClicked(data: OrdersDesain) {
-                            val intentOrderDetailDesain = Intent(context, OrderDetailDesain::class.java)
+                            val intentOrderDetailDesain =
+                                Intent(context, OrderDetailDesain::class.java)
                             intentOrderDetailDesain.putExtra("order_desain", data)
                             startActivity(intentOrderDetailDesain)
                         }
                     })
+                }
+
+                if (isEmpty) {
+                    layoutEmpty.visibility = View.VISIBLE
                 }
             }
             .addOnFailureListener { exception ->
@@ -259,7 +269,8 @@ class OrderedFragment : Fragment() {
                     ordersCetakAdapter.setOnItemClickCallback(object :
                         OrdersCetakAdapter.OnItemClickCallback {
                         override fun onItemClicked(data: OrdersCetak) {
-                            val intentOrderDetailCetak = Intent(context, OrderDetailCetak::class.java)
+                            val intentOrderDetailCetak =
+                                Intent(context, OrderDetailCetak::class.java)
                             intentOrderDetailCetak.putExtra("order_cetak", data)
                             startActivity(intentOrderDetailCetak)
                         }
@@ -330,7 +341,8 @@ class OrderedFragment : Fragment() {
                     ordersInstallAdapeter.setOnItemClickCallback(object :
                         OrdersInstallAdapter.OnItemClickCallback {
                         override fun onItemClicked(data: OrdersInstall) {
-                            val intentOrderDetailInstall = Intent(context, OrderDetailInstall::class.java)
+                            val intentOrderDetailInstall =
+                                Intent(context, OrderDetailInstall::class.java)
                             intentOrderDetailInstall.putExtra("order_install", data)
                             startActivity(intentOrderDetailInstall)
                         }

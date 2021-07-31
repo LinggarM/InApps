@@ -143,6 +143,10 @@ class ProcessedOrderFragment : Fragment() {
                         }
                     })
                 }
+
+                if (isEmpty) {
+                    layoutEmpty.visibility = View.VISIBLE
+                }
             }
             .addOnFailureListener { exception ->
                 FirebaseCrashlytics.getInstance().recordException(exception)
@@ -204,6 +208,10 @@ class ProcessedOrderFragment : Fragment() {
                             startActivity(intentOrderDetailDesain)
                         }
                     })
+                }
+
+                if (isEmpty) {
+                    layoutEmpty.visibility = View.VISIBLE
                 }
             }
             .addOnFailureListener { exception ->

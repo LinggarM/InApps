@@ -5,14 +5,11 @@ import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
-import android.database.Cursor
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.OpenableColumns
-import android.view.Gravity
 import android.view.View
 import android.widget.*
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
@@ -24,8 +21,7 @@ import com.google.firebase.storage.ktx.storage
 import com.incorps.inapps.R
 import com.incorps.inapps.preferences.AccountSessionPreferences
 import com.incorps.inapps.room.Rental
-import com.incorps.inapps.room.RentalDao
-import com.incorps.inapps.room.RentalDatabase
+import com.incorps.inapps.room.CartViewModel
 import com.incorps.inapps.utils.Tools
 import java.util.*
 
@@ -52,7 +48,7 @@ class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
     private lateinit var accountSessionPreferences: AccountSessionPreferences
     private val fotoIdentitasRef = Firebase.storage.reference
     private lateinit var db: FirebaseFirestore
-    private lateinit var rentalDao: RentalDao
+    private lateinit var cartViewModel : CartViewModel
 
     private lateinit var alertDialog: AlertDialog
     private lateinit var builder: AlertDialog.Builder
@@ -159,7 +155,7 @@ class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
         accountSessionPreferences = AccountSessionPreferences(this)
         user = accountSessionPreferences.idUser
 
-        rentalDao = RentalDatabase.getInstance(this).rentalDao()
+        cartViewModel = ViewModelProvider(this).get(CartViewModel::class.java)
 
         db = Firebase.firestore
         db.collection("products").document(product).get().addOnSuccessListener {
@@ -195,8 +191,8 @@ class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
         }
 
         // Product
-        Glide.with(this).load(Tools.getProductDrawableById(101)).into(imgProduct)
-        tvProductTitle.text = Tools.getProductNameById(101)
+        Glide.with(this).load(Tools.getProductDrawableById(product.toInt())).into(imgProduct)
+        tvProductTitle.text = Tools.getProductNameById(product.toInt())
         tvTersedia.text = "Tersedia : $tersedia"
 
         // Deskripsi Spesifikasi Harga
@@ -238,12 +234,21 @@ class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
             }
 
         btnTimeDatePeminjaman.setOnClickListener {
-            if ((paketRental == 0 && (editHariPeminjaman.text.toString() == "")) || (paketRental == 0 && (Integer.getInteger(editHariPeminjaman.text.toString()) <= 0))) {
+            var hariPeminjamanValidate = false
+
+            if ((paketRental == 0 && (editHariPeminjaman.text.toString() == ""))) {
                 Tools.showCustomToastFailed(this, layoutInflater, resources, "Tentukan lama peminjaman terlebih dahulu")
+            } else if (paketRental == 0 && (editHariPeminjaman.text.toString().toInt() <= 0)) {
+                Tools.showCustomToastFailed(this, layoutInflater, resources, "Lama peminjaman minimal 1 hari")
             } else if (paketRental == 0) {
                 jam = editHariPeminjaman.text.toString().toInt() * 24
-            } else {
+                hariPeminjamanValidate = true
+            } else if (paketRental !=0) {
+                hariPeminjamanValidate = true
+            }
 
+            if (hariPeminjamanValidate) {
+                // Show Dialog
                 DatePickerDialog(
                     this,
                     dateSetListener,
@@ -339,8 +344,8 @@ class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
                     builder.apply {
                         setPositiveButton("Yes") { dialogInterface, i ->
                             val rental = Rental(0, user, product.toInt(), fileNameUpload, tglPeminjaman, tglPengembalian, jam, qty, organisasi, antar, address, price)
-                            rentalDao.insertRental(rental)
-                            showToast()
+                            cartViewModel.insertRental(rental)
+                            Tools.showToastAddtoCart(this@ProyektorAtasTigaRibuActivity, layoutInflater, product)
                             finish()
                         }
                         setNegativeButton("No") { dialogInterface, i ->
@@ -463,7 +468,7 @@ class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == PICK_IMAGE) {
             data?.data?.let { dataUri ->
-                val fileName = getFileName(dataUri)
+                val fileName = Tools.getFileName(dataUri, contentResolver)
                 tvNamaFile.text = fileName
                 tvNamaFile.visibility = View.VISIBLE
                 progressUpload.visibility = View.VISIBLE
@@ -489,19 +494,6 @@ class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
                     }
             }
         }
-    }
-
-    private fun getFileName(uri: Uri): String {
-        var result: String = ""
-        if (uri.getScheme().equals("content")) {
-            val cursor: Cursor? = contentResolver.query(uri, null, null, null, null)
-            cursor.use { cursor ->
-                if (cursor != null && cursor.moveToFirst()) {
-                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
-                }
-            }
-        }
-        return result
     }
 
     private fun spinnerPengambilan() {
@@ -548,19 +540,5 @@ class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
             }
         }
         tvPrice.text = Tools.getCurrencySeparator(price.toLong())
-    }
-
-    private fun showToast() {
-        val toastAddtoCart = Toast(this@ProyektorAtasTigaRibuActivity)
-        val toastView = layoutInflater.inflate(R.layout.toast_addtocart, null)
-
-        val tvTitle: TextView = toastView.findViewById(R.id.tv_product_title)
-        tvTitle.text = Tools.getProductNameById(product.toInt())
-
-        toastAddtoCart.view = toastView
-
-        toastAddtoCart.duration = Toast.LENGTH_LONG
-        toastAddtoCart.setGravity(Gravity.CENTER, 0, 0)
-        toastAddtoCart.show()
     }
 }

@@ -67,6 +67,18 @@
                     android:text="@string/desain_in" />
 
                 <TextView
+                    android:id="@+id/tv_harga"
+                    style="@style/textAppearanceBody2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:background="@drawable/bg_green"
+                    android:paddingHorizontal="@dimen/margin_medium"
+                    android:paddingVertical="@dimen/margin_small"
+                    android:text="Rp. 25.000"
+                    android:textColor="@color/white" />
+
+                <TextView
                     android:id="@+id/tv_deskripsi"
                     style="@style/textAppearanceBody1"
                     android:layout_width="wrap_content"
@@ -146,7 +158,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:justificationMode="inter_word"
-                        android:text="Upload file tambahan jika ada file atau gambar - gambar seperti logo, sketsa, dll yang ingin ditambahkan pada desain atau untuk memperjelas deskripsi (Kumpulkan dengan format ZIP/RAR)"
+                        android:text="Upload file tambahan jika ada file atau gambar - gambar seperti logo, sketsa, dll yang ingin ditambahkan pada desain atau untuk memperjelas deskripsi (Kumpulkan dengan format ZIP/ RAR)"
                         android:textColor="@color/colorPrimary" />
 
                     <LinearLayout

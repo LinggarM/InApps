@@ -182,11 +182,13 @@
     </string>
 
     <string name="deskripsi_installin">
-    Install-In merupakan layanan dari In Apps berupa jasa instalasi OS (Operating System), Software, atau Game pada Laptop/ PC.\nHarga instalasi :\n
-- <b>OS (Operating System) :</b> Rp. 40.000 (Sudah include aplikasi bawaan)\n
-- <b>Software :</b> Rp. 5000\n
-- <b>Game :</b> Rp. 10.000
+        Install-In merupakan layanan dari In Apps berupa jasa instalasi OS (Operating System), Software, atau Game pada Laptop/ PC. Waktu install normalnya 3 hari.\n\nHarga instalasi :\n
+        - <b>OS (Operating System) :</b> Rp. 40.000 (Sudah include aplikasi bawaan)\n
+        - <b>Software :</b> Rp. 5000\n
+        - <b>Game :</b> Rp. 10.000
     </string>
+    <string name="deskripsi_banner">Desain Banner dapat berupa Banner, X-Banner, maupun MMT. Waktu pengerjaan normal 5 hari, dan disediakan paket express 1, 2, atau 3 hari dengan biaya tambahan. Revisi desain sampai puas (waktu maksimal revisi 3 hari).</string>
+    <string name="deskripsi_blocknote_cetak">Pencetakan Blocknote menerima pesanan minimal 100 pcs. Waktu pencetakan paling cepat 3 hari.</string>
     <string name="uploading">Uploading...</string>
     <string name="rp">Rp.&#160;</string>
     <string name="_75_000">75.000</string>

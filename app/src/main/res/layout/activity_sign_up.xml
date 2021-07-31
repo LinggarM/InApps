@@ -22,7 +22,7 @@
                 android:layout_height="@dimen/margin_huge"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/margin_medium"
-                android:src="@drawable/img_incorps_big" />
+                android:src="@drawable/img_incorps_redesign" />
 
             <TextView
                 style="@style/textAppearanceHeadline5"

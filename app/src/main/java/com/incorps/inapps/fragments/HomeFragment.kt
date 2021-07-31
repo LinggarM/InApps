@@ -11,6 +11,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.material.card.MaterialCardView
 import com.google.firebase.auth.FirebaseAuth
@@ -23,12 +25,21 @@ import com.incorps.inapps.productsactivity.CetakActivity
 import com.incorps.inapps.productsactivity.DesainActivity
 import com.incorps.inapps.productsactivity.InstallActivity
 import com.incorps.inapps.productsactivity.RentalActivity
+import com.incorps.inapps.room.CartViewModel
+import com.incorps.inapps.utils.Tools
 
 class HomeFragment : Fragment() {
+    private var totalItemCart: Int = 0
+    var itemRental: Int = 0
+    var itemDesain: Int = 0
+    var itemCetak: Int = 0
+    var itemInstall: Int = 0
 
     private lateinit var accountSessionPreferences: AccountSessionPreferences
+    private lateinit var cartViewModel : CartViewModel
 
     private lateinit var imgCart: ImageView
+    private lateinit var tvCartCounter: TextView
     private lateinit var tvWelcome: TextView
 
     private lateinit var btnRental: MaterialCardView
@@ -49,6 +60,7 @@ class HomeFragment : Fragment() {
 
         tvWelcome = view.findViewById(R.id.tv_welcome_username)
         imgCart = view.findViewById(R.id.img_cart)
+        tvCartCounter = view.findViewById(R.id.tv_cart_counter)
 
         btnRental = view.findViewById(R.id.btn_rental)
         btnDesain = view.findViewById(R.id.btn_desain)
@@ -75,6 +87,26 @@ class HomeFragment : Fragment() {
             startActivity(intentCart)
         }
 
+        // Cart Counter
+        cartViewModel = ViewModelProvider(this).get(CartViewModel::class.java)
+        cartViewModel.getRentalList.observe(viewLifecycleOwner, Observer {
+            itemRental = it.size
+            updateTotalItems()
+        })
+        cartViewModel.getDesainList.observe(viewLifecycleOwner, Observer {
+            itemDesain = it.size
+            updateTotalItems()
+        })
+        cartViewModel.getCetakList.observe(viewLifecycleOwner, Observer {
+            itemCetak = it.size
+            updateTotalItems()
+        })
+        cartViewModel.getInstallList.observe(viewLifecycleOwner, Observer {
+            itemInstall = it.size
+            updateTotalItems()
+        })
+
+
         // Product onClick Listener
         btnRental.setOnClickListener {
             startActivity(Intent(view.context, RentalActivity::class.java))
@@ -87,6 +119,16 @@ class HomeFragment : Fragment() {
         }
         btnInstall.setOnClickListener {
             startActivity(Intent(view.context, InstallActivity::class.java))
+        }
+    }
+
+    private fun updateTotalItems() {
+        totalItemCart = itemRental + itemDesain + itemCetak + itemInstall
+        tvCartCounter.text = totalItemCart.toString()
+        if (totalItemCart == 0) {
+            tvCartCounter.visibility = View.GONE
+        } else {
+            tvCartCounter.visibility = View.VISIBLE
         }
     }
 }

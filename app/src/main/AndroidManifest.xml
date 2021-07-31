@@ -19,60 +19,85 @@
         <activity android:name=".OrderDetailRental" />
         <activity
             android:name=".productsactivity.desain.DesainKemasanActivity"
+            android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".productsactivity.desain.PlakatActivity"
+            android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".productsactivity.desain.SertifikatActivity"
+            android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".productsactivity.desain.BlocknoteActivity"
+            android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".productsactivity.desain.StikerActivity"
+            android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".productsactivity.desain.CoCardActivity"
+            android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".productsactivity.desain.PosterActivity"
+            android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".productsactivity.desain.BannerActivity"
+            android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".productsactivity.cetak.CoCardActivity"
+            android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".productsactivity.cetak.PlakatKayuActivity"
+            android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".productsactivity.cetak.BlocknoteActivity"
+            android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".productsactivity.rental.ScreenProyektorActivity"
+            android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".productsactivity.rental.PointerActivity"
+            android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".productsactivity.rental.HandyTalkyActivity"
+            android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".productsactivity.rental.ProyektorBawahTigaRibuActivity"
+            android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".productsactivity.rental.ProyektorAtasTigaRibuActivity"
+            android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".productsactivity.DesainActivity" />
-        <activity android:name=".productsactivity.CetakActivity" />
-        <activity android:name=".productsactivity.InstallActivity"
+        <activity
+            android:name=".productsactivity.DesainActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".productsactivity.CetakActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".productsactivity.InstallActivity"
+            android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".productsactivity.RentalActivity" />
+        <activity
+            android:name=".productsactivity.RentalActivity"
+            android:launchMode="singleTop" />
         <activity android:name=".CheckoutActivity" />
         <activity android:name=".CartActivity" />
-        <activity android:name=".DashboardActivity"
+        <activity
+            android:name=".DashboardActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".SignInAdvancedActivity" />
         <activity android:name=".ForgotPasswordActivity" />

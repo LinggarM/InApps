@@ -7,33 +7,47 @@
     tools:context=".CartActivity">
 
     <LinearLayout
+        android:id="@+id/layout_top"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/btn_checkout"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/margin_medium">
+
+        <ImageView
+            android:id="@+id/img_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_round_arrow_back_24" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="@dimen/margin_medium">
-
-            <ImageView
-                android:id="@+id/img_back_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_round_arrow_back_24" />
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <TextView
                 style="@style/textAppearanceHeadline5"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/margin_medium"
+                android:drawableTint="@color/near_black"
                 android:gravity="center"
                 android:text="@string/keranjang_belanja"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:drawableLeftCompat="@drawable/ic_baseline_shopping_cart_24_grey" />
 
         </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/layout_bottom"
+        android:layout_below="@+id/layout_top"
+        android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/layout_empty"
@@ -46,9 +60,9 @@
             <com.airbnb.lottie.LottieAnimationView
                 android:layout_width="@dimen/img_width_height"
                 android:layout_height="@dimen/img_width_height"
-                app:lottie_rawRes="@raw/empty_cart"
                 app:lottie_autoPlay="true"
-                app:lottie_loop="true" />
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/empty_cart" />
 
             <TextView
                 style="@style/textAppearanceHeadline6"
@@ -61,8 +75,8 @@
                 style="@style/textAppearanceBody1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginTop="@dimen/margin_small"
+                android:gravity="center"
                 android:text="@string/yuk_belanja_sekarang_d"
                 android:textColor="@color/colorPrimary" />
 
@@ -72,8 +86,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_medium"
-                android:paddingVertical="@dimen/margin_medium"
                 android:paddingHorizontal="@dimen/margin_large"
+                android:paddingVertical="@dimen/margin_medium"
                 android:text="@string/kembali_ke_menu"
                 android:textColor="@color/white"
                 android:textStyle="bold"
@@ -81,11 +95,12 @@
 
         </LinearLayout>
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:id="@+id/sv_cart"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/btn_checkout"
+            android:layout_above="@id/layout_bottom"
+            android:background="@color/grey_200"
             android:visibility="gone">
 
             <LinearLayout
@@ -94,34 +109,158 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_rentalin"
+                    style="@style/textAppearanceHeadline6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/rental_in" />
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:text="@string/rental_in"
+                    android:visibility="gone" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_cart_rental"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/margin_medium"
+                    android:visibility="gone"
                     tools:listitem="@layout/item_cart_rental" />
+
+                <TextView
+                    android:id="@+id/tv_desainin"
+                    style="@style/textAppearanceHeadline6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:text="@string/desain_in"
+                    android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_cart_desain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/margin_medium"
+                    android:visibility="gone"
+                    tools:listitem="@layout/item_cart_desain" />
+
+                <TextView
+                    android:id="@+id/tv_cetakin"
+                    style="@style/textAppearanceHeadline6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:text="@string/cetak_in"
+                    android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_cart_cetak"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/margin_medium"
+                    android:visibility="gone"
+                    tools:listitem="@layout/item_cart_cetak" />
+
+                <TextView
+                    android:id="@+id/tv_installin"
+                    style="@style/textAppearanceHeadline6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:text="@string/install_in"
+                    android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_cart_install"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/margin_medium"
+                    android:visibility="gone"
+                    tools:listitem="@layout/item_cart_install" />
 
             </LinearLayout>
 
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_checkout"
-        style="@style/textAppearanceButton"
+    <LinearLayout
+        android:id="@+id/layout_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/margin_medium"
-        android:backgroundTint="@color/deep_orange_500"
-        android:padding="@dimen/margin_xmedium_1"
-        android:text="Checkout"
-        android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
-        android:drawableTint="@color/white"
-        android:textColor="@color/white" />
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_above="@id/layout_bottom"
+            android:background="@color/colorPrimary" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_medium">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/textAppearanceBody1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/total_harga" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="@string/rp"
+                        android:textColor="@color/near_black"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/tv_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="0"
+                        android:textColor="@color/near_black"
+                        android:textSize="22sp" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btn_checkout"
+                style="@style/textAppearanceButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:backgroundTint="@color/deep_orange_500"
+                android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+                android:drawableTint="@color/white"
+                android:padding="@dimen/margin_xmedium_1"
+                android:text="Checkout"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>

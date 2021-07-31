@@ -1,8 +1,353 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/img_back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="@dimen/margin_medium"
+        android:src="@drawable/ic_round_arrow_back_24" />
+
+    <ImageView
+        android:id="@+id/img_favorite"
+        android:layout_width="@dimen/margin_large"
+        android:layout_height="@dimen/margin_large"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/margin_medium"
+        android:src="@drawable/ic_baseline_favorite_border_24" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/layout_bottom"
+        android:layout_below="@id/img_back_button">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grey_100"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/margin_xmedium_2"
+                android:paddingBottom="@dimen/margin_medium">
+
+                <ImageView
+                    android:id="@+id/img_product"
+                    android:layout_width="@dimen/img_width_height"
+                    android:layout_height="@dimen/img_width_height"
+                    android:layout_gravity="center"
+                    android:src="@drawable/img_cetak_blocknote" />
+
+                <TextView
+                    android:id="@+id/tv_product_title"
+                    style="@style/textAppearanceHeadline5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Blocknote"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_cetakin"
+                    style="@style/textAppearanceOverline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_tiny"
+                    android:text="@string/cetak_in" />
+
+                <TextView
+                    android:id="@+id/tv_harga"
+                    style="@style/textAppearanceBody2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:background="@drawable/bg_green"
+                    android:paddingHorizontal="@dimen/margin_medium"
+                    android:paddingVertical="@dimen/margin_small"
+                    android:text="Rp. 25.000"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/tv_deskripsi"
+                    style="@style/textAppearanceBody1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:justificationMode="inter_word"
+                    android:text="@string/deskripsi_blocknote_cetak"
+                    android:textColor="@color/colorPrimary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_large"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/margin_medium"
+                android:paddingBottom="@dimen/margin_xmedium_2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_product_details"
+                    android:orientation="vertical"
+                    android:padding="@dimen/margin_medium">
+
+                    <TextView
+                        style="@style/textAppearanceBody1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="File Desain"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        style="@style/textAppearanceBody2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:justificationMode="inter_word"
+                        android:text="Upload file desain yang akan dicetak (Format gambar bebas, contoh : cdr, psd, pdf, jpg, png, dll). Disarankan menggunakan gambar dengan resolusi yang tinggi agar hasil pencetakan maksimal"
+                        android:textColor="@color/colorPrimary" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/btn_file_desain"
+                            style="@style/Widget.MaterialComponents.TimePicker.ImageButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_upload_24" />
+
+                        <TextView
+                            android:id="@+id/tv_nama_file"
+                            android:visibility="gone"
+                            style="@style/textAppearanceBody1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_small"
+                            android:text="@string/ktp_linggar_jpg"
+                            android:textColor="@color/colorPrimary" />
+
+                    </LinearLayout>
+
+                    <ProgressBar
+                        android:id="@+id/progress_upload"
+                        android:visibility="gone"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:progressBackgroundTint="@color/colorPrimary"
+                        android:progressTint="@color/green_500"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tv_uploading"
+                            style="@style/textAppearanceCaption"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:visibility="invisible"
+                            android:text="@string/uploading"
+                            android:textColor="@color/colorPrimary" />
+
+                        <TextView
+                            android:id="@+id/tv_file_uploaded"
+                            style="@style/textAppearanceCaption"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:visibility="invisible"
+                            android:drawableLeft="@drawable/ic_baseline_done_24"
+                            android:drawableTint="@color/green_500"
+                            android:text="@string/file_uploaded"
+                            android:textColor="@color/green_500" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_large"
+                    android:background="@drawable/bg_product_details"
+                    android:orientation="vertical"
+                    android:padding="@dimen/margin_medium">
+
+                    <TextView
+                        style="@style/textAppearanceBody1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/quantity"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_min_qty"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/decrease" />
+
+                        <TextView
+                            android:id="@+id/tv_qty"
+                            style="@style/textAppearanceBody2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/margin_large"
+                            android:text="@string/_1"
+                            android:textSize="15sp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_plus_qty"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/increase" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_large"
+                    android:background="@drawable/bg_product_details"
+                    android:orientation="vertical"
+                    android:padding="@dimen/margin_medium">
+
+                    <TextView
+                        style="@style/textAppearanceBody1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/organisasi"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        style="@style/textAppearanceBody2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/jika_tidak_ada_kosongkan_saja"
+                        android:textColor="@color/colorPrimary" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:hint="@string/asal_organisasi_peminjam">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edittext_organisasi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nunito_regular"
+                            android:inputType="text" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@+id/layout_bottom"
+        android:background="@color/colorPrimary" />
+
+    <RelativeLayout
+        android:id="@+id/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/grey_50"
+        android:paddingHorizontal="@dimen/margin_medium"
+        android:paddingVertical="@dimen/margin_tiny">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/textAppearanceSubtitle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/total_harga" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/textAppearanceHeadline6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_price"
+                    style="@style/textAppearanceHeadline6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_75_000"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_add_to_cart"
+            style="@style/textAppearanceButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:backgroundTint="@color/green_500"
+            android:drawableLeft="@drawable/ic_baseline_shopping_cart_24"
+            android:paddingHorizontal="@dimen/margin_large"
+            android:paddingVertical="@dimen/margin_medium"
+            android:text="@string/add_to_cart"
+            android:textColor="@color/white"
+            app:cornerRadius="@dimen/margin_large" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

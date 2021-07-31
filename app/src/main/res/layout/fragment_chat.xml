@@ -60,7 +60,6 @@
                     android:layout_width="@dimen/margin_large"
                     android:layout_height="@dimen/margin_large"
                     android:layout_alignParentEnd="true"
-                    android:backgroundTint="@color/white"
                     android:layout_centerVertical="true"
                     android:clickable="true"
                     android:focusable="true"

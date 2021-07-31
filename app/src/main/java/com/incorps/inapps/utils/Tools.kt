@@ -1,8 +1,13 @@
 package com.incorps.inapps.utils
 
+import android.content.ContentResolver
 import android.content.Context
 import android.content.res.Resources
+import android.database.Cursor
 import android.net.ConnectivityManager
+import android.net.Uri
+import android.provider.OpenableColumns
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
@@ -202,6 +207,45 @@ object Tools {
         return 0
     }
 
+    fun getProductPricebyId(id: Int): Long {
+        when (id) {
+            201 -> {
+                return 25000
+            }
+            202 -> {
+                return 20000
+            }
+            203 -> {
+                return 15000
+            }
+            204 -> {
+                return 15000
+            }
+            205 -> {
+                return 15000
+            }
+            206 -> {
+                return 10000
+            }
+            207 -> {
+                return 10000
+            }
+            208 -> {
+                return 30000
+            }
+            301 -> {
+                return 2500
+            }
+            302 -> {
+                return 35000
+            }
+            303 -> {
+                return 3000
+            }
+        }
+        return 0
+    }
+
     fun getDate(milliSeconds: Long, dateFormat: String): String {
         // Create a DateFormatter object for displaying date in specified format.
         val formatter = SimpleDateFormat(dateFormat, Locale("ID"))
@@ -256,5 +300,32 @@ object Tools {
 
     fun countCommaSeparator(isi: String): Int {
         return isi.split(',').filter { i -> i.isNotEmpty() }.size
+    }
+
+    fun getFileName(uri: Uri, contentResolver: ContentResolver): String {
+        var result: String = ""
+        if (uri.getScheme().equals("content")) {
+            val cursor: Cursor? = contentResolver.query(uri, null, null, null, null)
+            cursor.use { cursor ->
+                if (cursor != null && cursor.moveToFirst()) {
+                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
+                }
+            }
+        }
+        return result
+    }
+
+    fun showToastAddtoCart(context: Context, layoutInflater: LayoutInflater, product: String) {
+        val toastAddtoCart = Toast(context)
+        val toastView = layoutInflater.inflate(R.layout.toast_addtocart, null)
+
+        val tvTitle: TextView = toastView.findViewById(R.id.tv_product_title)
+        tvTitle.text = getProductNameById(product.toInt())
+
+        toastAddtoCart.view = toastView
+
+        toastAddtoCart.duration = Toast.LENGTH_LONG
+        toastAddtoCart.setGravity(Gravity.CENTER, 0, 0)
+        toastAddtoCart.show()
     }
 }

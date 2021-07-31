@@ -152,11 +152,23 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
 
                 } else {
                     progressDialog.dismiss()
-
-                    // Show Toast
-                    val message = "Login gagal! Coba Lagi"
-                    Tools.showCustomToastFailed(this, layoutInflater, resources, message)
                 }
+            }.addOnFailureListener {
+
+                // Show Toast
+                var message = "Login gagal! Coba Lagi"
+                when {
+                    it.message.toString() == "The email address is badly formatted." -> {
+                        message = "Format email salah"
+                    }
+                    it.message.toString() == "There is no user record corresponding to this identifier. The user may have been deleted." -> {
+                        message = "Email belum terdaftar"
+                    }
+                    it.message.toString() == "The password is invalid or the user does not have a password." -> {
+                        message = "Password salah"
+                    }
+                }
+                Tools.showCustomToastFailed(this, layoutInflater, resources, message)
             }
     }
 
@@ -241,12 +253,9 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
                             }.addOnFailureListener { exception ->
                                 progressDialog.dismiss()
 
-                                Tools.showCustomToastFailed(
-                                    this,
-                                    layoutInflater,
-                                    resources,
-                                    exception.toString()
-                                )
+                                // Show Toast
+                                val message = "Login gagal! Coba Lagi"
+                                Tools.showCustomToastFailed(this, layoutInflater, resources, message)
                             }
 
                     }

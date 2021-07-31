@@ -8,37 +8,36 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.incorps.inapps.R
-import com.incorps.inapps.model.OrdersDesain
+import com.incorps.inapps.room.CartViewModel
+import com.incorps.inapps.room.Cetak
 import com.incorps.inapps.utils.Tools
 
-import com.incorps.inapps.model.OrdersCetak
+class CartCetakAdapter : RecyclerView.Adapter<CartCetakAdapter.GridViewHolder>() {
 
-class OrdersCetakAdapter(private val listCetak: List<OrdersCetak>) :
-    RecyclerView.Adapter<OrdersCetakAdapter.GridViewHolder>() {
-
-    private lateinit var onItemClickCallback: OnItemClickCallback
+    private var listCetak = emptyList<Cetak>()
+    private lateinit var cartViewModel: CartViewModel
 
     inner class GridViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imgProduct: ImageView = itemView.findViewById(R.id.img_product)
         var tvTitle: TextView = itemView.findViewById(R.id.tv_title)
-        var tvQty: TextView = itemView.findViewById(R.id.tv_qty)
+        var tvQty : TextView = itemView.findViewById(R.id.tv_qty)
         var tvPrice: TextView = itemView.findViewById(R.id.tv_price)
+        var btnDelete: TextView = itemView.findViewById(R.id.btn_delete)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): GridViewHolder {
-        val view: View = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.item_order_cetak, viewGroup, false)
+        val view: View = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_cart_cetak, viewGroup, false)
         return GridViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: GridViewHolder, position: Int) {
         // Image Product
         Glide.with(holder.itemView.context)
-            .load(Tools.getProductDrawableById(listCetak[position].product.toInt()))
+            .load(Tools.getProductDrawableById(listCetak[position].product))
             .into(holder.imgProduct)
 
         // Teks Title
-        holder.tvTitle.text = Tools.getProductNameById(listCetak[position].product.toInt())
+        holder.tvTitle.text = Tools.getProductNameById(listCetak[position].product)
 
         // Teks Qty
         val qty = listCetak[position].quantity
@@ -46,10 +45,12 @@ class OrdersCetakAdapter(private val listCetak: List<OrdersCetak>) :
         holder.tvQty.text = textQty
 
         // Teks Price
-        holder.tvPrice.text = Tools.getCurrencySeparator(listCetak[position].price)
+        holder.tvPrice.text = Tools.getCurrencySeparator(listCetak[position].price.toLong())
 
-        holder.itemView.setOnClickListener {
-            onItemClickCallback.onItemClicked(listCetak[holder.adapterPosition])
+        // Btn Delete
+        holder.btnDelete.setOnClickListener {
+            cartViewModel.deleteCetak(listCetak[position])
+            notifyDataSetChanged()
         }
     }
 
@@ -57,11 +58,12 @@ class OrdersCetakAdapter(private val listCetak: List<OrdersCetak>) :
         return listCetak.size
     }
 
-    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
-        this.onItemClickCallback = onItemClickCallback
+    fun setData(cetakList: List<Cetak>) {
+        this.listCetak = cetakList
+        notifyDataSetChanged()
     }
 
-    interface OnItemClickCallback {
-        fun onItemClicked(data: OrdersCetak)
+    fun setViewModel(viewModel: CartViewModel) {
+        this.cartViewModel = viewModel
     }
 }

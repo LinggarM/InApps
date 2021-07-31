@@ -1,9 +1,11 @@
 package com.incorps.inapps.productsactivity
 
+import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
@@ -11,6 +13,9 @@ import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.firestore.FirebaseFirestore
 import com.incorps.inapps.R
 import com.incorps.inapps.preferences.AccountSessionPreferences
+import com.incorps.inapps.room.CartViewModel
+import com.incorps.inapps.room.Cetak
+import com.incorps.inapps.room.Install
 import com.incorps.inapps.utils.Tools
 
 class InstallActivity : AppCompatActivity() {
@@ -28,6 +33,12 @@ class InstallActivity : AppCompatActivity() {
     private val product: String = "401"
     private var user: String = ""
 
+    private lateinit var accountSessionPreferences: AccountSessionPreferences
+    private lateinit var cartViewModel : CartViewModel
+
+    private lateinit var alertDialog: AlertDialog
+    private lateinit var builder: AlertDialog.Builder
+
     private lateinit var imgBack: ImageView
     private lateinit var imgFavorite: ImageView
     private var isFav = false
@@ -36,6 +47,7 @@ class InstallActivity : AppCompatActivity() {
     private lateinit var btnSoftware: TextView
     private lateinit var btnGame: TextView
     private lateinit var tvTitleOS: TextView
+    private lateinit var tvDeskripsi: TextView
     private lateinit var layoutOS: TextInputLayout
     private lateinit var editTextOS: TextInputEditText
     private lateinit var radioAddOn: Switch
@@ -56,8 +68,6 @@ class InstallActivity : AppCompatActivity() {
     private lateinit var tvPrice: TextView
     private lateinit var btnAddtoCart: MaterialButton
 
-    private lateinit var accountSessionPreferences: AccountSessionPreferences
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_install)
@@ -69,6 +79,7 @@ class InstallActivity : AppCompatActivity() {
         btnSoftware = findViewById(R.id.btn_software)
         btnGame = findViewById(R.id.btn_game)
         tvTitleOS = findViewById(R.id.tv_title_os)
+        tvDeskripsi = findViewById(R.id.tv_deskripsi)
         layoutOS = findViewById(R.id.layout_os)
         editTextOS = findViewById(R.id.edittext_os)
         radioAddOn = findViewById(R.id.radio_addon)
@@ -90,6 +101,8 @@ class InstallActivity : AppCompatActivity() {
 
         accountSessionPreferences = AccountSessionPreferences(this)
         user = accountSessionPreferences.idUser
+
+        cartViewModel = ViewModelProvider(this).get(CartViewModel::class.java)
 
         // Top Layout
         imgBack.setOnClickListener {
@@ -171,6 +184,7 @@ class InstallActivity : AppCompatActivity() {
             isiGame = editTextGame.text.toString()
             catatan = editCatatan.text.toString()
             address = editAlamat.text.toString()
+
             if (!os && !software && !game) {
                 Tools.showCustomToastFailed(this, layoutInflater, resources, "Pilih minimal 1 tipe instalasi")
             } else if (os && isiOs == "") {
@@ -182,23 +196,54 @@ class InstallActivity : AppCompatActivity() {
             } else if (antar && address == "") {
                 editAlamat.setError("Alamat pengantaran harus diisi!")
             } else {
-                var priceOS = 0
-                var priceSoftware = 0
-                var priceGame = 0
-                if (os) {
-                    priceOS = 40000 * Tools.countCommaSeparator(isiOs)
-                }
-                if (software) {
-                    priceSoftware = 5000 * Tools.countCommaSeparator(isiSoftware)
-                }
-                if (game) {
-                    priceGame = 10000 * Tools.countCommaSeparator(isiGame)
-                }
-                price = priceOS + priceSoftware + priceGame
+                price = getPrice()
                 tvPrice.text = price.toString()
-                tvTitleOS.text = "Game : $game, OS : $os, OS Add On : $osAddOn, Software : $software, $isiOs, $isiSoftware, $isiGame, Catatan : $catatan, Antar : $antar, Address : $address, Price : $price, Product : $product, User : $user"
+
+                //set alert dialog builder
+                builder = AlertDialog.Builder(this)
+
+                //set title for alert dialog
+                builder.setTitle("Add to Cart")
+
+                //set message for alert dialog
+                builder.setMessage("Tambahkan pesanan ke keranjang belanja?")
+                builder.setIcon(R.drawable.ic_baseline_shopping_cart_24_grey)
+
+                //set positive and negative button
+                builder.apply {
+                    setPositiveButton("Yes") { dialogInterface, i ->
+                        val install = Install(0, user, product.toInt(), os, osAddOn, software, game, isiOs, isiGame, isiSoftware, catatan, antar, address, price)
+                        cartViewModel.insertInstall(install)
+                        Tools.showToastAddtoCart(this@InstallActivity, layoutInflater, product)
+                        finish()
+                    }
+                    setNegativeButton("No") { dialogInterface, i ->
+
+                    }
+                }
+
+                // Create the AlertDialog
+                alertDialog = builder.create()
+                alertDialog.show()
             }
         }
+    }
+
+    private fun getPrice(): Int {
+        var priceOS = 0
+        var priceSoftware = 0
+        var priceGame = 0
+
+        if (os) {
+            priceOS = 40000 * Tools.countCommaSeparator(isiOs)
+        }
+        if (software) {
+            priceSoftware = 5000 * Tools.countCommaSeparator(isiSoftware)
+        }
+        if (game) {
+            priceGame = 10000 * Tools.countCommaSeparator(isiGame)
+        }
+        return priceOS + priceSoftware + priceGame
     }
 
     private fun spinnerPengambilan() {
