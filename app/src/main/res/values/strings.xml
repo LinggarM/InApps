@@ -40,6 +40,8 @@
     <string name="back_pressed_dashboard">Tekan kembali untuk keluar</string>
     <string name="dialogTitle">Logout Account</string>
     <string name="dialogMessage">Apakah anda yakin ingin keluar?</string>
+    <string name="dialogTitleRemoveCart">Remove Item</string>
+    <string name="dialogMessageRemoveCart">Hapus item dari keranjang belanja?</string>
     <string name="product_name">Product Name</string>
     <string name="product_price">Rp. 140.000 / Hari</string>
     <string name="waktu_pencetakan_paling_cepat_3_hari">Waktu pencetakan paling cepat 3 hari</string>
@@ -124,6 +126,30 @@
     <string name="dipesan">Dipesan</string>
     <string name="rp_140_000">Rp. 140.000</string>
     <string name="cancel_order">Cancel Order</string>
+    <string name="uploading">Uploading...</string>
+    <string name="rp">Rp.&#160;</string>
+    <string name="_75_000">75.000</string>
+    <string name="jenis_desain">Jenis Desain</string>
+    <string name="blocknote">Blocknote</string>
+    <string name="deskripsi_desain">Deskripsi Desain</string>
+    <string name="dibuatkan_terserah_editornya_saja_yang_penting_tema_nya_minimalis">Dibuatkan terserah editornya saja, yang penting tema-nya minimalis</string>
+    <string name="waktu_pengerjaan">Waktu Pengerjaan</string>
+    <string name="_5">5</string>
+    <string name="hari">&#160;Hari</string>
+    <string name="email_pengiriman_hasil_desain">Email Pengiriman Hasil Desain</string>
+    <string name="linggarmc_gmail_com">linggarmc@gmail.com</string>
+    <string name="file_pendukung">File Pendukung</string>
+    <string name="download_file_pendukung">Download File Pendukung</string>
+    <string name="file_desain">File Desain</string>
+    <string name="download_file_desain">Download File Desain</string>
+    <string name="nomor_rekening">Nomor Rekening</string>
+    <string name="atas_nama">Atas Nama</string>
+    <string name="desc_checkout">Info pesanan dapat dilihat di menu "Orders"</string>
+    <string name="masukkan_daftar_os_jika_lebih_dari_satu_pisahkan_dengan_koma"><b>Masukkan daftar OS</b> (jika lebih dari satu, pisahkan dengan koma)</string>
+    <string name="masukkan_daftar_software_jika_lebih_dari_satu_pisahkan_dengan_koma"><b>Masukkan daftar Software</b> (jika lebih dari satu, pisahkan dengan koma)</string>
+    <string name="masukkan_daftar_game_jika_lebih_dari_satu_pisahkan_dengan_koma"><b>Masukkan daftar Game</b> (jika lebih dari satu, pisahkan dengan koma)</string>
+    <string name="pengambilan_laptop_sehabis_install">Pengambilan Laptop (Sehabis Install)</string>
+    <string name="upload_file_gagal">Upload File Gagal</string>
 
     <string name="deskripsi_proyektor_atas_tiga_ribu">
         Proyektor ≥3000 Lumens yang tersedia ada 2 jenis, yaitu Epson EB-S300 dan ViewSonic PJ513. Pemesanan proyektor sudah termasuk include Kabel Power, Kabel VGA, Kabel Converter, dan Remote (Jika diperlukan).
@@ -166,7 +192,7 @@
         - <b>Paket KKN</b> : Rp. 800.000 (42 hari)\n
         - <b>Paket Reguler</b> : Rp. 75.000/ hari\n
         - <b>Paket 12 jam</b> : Rp. 50.000\n
-        - <b>Paket 6 jam</b> : Rp. 50.000
+        - <b>Paket 6 jam</b> : Rp. 30.000
     </string>
 
     <string name="deskripsi_screen_proyektor">
@@ -181,34 +207,23 @@
         Pointer yang disediakan In Corporation ada 1 buah, dengan harga rental Rp. 10.000/ hari
     </string>
 
+    <string name="deskripsi_banner">Desain Banner dapat berupa Banner, X-Banner, maupun MMT. Waktu pengerjaan normal 5 hari, dan disediakan paket express 1, 2, atau 3 hari dengan biaya tambahan. Revisi desain sampai puas (waktu maksimal revisi 3 hari).</string>
+    <string name="deskripsi_poster">Desain Poster dapat berupa Poster, Pamflet, maupun Leaflet. Waktu pengerjaan normal 5 hari, dan disediakan paket express 1, 2, atau 3 hari dengan biaya tambahan. Revisi desain sampai puas (waktu maksimal revisi 3 hari).</string>
+    <string name="deskripsi_cocard">Desain Co-Card merupakan salah satu layanan Desain-In. Waktu pengerjaan normal 5 hari, dan disediakan paket express 1, 2, atau 3 hari dengan biaya tambahan. Revisi desain sampai puas (waktu maksimal revisi 3 hari).</string>
+    <string name="deskripsi_stiker">Desain Stiker merupakan salah satu layanan Desain-In. Waktu pengerjaan normal 5 hari, dan disediakan paket express 1, 2, atau 3 hari dengan biaya tambahan. Revisi desain sampai puas (waktu maksimal revisi 3 hari).</string>
+    <string name="deskripsi_blocknote">Desain Blocknote merupakan salah satu layanan Desain-In. Waktu pengerjaan normal 5 hari, dan disediakan paket express 1, 2, atau 3 hari dengan biaya tambahan. Revisi desain sampai puas (waktu maksimal revisi 3 hari).</string>
+    <string name="deskripsi_sertifikat">Desain Sertifikat merupakan salah satu layanan Desain-In. Waktu pengerjaan normal 5 hari, dan disediakan paket express 1, 2, atau 3 hari dengan biaya tambahan. Revisi desain sampai puas (waktu maksimal revisi 3 hari).</string>
+    <string name="deskripsi_plakat">Desain Plakat merupakan salah satu layanan Desain-In. Waktu pengerjaan normal 5 hari, dan disediakan paket express 1, 2, atau 3 hari dengan biaya tambahan. Revisi desain sampai puas (waktu maksimal revisi 3 hari).</string>
+    <string name="deskripsi_desainkemasan">Desain Kemasan merupakan salah satu layanan Desain-In. Waktu pengerjaan normal 5 hari, dan disediakan paket express 1, 2, atau 3 hari dengan biaya tambahan. Revisi desain sampai puas (waktu maksimal revisi 3 hari).</string>
+
+    <string name="deskripsi_blocknote_cetak">Pencetakan Blocknote menerima pesanan minimal 100 pcs. Waktu pencetakan paling cepat 3 hari.</string>
+    <string name="deskripsi_plakatkayu_cetak">Pencetakan Plakat Kayu merupakan layanan Cetak-In berupa jasa pencetakan plakat kayu dengan custom desain dari customer. Waktu pencetakan paling cepat 3 hari.</string>
+    <string name="deskripsi_cocard_cetak">Pencetakan Co-Card merupakan layanan Cetak-In berupa jasa pencetakan Co-Card dengan custom desain dari customer. Waktu pencetakan paling cepat 3 hari.</string>
+
     <string name="deskripsi_installin">
         Install-In merupakan layanan dari In Apps berupa jasa instalasi OS (Operating System), Software, atau Game pada Laptop/ PC. Waktu install normalnya 3 hari.\n\nHarga instalasi :\n
         - <b>OS (Operating System) :</b> Rp. 40.000 (Sudah include aplikasi bawaan)\n
         - <b>Software :</b> Rp. 5000\n
         - <b>Game :</b> Rp. 10.000
     </string>
-    <string name="deskripsi_banner">Desain Banner dapat berupa Banner, X-Banner, maupun MMT. Waktu pengerjaan normal 5 hari, dan disediakan paket express 1, 2, atau 3 hari dengan biaya tambahan. Revisi desain sampai puas (waktu maksimal revisi 3 hari).</string>
-    <string name="deskripsi_blocknote_cetak">Pencetakan Blocknote menerima pesanan minimal 100 pcs. Waktu pencetakan paling cepat 3 hari.</string>
-    <string name="uploading">Uploading...</string>
-    <string name="rp">Rp.&#160;</string>
-    <string name="_75_000">75.000</string>
-    <string name="jenis_desain">Jenis Desain</string>
-    <string name="blocknote">Blocknote</string>
-    <string name="deskripsi_desain">Deskripsi Desain</string>
-    <string name="dibuatkan_terserah_editornya_saja_yang_penting_tema_nya_minimalis">Dibuatkan terserah editornya saja, yang penting tema-nya minimalis</string>
-    <string name="waktu_pengerjaan">Waktu Pengerjaan</string>
-    <string name="_5">5</string>
-    <string name="hari">&#160;Hari</string>
-    <string name="email_pengiriman_hasil_desain">Email Pengiriman Hasil Desain</string>
-    <string name="linggarmc_gmail_com">linggarmc@gmail.com</string>
-    <string name="file_pendukung">File Pendukung</string>
-    <string name="download_file_pendukung">Download File Pendukung</string>
-    <string name="file_desain">File Desain</string>
-    <string name="download_file_desain">Download File Desain</string>
-    <string name="nomor_rekening">Nomor Rekening</string>
-    <string name="atas_nama">Atas Nama</string>
-    <string name="desc_checkout">Info pesanan dapat dilihat di menu "Orders"</string>
-    <string name="masukkan_daftar_os_jika_lebih_dari_satu_pisahkan_dengan_koma"><b>Masukkan daftar OS</b> (jika lebih dari satu, pisahkan dengan koma)</string>
-    <string name="masukkan_daftar_software_jika_lebih_dari_satu_pisahkan_dengan_koma"><b>Masukkan daftar Software</b> (jika lebih dari satu, pisahkan dengan koma)</string>
-    <string name="masukkan_daftar_game_jika_lebih_dari_satu_pisahkan_dengan_koma"><b>Masukkan daftar Game</b> (jika lebih dari satu, pisahkan dengan koma)</string>
 </resources>

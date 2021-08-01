@@ -29,6 +29,7 @@ import com.incorps.inapps.room.CartViewModel
 import com.incorps.inapps.utils.Tools
 
 class HomeFragment : Fragment() {
+    private var user: String = ""
     private var totalItemCart: Int = 0
     var itemRental: Int = 0
     var itemDesain: Int = 0
@@ -68,6 +69,7 @@ class HomeFragment : Fragment() {
         btnInstall = view.findViewById(R.id.btn_install)
 
         accountSessionPreferences = AccountSessionPreferences(requireContext())
+        user = accountSessionPreferences.idUser
 
         // Welcome Name
         personName = accountSessionPreferences.nameUser
@@ -90,19 +92,43 @@ class HomeFragment : Fragment() {
         // Cart Counter
         cartViewModel = ViewModelProvider(this).get(CartViewModel::class.java)
         cartViewModel.getRentalList.observe(viewLifecycleOwner, Observer {
-            itemRental = it.size
+            var itemRentalCounter = 0
+            for (item in it) {
+                if (item.user == user) {
+                    itemRentalCounter += 1
+                }
+            }
+            itemRental = itemRentalCounter
             updateTotalItems()
         })
         cartViewModel.getDesainList.observe(viewLifecycleOwner, Observer {
-            itemDesain = it.size
+            var itemDesainCounter = 0
+            for (item in it) {
+                if (item.user == user) {
+                    itemDesainCounter += 1
+                }
+            }
+            itemDesain = itemDesainCounter
             updateTotalItems()
         })
         cartViewModel.getCetakList.observe(viewLifecycleOwner, Observer {
-            itemCetak = it.size
+            var itemCetakCounter = 0
+            for (item in it) {
+                if (item.user == user) {
+                    itemCetakCounter += 1
+                }
+            }
+            itemCetak = itemCetakCounter
             updateTotalItems()
         })
         cartViewModel.getInstallList.observe(viewLifecycleOwner, Observer {
-            itemInstall = it.size
+            var itemInstallCounter = 0
+            for (item in it) {
+                if (item.user == user) {
+                    itemInstallCounter += 1
+                }
+            }
+            itemInstall = itemInstallCounter
             updateTotalItems()
         })
 

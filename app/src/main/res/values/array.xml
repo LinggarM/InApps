@@ -111,6 +111,13 @@
         <item>Paket KKN 42 Hari (Rp. 900.000)</item>
     </string-array>
 
+    <string-array name="paket_rental_proyektorbawahtigaribu">
+        <item>Harian (Rp. 75.000/ hari)</item>
+        <item>12 Jam (Rp. 50.000)</item>
+        <item>6 Jam (Rp. 30.000)</item>
+        <item>Paket KKN 42 Hari (Rp. 800.000)</item>
+    </string-array>
+
     <string-array name="waktu_pengerjaan">
         <item>5 Hari (Biaya Normal)</item>
         <item>3 Hari (+15.000)</item>

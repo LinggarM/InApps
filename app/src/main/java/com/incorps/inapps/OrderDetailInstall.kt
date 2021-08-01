@@ -186,7 +186,7 @@ class OrderDetailInstall : AppCompatActivity() {
             tvAlamat.text = orderInstall.address
         } else {
             tvAntar.text = "Ambil Sendiri"
-            tvTitleAlamat.text = "Alamat Pengambilan Barang"
+            tvTitleAlamat.text = "Alamat Pengambilan Laptop"
             tvAlamat.text = resources.getString(R.string.alamat_incorps)
             btnOpenMaps.visibility = View.VISIBLE
         }

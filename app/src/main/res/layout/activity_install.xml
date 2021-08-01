@@ -296,7 +296,7 @@
                         style="@style/textAppearanceBody1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/pengambilan_barang"
+                        android:text="@string/pengambilan_laptop_sehabis_install"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 

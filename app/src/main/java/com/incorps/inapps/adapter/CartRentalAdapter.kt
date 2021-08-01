@@ -1,5 +1,7 @@
 package com.incorps.inapps.adapter
 
+import android.app.AlertDialog
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +15,10 @@ import com.incorps.inapps.room.Rental
 import com.incorps.inapps.utils.Tools
 
 class CartRentalAdapter : RecyclerView.Adapter<CartRentalAdapter.GridViewHolder>() {
+
+    private lateinit var context: Context
+    private lateinit var alertDialog: AlertDialog
+    private lateinit var builder: AlertDialog.Builder
 
     private var listRental = emptyList<Rental>()
     private lateinit var cartViewModel: CartViewModel
@@ -62,8 +68,31 @@ class CartRentalAdapter : RecyclerView.Adapter<CartRentalAdapter.GridViewHolder>
 
         // Btn Delete
         holder.btnDelete.setOnClickListener {
-            cartViewModel.deleteRental(listRental[position])
-            notifyDataSetChanged()
+
+            //set alert dialog builder
+            builder = AlertDialog.Builder(context)
+
+            //set title for alert dialog
+            builder.setTitle(R.string.dialogTitleRemoveCart)
+
+            //set message for alert dialog
+            builder.setMessage(R.string.dialogMessageRemoveCart)
+            builder.setIcon(R.drawable.ic_baseline_warning_24)
+
+            //set positive and negative button
+            builder.apply {
+                setPositiveButton("Yes") { dialogInterface, i ->
+                    cartViewModel.deleteRental(listRental[position])
+                    notifyDataSetChanged()
+                }
+                setNegativeButton("No") { dialogInterface, i ->
+
+                }
+            }
+
+            // Create the AlertDialog
+            alertDialog = builder.create()
+            alertDialog.show()
         }
     }
 
@@ -78,5 +107,9 @@ class CartRentalAdapter : RecyclerView.Adapter<CartRentalAdapter.GridViewHolder>
 
     fun setViewModel(viewModel: CartViewModel) {
         this.cartViewModel = viewModel
+    }
+
+    fun setContext(context: Context) {
+        this.context = context
     }
 }

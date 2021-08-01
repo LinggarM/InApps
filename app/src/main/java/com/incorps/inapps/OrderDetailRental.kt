@@ -162,11 +162,11 @@ class OrderDetailRental : AppCompatActivity() {
         tvLamaPeminjaman.text = textLamaPeminjaman
 
         // Tanggal Peminjaman
-        tvTglPeminjaman.text = Tools.getDate(orderRental.tgl_peminjaman, "EEE, dd MM yyyy")
+        tvTglPeminjaman.text = Tools.getDate(orderRental.tgl_peminjaman, "EEE, dd MMMM yyyy")
         tvWaktuPeminjaman.text = Tools.getDate(orderRental.tgl_peminjaman, "HH:mm")
 
         // Tanggal Pengembalian
-        tvTglPengembalian.text = Tools.getDate(orderRental.tgl_pengembalian, "EEE, dd MM yyyy")
+        tvTglPengembalian.text = Tools.getDate(orderRental.tgl_pengembalian, "EEE, dd MMMM yyyy")
         tvWaktuPengembalian.text = Tools.getDate(orderRental.tgl_pengembalian, "HH:mm")
 
         // Quantity

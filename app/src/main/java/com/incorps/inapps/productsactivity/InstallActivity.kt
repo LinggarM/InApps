@@ -174,7 +174,7 @@ class InstallActivity : AppCompatActivity() {
         // Pengambilan Barang
         spinnerPengambilan()
         val alamatIncorps = resources.getString(R.string.alamat_incorps)
-        tvAlamat.text = "Alamat pengambilan barang adalah $alamatIncorps"
+        tvAlamat.text = "Alamat pengambilan laptop adalah $alamatIncorps"
 
         // Layout Bottom
         tvPrice.text = price.toString()

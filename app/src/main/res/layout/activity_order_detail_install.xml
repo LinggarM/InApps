@@ -188,7 +188,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_medium"
-                android:text="@string/pengambilan_barang" />
+                android:text="@string/pengambilan_laptop_sehabis_install" />
 
             <TextView
                 android:id="@+id/tv_antar"

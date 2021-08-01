@@ -259,16 +259,16 @@ class BannerActivity : AppCompatActivity() {
     private fun updatePrice() {
         when (waktuPengerjaan) {
             5 -> {
-                price = 25000
+                price = Tools.getProductPricebyId(product.toInt()).toInt()
             }
             3 -> {
-                price = 25000 + 15000
+                price = Tools.getProductPricebyId(product.toInt()).toInt() + 15000
             }
             2 -> {
-                price = 25000 + 30000
+                price = Tools.getProductPricebyId(product.toInt()).toInt() + 30000
             }
             1 -> {
-                price = 25000 + 40000
+                price = Tools.getProductPricebyId(product.toInt()).toInt() + 40000
             }
         }
         tvPrice.text = Tools.getCurrencySeparator(price.toLong())

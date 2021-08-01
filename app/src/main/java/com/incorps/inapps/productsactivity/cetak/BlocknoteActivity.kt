@@ -195,7 +195,7 @@ class BlocknoteActivity : AppCompatActivity() {
                     }.addOnFailureListener {
                         Tools.showCustomToastFailed(
                             this, layoutInflater, resources,
-                            "Upload File Gagal"
+                            resources.getString(R.string.upload_file_gagal)
                         )
                         urlFileDesain = ""
                     }

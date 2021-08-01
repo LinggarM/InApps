@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.InApps">
-        <activity android:name=".KritikSaranActivity"></activity>
+        <activity android:name=".EditProfileActivity"></activity>
+        <activity android:name=".KritikSaranActivity" />
         <activity android:name=".OrderDetailInstall" />
         <activity android:name=".OrderDetailCetak" />
         <activity android:name=".OrderDetailDesain" />

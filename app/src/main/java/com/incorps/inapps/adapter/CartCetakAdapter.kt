@@ -1,5 +1,8 @@
 package com.incorps.inapps.adapter
 
+import android.app.AlertDialog
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,11 +11,16 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.incorps.inapps.R
+import com.incorps.inapps.SignInActivity
 import com.incorps.inapps.room.CartViewModel
 import com.incorps.inapps.room.Cetak
 import com.incorps.inapps.utils.Tools
 
 class CartCetakAdapter : RecyclerView.Adapter<CartCetakAdapter.GridViewHolder>() {
+
+    private lateinit var context: Context
+    private lateinit var alertDialog: AlertDialog
+    private lateinit var builder: AlertDialog.Builder
 
     private var listCetak = emptyList<Cetak>()
     private lateinit var cartViewModel: CartViewModel
@@ -49,8 +57,31 @@ class CartCetakAdapter : RecyclerView.Adapter<CartCetakAdapter.GridViewHolder>()
 
         // Btn Delete
         holder.btnDelete.setOnClickListener {
-            cartViewModel.deleteCetak(listCetak[position])
-            notifyDataSetChanged()
+
+            //set alert dialog builder
+            builder = AlertDialog.Builder(context)
+
+            //set title for alert dialog
+            builder.setTitle(R.string.dialogTitleRemoveCart)
+
+            //set message for alert dialog
+            builder.setMessage(R.string.dialogMessageRemoveCart)
+            builder.setIcon(R.drawable.ic_baseline_warning_24)
+
+            //set positive and negative button
+            builder.apply {
+                setPositiveButton("Yes") { dialogInterface, i ->
+                    cartViewModel.deleteCetak(listCetak[position])
+                    notifyDataSetChanged()
+                }
+                setNegativeButton("No") { dialogInterface, i ->
+
+                }
+            }
+
+            // Create the AlertDialog
+            alertDialog = builder.create()
+            alertDialog.show()
         }
     }
 
@@ -65,5 +96,9 @@ class CartCetakAdapter : RecyclerView.Adapter<CartCetakAdapter.GridViewHolder>()
 
     fun setViewModel(viewModel: CartViewModel) {
         this.cartViewModel = viewModel
+    }
+
+    fun setContext(context: Context) {
+        this.context = context
     }
 }

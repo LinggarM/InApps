@@ -21,5 +21,5 @@ data class OrdersInstall (
     var product: Long,
     var software_pc: Boolean,
     var status: Long,
-    var user: String,
+    var user: String
 ) : Parcelable
