@@ -1,9 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".EditProfileActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/margin_medium">
+
+        <ImageView
+            android:id="@+id/img_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_round_arrow_back_24" />
+
+        <TextView
+            style="@style/textAppearanceHeadline5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/edit_profile"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_medium">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                app:startIconDrawable="@drawable/ic_baseline_email_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edittext_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_regular"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                app:startIconDrawable="@drawable/ic_baseline_profile_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edittext_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_regular"
+                    android:hint="@string/nama_lengkap"
+                    android:inputType="textPersonName" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                app:prefixText="+62"
+                app:startIconDrawable="@drawable/ic_baseline_phone_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edittext_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_regular"
+                    android:hint="@string/no_handphone"
+                    android:inputType="phone" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                app:startIconDrawable="@drawable/ic_baseline_location_on_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edittext_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_regular"
+                    android:hint="@string/address"
+                    android:inputType="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/colorPrimary"
+                app:startIconDrawable="@drawable/ic_baseline_lock_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edittext_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_regular"
+                    android:hint="@string/password"
+                    android:inputType="textPassword" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_simpan"
+                style="@style/textAppearanceButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:paddingHorizontal="@dimen/margin_huge"
+                android:paddingVertical="@dimen/margin_medium"
+                android:text="Simpan Perubahan"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:cornerRadius="@dimen/margin_large" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

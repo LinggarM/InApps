@@ -42,6 +42,10 @@
     <string name="dialogMessage">Apakah anda yakin ingin keluar?</string>
     <string name="dialogTitleRemoveCart">Remove Item</string>
     <string name="dialogMessageRemoveCart">Hapus item dari keranjang belanja?</string>
+    <string name="dialogTitleEditProfile">Simpan Perubahan?</string>
+    <string name="dialogMessageEditProfile">Apakah anda yakin untuk menyimpan perubahan?</string>
+    <string name="dialogTitleForgotPassword">Kirim email reset sandi?</string>
+    <string name="dialogMessageForgotPassword">Lanjutkan mengirim email reset sandi?</string>
     <string name="product_name">Product Name</string>
     <string name="product_price">Rp. 140.000 / Hari</string>
     <string name="waktu_pencetakan_paling_cepat_3_hari">Waktu pencetakan paling cepat 3 hari</string>
@@ -75,7 +79,10 @@
     <string name="rekening_incorps_atas_nama">Linggar Maretva Cendani</string>
     <string name="hapus_pesanan">Hapus Pesanan</string>
     <string name="message_hapus_pesanan">Apakah anda yakin ingin menghapus pesanan?</string>
-    <string name="link_whatsapp">https://api.whatsapp.com/send?phone=628817678194</string>
+    <string name="link_whatsapp">https://api.whatsapp.com/send?phone=6282135462174</string>
+    <string name="link_line">http://line.me/ti/p/~@tif5545x</string>
+    <string name="link_instagram">https://www.instagram.com/in_corporation/</string>
+    <string name="link_email">incorpsofficial@gmail.com</string>
     <string name="submit">Submit</string>
     <string name="selesaikan_proses_sign_in_dengan_melengkapi_data_data_berikut">Selesaikan proses Sign In dengan melengkapi data - data berikut</string>
     <string name="proceed">Proceed</string>

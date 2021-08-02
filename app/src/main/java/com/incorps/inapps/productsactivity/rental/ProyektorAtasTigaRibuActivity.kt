@@ -216,6 +216,8 @@ class ProyektorAtasTigaRibuActivity : AppCompatActivity() {
             tvJamPeminjaman.text = Tools.getDate(tglPeminjaman, "HH:mm")
             tvTglPengembalian.text = Tools.getDate(tglPengembalian, "dd MMMM yyyy ")
             tvJamPengembalian.text = Tools.getDate(tglPengembalian, "HH:mm")
+
+            updatePrice()
         }
 
         val dateSetListener =

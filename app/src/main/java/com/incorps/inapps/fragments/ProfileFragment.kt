@@ -14,6 +14,7 @@ import com.google.android.material.card.MaterialCardView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.incorps.inapps.EditProfileActivity
 import com.incorps.inapps.KritikSaranActivity
 import com.incorps.inapps.R
 import com.incorps.inapps.SignInActivity
@@ -27,7 +28,10 @@ class ProfileFragment : Fragment() {
     private lateinit var tvName: TextView
     private lateinit var tvEmail: TextView
     private lateinit var imgProfile: ImageView
+    private lateinit var btnTerms: MaterialCardView
     private lateinit var btnKritik: MaterialCardView
+    private lateinit var btnRateApp: MaterialCardView
+    private lateinit var btnAbout: MaterialCardView
     private lateinit var btnLogout: Button
 
     private lateinit var alertDialog: AlertDialog
@@ -55,7 +59,10 @@ class ProfileFragment : Fragment() {
         tvName = view.findViewById(R.id.tv_name)
         tvEmail = view.findViewById(R.id.tv_email)
         imgProfile = view.findViewById(R.id.img_profile)
+        btnTerms = view.findViewById(R.id.btn_terms)
         btnKritik = view.findViewById(R.id.btn_kritik)
+        btnRateApp = view.findViewById(R.id.btn_rate_app)
+        btnAbout = view.findViewById(R.id.btn_about)
         btnLogout = view.findViewById(R.id.btn_logout)
 
         accountSessionPreferences = AccountSessionPreferences(requireContext())
@@ -77,7 +84,7 @@ class ProfileFragment : Fragment() {
         }
 
         imgProfile.setOnClickListener {
-            startActivity(Intent(context, KritikSaranActivity::class.java))
+            startActivity(Intent(context, EditProfileActivity::class.java))
         }
 
         btnKritik.setOnClickListener {

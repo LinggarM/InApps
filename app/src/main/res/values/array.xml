@@ -93,9 +93,9 @@
     </string-array>
 
     <string-array name="cetak_product_price">
-        <item>Rp. 2.500/ buah</item>
-        <item>Rp. 35.000/ buah</item>
-        <item>Rp. 3.000/ buah</item>
+        <item>Rp. 2.500/ pcs</item>
+        <item>Rp. 35.000/ pcs</item>
+        <item>Rp. 3.000/ pcs</item>
     </string-array>
 
     <string-array name="cetak_product_activity">

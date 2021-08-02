@@ -1,6 +1,8 @@
 package com.incorps.inapps
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -20,6 +22,9 @@ class ForgotPasswordActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var imgBack: ImageView
     private lateinit var editEmail: TextInputEditText
     private lateinit var btnReset: MaterialButton
+
+    private lateinit var alertDialog: AlertDialog
+    private lateinit var builder: AlertDialog.Builder
 
     private lateinit var progressDialog: ProgressDialog
 
@@ -50,22 +55,44 @@ class ForgotPasswordActivity : AppCompatActivity(), View.OnClickListener {
                 if (editEmail.text.toString() == "") {
                     editEmail.error = resources.getString(R.string.error_email)
                 } else {
-                    // Start Progress Dialog
-                    progressDialog.setMessage("Registering...")
-                    progressDialog.show()
+                    //set alert dialog builder
+                    builder = AlertDialog.Builder(this)
 
-                    val emailAddress = editEmail.text.toString()
-                    auth.sendPasswordResetEmail(emailAddress)
-                        .addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                progressDialog.dismiss()
-                                Tools.showCustomToastSuccess(this, layoutInflater, resources, "Link reset sandi berhasil dikirim!")
-                                finish()
-                            } else {
-                                progressDialog.dismiss()
-                                Tools.showCustomToastFailed(this, layoutInflater, resources, "Reset sandi gagal!")
-                            }
+                    //set title for alert dialog
+                    builder.setTitle(R.string.dialogTitleForgotPassword)
+
+                    //set message for alert dialog
+                    builder.setMessage(R.string.dialogMessageForgotPassword)
+                    builder.setIcon(R.drawable.ic_baseline_warning_24)
+
+                    //set positive and negative button
+                    builder.apply {
+                        setPositiveButton("Yes") { dialogInterface, i ->
+                            // Start Progress Dialog
+                            progressDialog.setMessage("Registering...")
+                            progressDialog.show()
+
+                            val emailAddress = editEmail.text.toString()
+                            auth.sendPasswordResetEmail(emailAddress)
+                                .addOnCompleteListener { task ->
+                                    if (task.isSuccessful) {
+                                        progressDialog.dismiss()
+                                        Tools.showCustomToastSuccess(this@ForgotPasswordActivity, layoutInflater, resources, "Link reset sandi berhasil dikirim!")
+                                        finish()
+                                    } else {
+                                        progressDialog.dismiss()
+                                        Tools.showCustomToastFailed(this@ForgotPasswordActivity, layoutInflater, resources, "Reset sandi gagal!")
+                                    }
+                                }
                         }
+                        setNegativeButton("No") { dialogInterface, i ->
+
+                        }
+                    }
+
+                    // Create the AlertDialog
+                    alertDialog = builder.create()
+                    alertDialog.show()
                 }
             }
         }

@@ -13,6 +13,8 @@ import com.incorps.inapps.R
 class ChatFragment : Fragment() {
 
     private lateinit var btnWhatsapp: MaterialCardView
+    private lateinit var btnLine: MaterialCardView
+    private lateinit var btnInstagram: MaterialCardView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,9 +28,22 @@ class ChatFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         btnWhatsapp = view.findViewById(R.id.btn_whatsapp)
+        btnLine = view.findViewById(R.id.btn_line)
+        btnInstagram = view.findViewById(R.id.btn_instagram)
+
         btnWhatsapp.setOnClickListener {
             val uriWhatsapp = Uri.parse(resources.getString(R.string.link_whatsapp))
             startActivity(Intent(Intent.ACTION_VIEW, uriWhatsapp))
+        }
+
+        btnLine.setOnClickListener {
+            val uriLine = Uri.parse(resources.getString(R.string.link_line))
+            startActivity(Intent(Intent.ACTION_VIEW, uriLine))
+        }
+
+        btnInstagram.setOnClickListener {
+            val uriInstagram = Uri.parse(resources.getString(R.string.link_instagram))
+            startActivity(Intent(Intent.ACTION_VIEW, uriInstagram))
         }
     }
 }
