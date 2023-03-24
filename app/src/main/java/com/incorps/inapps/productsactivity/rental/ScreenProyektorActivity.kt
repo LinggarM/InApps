@@ -75,6 +75,9 @@ class ScreenProyektorActivity : AppCompatActivity() {
     private lateinit var editHariPeminjaman: TextInputEditText
 
     private lateinit var btnTimeDatePeminjaman: Button
+    private lateinit var layoutTglAtas: LinearLayout
+    private lateinit var layoutTglSampai: LinearLayout
+    private lateinit var layoutTglBawah: LinearLayout
     private lateinit var tvTglPeminjaman: TextView
     private lateinit var tvJamPeminjaman: TextView
     private lateinit var tvTglPengembalian: TextView
@@ -126,6 +129,9 @@ class ScreenProyektorActivity : AppCompatActivity() {
         editHariPeminjaman = findViewById(R.id.edittext_hari_peminjaman)
 
         btnTimeDatePeminjaman = findViewById(R.id.btn_time_date_peminjaman)
+        layoutTglAtas = findViewById(R.id.layout_tgl_atas)
+        layoutTglSampai = findViewById(R.id.layout_tgl_sampai)
+        layoutTglBawah = findViewById(R.id.layout_tgl_bawah)
         tvTglPeminjaman = findViewById(R.id.tv_tgl_peminjaman)
         tvJamPeminjaman = findViewById(R.id.tv_jam_peminjaman)
         tvTglPengembalian = findViewById(R.id.tv_tgl_pengembalian)
@@ -215,6 +221,12 @@ class ScreenProyektorActivity : AppCompatActivity() {
             tvJamPeminjaman.text = Tools.getDate(tglPeminjaman, "HH:mm")
             tvTglPengembalian.text = Tools.getDate(tglPengembalian, "dd MMMM yyyy ")
             tvJamPengembalian.text = Tools.getDate(tglPengembalian, "HH:mm")
+
+            layoutTglAtas.visibility = View.VISIBLE
+            layoutTglSampai.visibility = View.VISIBLE
+            layoutTglBawah.visibility = View.VISIBLE
+
+            updatePrice()
         }
 
         val dateSetListener =
