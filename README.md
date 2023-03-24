@@ -54,7 +54,7 @@ Chat Page | Profile Page | Edit Profile Page
 * Lottie
 
 ## Installation
-You can install this app on your android phone by downloading the APK file in [app/release/app-release.apk](app/release/app-release.apk). Copy and open it on your android phone, and follow the installation process.
+You can install this app on your android phone by downloading the APK file in [app/release/app-release.apk](app/release/app-release.apk). Open it on your android phone, and follow the installation process.
 
 ## Awards
 * Program Kreativitas Mahasiswa - Kewirausahaan (PKM-K) 2019 Funding
