@@ -64,4 +64,4 @@ You can install this app on your android phone by downloading the APK file in [a
 ## Publications
 * Semarangpos News: [Mahasiswa Undip Bikin Aplikasi Jasa Online, Banyak Pilihannya](https://www.semarangpos.com/mahasiswa-undip-bikin-aplikasi-jasa-online-banyak-pilihannya-1005047)
 * KampusUndip News: [In Corps, Aplikasi Bisnis Online Berbasis Android Karya Mahasiswa Undip](http://www.kampusundip.com/2019/07/pkm-undip-in-corps.html)
-* Paper Publications: [Cendani, L. M., Santoso, J., Ramadhani, H., Bintoro, B. B., Grahandika, G., & Khabibah, S. (2018). *Development of Android-based In-Apps Application Using Waterfall SDLC Method*. (unpublished)](Publications/ijetrm_Artikel%20Ilmiah%20In%20Apps.pdf)
+* Paper Publications: [Cendani, L. M., Santoso, J., Ramadhani, H., Bintoro, B. B., Grahandika, G., & Khabibah, S. (2019). *Development of Android-based In-Apps Application Using Waterfall SDLC Method*. (unpublished)](Publications/ijetrm_Artikel%20Ilmiah%20In%20Apps.pdf)
